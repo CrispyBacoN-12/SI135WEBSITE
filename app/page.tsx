@@ -2,7 +2,7 @@ import Link from "next/link";
 import UPCOMING from "./components/UPCOMING EVENT";
 import Material from "./components/Material & Useful Links";
 import Calendar from "./components/calendar";
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function Page() {
   return (
     <>
       <nav className="bg-black shadow-md">
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Material/>
 
       <Calendar/>
-      {children}
+    
       
     </>
   );
