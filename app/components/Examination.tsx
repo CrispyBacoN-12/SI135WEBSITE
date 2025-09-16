@@ -110,7 +110,7 @@ export default function Examination() {
             >
               <div className="flex items-center justify-between">
                 <h4 className="font-bold justify-start basis-1/2">{e.summary}</h4>
-                <div className="flex flex-col items-end justify-end basis-1/2">
+                <div className="flex flex-col items-end justify-end basis-2/5">
                   
                   {e.start.dateTime && (
                     <span className="text-red-500 font-semibold text-sm">
