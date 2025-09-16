@@ -67,6 +67,10 @@ function parseSummary(summaryRaw: string): Parsed {
   // cleanup double spaces
   title = title.replace(/\s{2,}/g, " ").trim();
 
+  if (/^asynchronous$/i.test(type)) {
+  type = "Async";
+}
+
   return { code, type, title };
 }
 
