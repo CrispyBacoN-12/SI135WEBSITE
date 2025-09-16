@@ -104,7 +104,7 @@ export default function Assignments() {
               className="w-full p-4 rounded-lg shadow-md border border-rose-500 bg-white"
             >
               <div className="flex items-center justify-between">
-                <h4 className="font-bold jsutify-start basis-1/2 break-words whitespace-normal">{e.summary}</h4>
+                <h4 className="font-bold justify-start basis-1/2 break-words whitespace-normal">{e.summary.replace(/CLO\s+(\d+)/g, "CLO\u00A0$1}</h4>
                 <div className="flex flex-col items-end justify-end basis-2/5">
                   
                   {e.start.dateTime && (
