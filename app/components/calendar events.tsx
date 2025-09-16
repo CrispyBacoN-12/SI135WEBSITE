@@ -218,17 +218,14 @@ export default function GoogleCalendarEvents() {
                         >
                           {eventType}
                         </span>
-
-
-                        {["LAB", "CBL", "GA","Lab"].includes(eventType) && (
-                          <span className="text-black-600 font-semibold italic ml-2">
-                            *มีเช็คชื่อ*
-                          </span>
-                        )}
+                          <span className="text-gray-500">{eventTime}</span>
                       </div>
                       <span className="text-gray-500">{eventTime}</span>
                     </div>
-
+ {["LAB", "CBL", "GA","Lab"].includes(eventType) && (
+                          <span className="text-black-600 font-semibold italic ml-2">
+                            *มีเช็คชื่อ*
+                          </span>)}
                     <p className="text-black font-bold mt-1">{eventTitle}</p>
                   </li>
                 );
