@@ -220,7 +220,7 @@ export default function GoogleCalendarEvents() {
                         </span>
                           <span className="text-gray-500">{eventTime}</span>
                       </div>
-                      <span className="text-gray-500">{eventTime}</span>
+                    
                     </div>
  {["LAB", "CBL", "GA","Lab"].includes(eventType) && (
                           <span className="text-black-600 font-semibold italic ml-2">
