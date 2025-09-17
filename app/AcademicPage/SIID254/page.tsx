@@ -61,7 +61,7 @@ useEffect(() => {
 
           // ลิงก์เนื้อหา 13..18 (ชื่อ/ลิงก์ เป็นคู่ ๆ)
           const rowLectures = [];
-          for (let i = 13; i <= 18; i += 2) {
+          for (let i = 12; i <= 17; i += 2) {
             const name = cell(i);
             const link = cell(i + 1);
             if (name && link) {
@@ -77,9 +77,9 @@ useEffect(() => {
             }
           }
 
-          // Summary ถ้ามี (ตัวอย่าง: 17..19 เป็นลิงก์)
+          // Summary ถ้ามี
           const summary = [];       
-            const link = cell(19);
+            const link = cell(18);
             if (link) {
               summary.push({
                 name: "Summary",
@@ -91,7 +91,7 @@ useEffect(() => {
                 ),
               });}
 
-            const link2 = cell(20);
+            const link2 = cell(19);
             if (link2) {
               summary.push({
                 name: "Clinical Case",
