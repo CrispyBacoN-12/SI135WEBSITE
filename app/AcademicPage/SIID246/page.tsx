@@ -361,14 +361,14 @@ const SIID246 = () => {
       </div>
 
       {/* Lectures Section */}
-      <div className="container mx-auto flex flex-col gap-4 mt-8">
+      <div className=" mx-auto flex flex-col gap-4 mt-8">
         {sections.map((section, idx) => (
           <SectionCard key={idx} name={section.name} lectures={section.lectures} />
         ))}
       </div>
 
       {/* Summative Section */}
-      <div className="container mx-auto">
+      <div className=" mx-auto">
         <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md mt-8 overflow-hidden">
           <button
         onClick={() => setSumIsOpen(!isSumOpen)}
