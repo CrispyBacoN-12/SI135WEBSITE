@@ -12,6 +12,7 @@ const SIID245 = () => {
   useEffect(() => {
     const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=245%20(MSK)&tq=select%20*%20limit%2022
 `;
+      const Sumurl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022';
 
     fetch(url)
       .then((response) => response.text())
@@ -67,6 +68,90 @@ if(summaryLink)
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []); // ใช้ [] เพื่อให้ `useEffect` ทำงานเพียงครั้งเดียวเมื่อ component ถูกโหลด
+
+  useEffect(() => {
+  fetch(Sumurl)
+    .then((r) => r.text())
+    .then((t) => {
+      const rows = parseGViz(t);
+
+      const data = rows
+        .map((row) => {
+          const cell = (i) => row.c?.[i]?.v ?? null;
+
+          const title = cell(0);
+          const handouts = [];
+
+          // helper แปลงลิงก์
+          const convertDriveLink = (url) => {
+            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (!match) return url;
+            const fileId = match[1];
+            return `https://drive.google.com/file/d/${fileId}/preview`;
+          };
+
+          const s1Link = cell(22);
+          if (s1Link) {
+            handouts.push({
+              name: "Summative",
+              link: convertDriveLink(s1Link),   // ✅ ใช้ฟังก์ชันแปลง
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+          const s1KeyLink = cell(23);
+          if (s1KeyLink) {
+            handouts.push({
+              name: "SummativeKey",
+              link: convertDriveLink(s1KeyLink),
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+          const s2Link = cell(24);
+          if (s2Link) {
+            handouts.push({
+              name: "Summative 2",
+              link: convertDriveLink(s2Link),
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+          const s2KeyLink = cell(25);
+          if (s2KeyLink) {
+            handouts.push({
+              name: "SummativeKey2",
+              link: convertDriveLink(s2KeyLink),
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+          if (!title || handouts.length === 0) return null;
+          return { title, handouts };
+        })
+        .filter(Boolean);
+
+      setSummativeList(data);
+    })
+    .catch((e) => console.error("fetch summative failed:", e));
+}, [sumUrl]);
+
 
   return (
     <>
