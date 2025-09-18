@@ -7,12 +7,18 @@ import Image from "next/image";
 
 const SIID245 = () => {
   const [lectures, setLectures] = useState([]);  // เก็บข้อมูล lectures ที่ดึงมาจาก Google Sheets
+  const [summativeList, setSummativeList] = useState([]);
   const summative = [{ title: 'SI134', handouts: [{ name: 'Summative', link: '#' }] }]; // ข้อมูล Summative ที่เป็นตัวอย่าง
 
   useEffect(() => {
     const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=245%20(MSK)&tq=select%20*%20limit%2022
 `;
-      const Sumurl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022';
+      const Sumurl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022`;
+
+    const parseGViz = (text) => {
+  const json = JSON.parse(text.substring(47).slice(0, -2));
+  return json.table.rows;
+};
 
     fetch(url)
       .then((response) => response.text())
@@ -216,9 +222,9 @@ if(summaryLink)
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          {summative.map((lec, idx) => (
-            <SummativeCard key={idx} {...lec} /> // แสดงผลข้อมูล Summative
-          ))}
+         {summativeList.map((lec, idx) => (
+   <SummativeCard key={idx} {...lec} />
+))}
         </div>
       </div>
     </>
