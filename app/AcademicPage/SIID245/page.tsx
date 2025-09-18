@@ -76,7 +76,7 @@ if(summaryLink)
   }, []); // ใช้ [] เพื่อให้ `useEffect` ทำงานเพียงครั้งเดียวเมื่อ component ถูกโหลด
 
   useEffect(() => {
-  fetch(Sumurl)
+  fetch(sumUrl)
     .then((r) => r.text())
     .then((t) => {
       const rows = parseGViz(t);
