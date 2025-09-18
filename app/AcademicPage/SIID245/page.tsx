@@ -17,9 +17,6 @@ const SIID245 = () => {
   useEffect(() => {
     const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=245%20(MSK)&tq=select%20*%20limit%2022
 `;
-      const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022`;
-
-
     fetch(url)
       .then((response) => response.text())
       .then((text) => {
@@ -76,6 +73,7 @@ if(summaryLink)
   }, []); // ใช้ [] เพื่อให้ `useEffect` ทำงานเพียงครั้งเดียวเมื่อ component ถูกโหลด
 
   useEffect(() => {
+   const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022`; 
   fetch(sumUrl)
     .then((r) => r.text())
     .then((t) => {
