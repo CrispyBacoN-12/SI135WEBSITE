@@ -10,7 +10,7 @@ const SIID245 = () => {
   const summative = [{ title: 'SI134', handouts: [{ name: 'Summative', link: '#' }] }]; // ข้อมูล Summative ที่เป็นตัวอย่าง
 
   useEffect(() => {
-    const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=245 (MSK)
+    const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=245%20(MSK)&tq=select%20*%20limit%2022
 `;
 
     fetch(url)
@@ -44,11 +44,23 @@ for (let i = 13; i <= 18; i += 2) {
 
 const summary = [];
 const summaryLink = row.c[19]?.v;
-  summary.push({ name: 'summary', link: summaryLink });
-
-
+if(summaryLink)
+{
+  summary.push({ name: 'summary', link: summaryLink,icon:(<svg
+      className="w-4 h-4 mr-1 inline"
+      fill="currentColor"
+      viewBox="0 0 448 512"
+    >
+      <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"></path>
+    </svg>) });
+}
+        if(number && title && type)
+        {
           return { number, title, date, type, lectures, summary }; // ส่งข้อมูลที่จัดเตรียมไว้
-        });
+        } return null; // ถ้าไม่ครบ return null
+  })
+  .filter(Boolean);
+
 
         // อัปเดตข้อมูล lectures ใน state
         setLectures(lecturesData);
