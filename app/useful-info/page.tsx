@@ -61,7 +61,7 @@ export default function StudentImpact ()
               src={src}
               alt={code}
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 objext-top"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 object-top"
             />
           </div>
           <span className="block text-center font-semibold text-lg md:text-xl bg-gradient-to-r from-sky-100 to-yellow-100 p-3 rounded-b-2xl transition-colors duration-300 group-hover:from-sky-200 group-hover:to-yellow-200">
