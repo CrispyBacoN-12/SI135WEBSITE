@@ -6,8 +6,8 @@ export default function StudentImpact ()
       ,{code:"เรือด่วนเจ้าพระยา",src:"BOAT.png",link:"https://www.chaophrayaexpressboat.com/chaophrayaexpressboat"}
     ]
     const courses2= [
-      {code:"MU One Stop Service",src:"Paper.png",link:"https://mustudent.mahidol.ac.th/2022/07/25376/"}
-      ,{code:"ระบบขอเอกสารสำคัญ ศิริราช",src:"Paper2.png",link:"https://script.google.com/macros/s/AKfycbxbSZ9IGW5uPUc5Idv0upr5zuqz2154dGntjSTAEh2z93cqaY5oduZL6VeGKhFmvyr_yQ/exec"}
+      {code:"MU One Stop Service",src:"Paper.jpg",link:"https://mustudent.mahidol.ac.th/2022/07/25376/"}
+      ,{code:"ระบบขอเอกสารสำคัญ ศิริราช",src:"Paper2.jpg",link:"https://script.google.com/macros/s/AKfycbxbSZ9IGW5uPUc5Idv0upr5zuqz2154dGntjSTAEh2z93cqaY5oduZL6VeGKhFmvyr_yQ/exec"}
       ,{code:"การลาเรียน",src:"Paper3.jpg",link:"https://www.chaophrayaexpressboat.com/chaophrayaexpressboat"}
       ,{code:"บริการสุขภาพนักศึกษา",src:"Health paper.jpg",link:"https://www.sieduit.org/education/health-service-for-student/"}
     ]
