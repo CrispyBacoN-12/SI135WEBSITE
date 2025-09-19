@@ -1,7 +1,7 @@
 export default function StudentImpact ()
 {
     const courses= [
-      {code:"Shuttle Bus ม.มหิดล",src:"BUS.png",link:"https://op.mahidol.ac.th/ga/shuttle-bus/"}
+      {code:"Shuttle Bus ม.มหิดล",src:"BUS.jpg",link:"https://op.mahidol.ac.th/ga/shuttle-bus/"}
       ,{code:"รถBUSวิ่งในศิริราช",src:"EV BUS.png",link:"components/EVBUS"}
       ,{code:"เรือด่วนเจ้าพระยา",src:"BOAT.png",link:"https://www.chaophrayaexpressboat.com/chaophrayaexpressboat"}
     ]
