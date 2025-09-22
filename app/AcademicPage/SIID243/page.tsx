@@ -4,10 +4,10 @@ import React, { useEffect, useState } from 'react';
 import LectureCard from "../../components/AcademicComponent"; // คอมโพเนนต์สำหรับแสดง Lecture
 import SummativeCard from "../../components/SummativeComponent"; // คอมโพเนนต์สำหรับแสดง Summative
 import Image from "next/image";
-
+ const [lectures, setLectures] = useState([]);  // เก็บข้อมูล lectures ที่ดึงมาจาก Google Sheets
+const [summativeList, setSummativeList] = useState([]);
 const SIID243 = () => {
-  const [lectures, setLectures] = useState([]);  // เก็บข้อมูล lectures ที่ดึงมาจาก Google Sheets
-  const summative = [{ title: 'SI134', handouts: [{ name: 'Summative', link: '#' }] }]; // ข้อมูล Summative ที่เป็นตัวอย่าง
+
 
   useEffect(() => {
     const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=243, 244&range=A1:C14
