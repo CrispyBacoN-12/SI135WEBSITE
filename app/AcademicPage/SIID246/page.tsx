@@ -338,7 +338,7 @@ const SIID246 = () => {
             alt="SIID246"
             width={300}
             height={800}
-            className="w-full md:w-[300px] h-[250px] object-cover rounded-lg mb-4 md:mb-0 md:mr-8 flex-shrink-0"
+            className="w-full md:w-[300px] h-[250px] object-cover object-top rounded-lg mb-4 md:mb-0 md:mr-8 flex-shrink-0"
           />
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide highlight">Year 2 Semester 1</p>
