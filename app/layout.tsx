@@ -62,9 +62,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/useful-info" className="hover:underline font-semibold">
                   Useful Info
                 </Link>
+                {/*
                 <Link href="/VIP" className="hover:underline font-semibold">
                   VIP
-                </Link>
+                </Link> */}
               </div>
             )}
           </nav>
