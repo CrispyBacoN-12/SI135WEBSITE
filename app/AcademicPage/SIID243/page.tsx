@@ -13,7 +13,7 @@ const SIID243 = () => {
   const json = JSON.parse(text.substring(47).slice(0, -2));
   return json.table.rows;
 };
-    const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=243%20244&tq=select%20*%20limit%2022
+    const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=243,%20244&tq=select%20*%20limit%2022
 `;
    const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022`; 
   useEffect(() => {
