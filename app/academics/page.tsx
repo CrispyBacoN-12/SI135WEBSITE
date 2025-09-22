@@ -9,7 +9,7 @@ const ChangePage = () => {
 }
 const courses = [
 { code: "SIID243", href: "/AcademicPage/SIID243", src: "/SIID243.jpg" },
-{ code: "SIID245", href: "/AcademicPage/SIID245", src: "/SIID245.jpg" },
+{ code: "SIID245", href: "/AcademicPage/SIID245", src: "/SIID245.png" },
 { code: "SIID246", href: "/AcademicPage/SIID246", src: "/SIID246.png" },
 { code: "SIID254", href: "/AcademicPage/SIID254", src: "/SIID254.jpg" },
 ];
