@@ -103,10 +103,10 @@ const SIID243 = () => {
             Summative Examination
           </div>
         </div>
-        <div className="flex flex-col gap-4">
-          {summative.map((lec, idx) => (
-            <SummativeCard key={idx} {...lec} /> // แสดงผลข้อมูล Summative
-          ))}
+         <div className="flex flex-col gap-4">
+         {summativeList.map((lec, idx) => (
+   <SummativeCard key={idx} {...lec} />
+))}
         </div>
       </div>
     </>
