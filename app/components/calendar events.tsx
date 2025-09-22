@@ -114,6 +114,8 @@ export default function GoogleCalendarEvents() {
         "กิจกรรมบ่ายวันพุธ",
         "CLO ASSESSMENT",
         "วิชาเลือกเสรี"
+        "ออกรับบริจาคธงวันมหิดล"
+        "ปาฐกถาวันมหิดล"
       ];
 
       const filtered = (data.items || []).filter((e: EventItem) => {
