@@ -91,7 +91,7 @@ export default function Examination() {
     const timeB = new Date(b.start.dateTime || b.start.date).getTime();
     return timeA - timeB;
   })
-  .slice(0, 3); // เอาแค่ 3 event แรก
+  .slice(0, 4); // เอาแค่ 3 event แรก
 
       setEvents(filtered || []);
     }
