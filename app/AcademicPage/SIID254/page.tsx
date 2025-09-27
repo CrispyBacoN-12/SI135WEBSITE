@@ -283,7 +283,7 @@ const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid254', 
                             {/* Summative Section */} 
                             <div className=" mx-auto mb-4"> 
                             <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-8 "> 
-                              <div className="max-w-screen-2xl mx-auto font-bold text-3xl text-sky-900"> Summative Examination </div>
+                              <div className="pl-4 max-w-screen-2xl font-bold text-3xl text-sky-900"> Summative Examination </div>
                                </div>
                                 <div className="flex flex-col gap-4 mt-4"> 
                                   {summativeList.map((lec, idx) =>
