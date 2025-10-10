@@ -12,7 +12,7 @@ const courses = [
 { code: "SIID245", href: "/AcademicPage/SIID245", src: "/SIID245.png" },
 { code: "SIID246", href: "/AcademicPage/SIID246", src: "/SIID246.png" },
 { code: "SIID254", href: "/AcademicPage/SIID254", src: "/SIID254.jpg" },
-  { code:"SIID255", herf:"AcademicPage/SIID255",src:"/SIID255.png"}
+  { code:"SIID255", herf:"/AcademicPage/SIID255", src: "/SIID255.png" }
 ];
 export default function Academics() {
   return (
