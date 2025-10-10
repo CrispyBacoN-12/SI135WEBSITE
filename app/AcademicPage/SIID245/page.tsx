@@ -28,7 +28,6 @@ const SIID245 = () => {
         const lecturesData = rows.map((row) => {
           const number = row.c[0]?.v; // คอลัมน์ 0 คือ หมายเลขของ Lecture
           const title = row.c[1]?.v; // คอลัมน์ 1 คือ ชื่อของ Lecture
-          const date = row.c[10]?.v; // คอลัมน์ 10 คือ วันที่
           const type = row.c[2]?.v; // คอลัมน์ 2 คือ ประเภท (Lec)
        const lectures = [];
 for (let i = 13; i <= 18; i += 2) {
