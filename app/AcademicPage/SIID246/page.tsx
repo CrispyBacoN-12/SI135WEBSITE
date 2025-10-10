@@ -391,7 +391,7 @@ const SIID246 = () => {
 
         </div>
              
-{isSumOpen && (
+{isSum2Open && (
   <div className="flex flex-col gap-4 mt-4">
     {summativeList2.map((lec, idx) => <SummativeCard key={idx} {...lec} />)}
   </div>
