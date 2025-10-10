@@ -5,7 +5,7 @@ import SectionCard from '../../components/Section';
 import SummativeCard from "../../components/SummativeComponent"; // คอมโพเนนต์สำหรับแสดง Summative
 import Image from "next/image";
 
-const SIID246 = () => {
+const SIID255 = () => {
   // URLs ของคุณ
   const SHEET_ID = "1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg";
 
