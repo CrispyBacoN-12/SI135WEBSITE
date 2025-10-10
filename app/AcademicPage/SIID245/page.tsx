@@ -59,7 +59,7 @@ if(summaryLink)
 }
         if(number && title && type)
         {
-          return { number, title, date, type, lectures, summary }; // ส่งข้อมูลที่จัดเตรียมไว้
+          return { number, title, type, lectures, summary }; // ส่งข้อมูลที่จัดเตรียมไว้
         } return null; // ถ้าไม่ครบ return null
   })
   .filter(Boolean);
