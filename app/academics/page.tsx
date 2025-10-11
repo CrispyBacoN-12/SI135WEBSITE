@@ -9,10 +9,15 @@ const ChangePage = () => {
 }
 const courses = [
 { code: "SIID243", href: "/AcademicPage/SIID243", src: "/SIID243.jpg" },
+  { code: "SIID244", href: "/AcademicPage/SIID244", src: "/SIID244.png" },
 { code: "SIID245", href: "/AcademicPage/SIID245", src: "/SIID245.png" },
 { code: "SIID246", href: "/AcademicPage/SIID246", src: "/SIID246.png" },
+  { code: "SIID247", href: "/AcademicPage/SIID247", src: "/SIID247.png" },
+  { code: "SIID248", href: "/AcademicPage/SIID248", src: "/SIID248.png" },
+  { code: "SIID251", href: "/AcademicPage/SIID251", src: "/SIID251.png" },
 { code: "SIID254", href: "/AcademicPage/SIID254", src: "/SIID254.jpg" },
 { code: "SIID255", href: "/AcademicPage/SIID255", src: "/SIID255.png" },
+
 ];
 export default function Academics() {
   return (
