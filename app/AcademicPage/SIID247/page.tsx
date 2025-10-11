@@ -164,7 +164,7 @@ if(summaryLink)
           <div className="flex gap-2 items-center grow">
             <a className="hover:underline" href="/academics">Academic</a>
             <span>/</span>
-            <span>SIID245</span>
+            <span>SIID247</span>
           </div>
         </div>
       </div>
@@ -185,7 +185,7 @@ if(summaryLink)
             <p className="text-base text-gray-600">Integumentary System, Skeleton and Movement</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
-                href="https://sirirajcanvas.instructure.com/courses/1065"
+                href="https://sirirajcanvas.instructure.com/courses/1078"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-slate-400 text-lg rounded-lg py-1 px-2 w-fit bg-gradient-to-r from-gray-200 to-gray-300 bg-transparent hover:bg-slate-200 transition-colors flex items-center gap-1"
