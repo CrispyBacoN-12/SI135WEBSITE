@@ -161,7 +161,7 @@ if(summaryLink)
    { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/216', linkname: 'SI131(216)' },
     { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/216', linkname: 'SI130(216)' },
      { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/216', linkname: 'SI129(216)'}, 
-     { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/216', linkname: 'SI128(216)'}, ]; 
+     { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/216', linkname: 'SI128(216)'} ]; 
 
 
   return (
