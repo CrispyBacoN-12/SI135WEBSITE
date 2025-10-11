@@ -182,7 +182,7 @@ if(summaryLink)
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide highlight">Year 2 Semester 1</p>
             <p className="text-3xl text-gray-700 italic">SIID245</p>
-            <p className="text-base text-gray-600">Integumentary System, Skeleton and Movement</p>
+            <p className="text-base text-gray-600">Circulatory System</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
                 href="https://sirirajcanvas.instructure.com/courses/1078"
