@@ -155,6 +155,14 @@ if(summaryLink)
     .catch((e) => console.error("fetch summative failed:", e));
 }, [sumUrl]);
 
+  const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid245', linkname: 'SI134(245)' }, 
+  { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-245', linkname: 'SI133(245)' }, 
+  { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid245', linkname: 'SI132(245)' },
+   { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/216', linkname: 'SI131(216)' },
+    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/216', linkname: 'SI130(216)' },
+     { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/216', linkname: 'SI129(216)'}, 
+     { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/216', linkname: 'SI128(216)'}, ]; 
+
 
   return (
     <>
