@@ -5,7 +5,7 @@ import LectureCard from "../../components/AcademicComponent"; // คอมโพ
 import SummativeCard from "../../components/SummativeComponent"; // คอมโพเนนต์สำหรับแสดง Summative
 import Image from "next/image";
 
-const SIID245 = () => {
+const SIID247 = () => {
   const [lectures, setLectures] = useState([]);  // เก็บข้อมูล lectures ที่ดึงมาจาก Google Sheets
   const [summativeList, setSummativeList] = useState([]);
   const summative = [{ title: 'SI134', handouts: [{ name: 'Summative', link: '#' }] }]; // ข้อมูล Summative ที่เป็นตัวอย่าง
@@ -13,7 +13,7 @@ const SIID245 = () => {
   const json = JSON.parse(text.substring(47).slice(0, -2));
   return json.table.rows;
 };
-    const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=245%20(MSK)&tq=select%20*%20limit%2022
+    const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=247%20(CVS)&tq=select%20*%20limit%2022
 `;
    const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022`; 
   useEffect(() => {
@@ -173,8 +173,8 @@ if(summaryLink)
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-col md:flex-row md:items-center rounded-lg mt-10">
           <Image
-            src="/SIID245.png"
-            alt="SIID245"
+            src="/SIID247.png"
+            alt="SIID247"
             width={300}
             height={800}
             className="w-full md:w-[300px] h-[250px] object-cover object-top rounded-lg mb-4 md:mb-0 md:mr-8 flex-shrink-0"
@@ -228,4 +228,4 @@ if(summaryLink)
   );
 };
 
-export default SIID245;
+export default SIID247;
