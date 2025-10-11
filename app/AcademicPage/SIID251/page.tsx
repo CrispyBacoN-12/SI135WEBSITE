@@ -5,7 +5,7 @@ import LectureCard from "../../components/AcademicComponent"; // คอมโพ
 import SummativeCard from "../../components/SummativeComponent"; // คอมโพเนนต์สำหรับแสดง Summative
 import Image from "next/image";
 
-const SIID245 = () => {
+const SIID251 = () => {
   const [lectures, setLectures] = useState([]);  // เก็บข้อมูล lectures ที่ดึงมาจาก Google Sheets
   const [summativeList, setSummativeList] = useState([]);
   const summative = [{ title: 'SI134', handouts: [{ name: 'Summative', link: '#' }] }]; // ข้อมูล Summative ที่เป็นตัวอย่าง
@@ -13,7 +13,7 @@ const SIID245 = () => {
   const json = JSON.parse(text.substring(47).slice(0, -2));
   return json.table.rows;
 };
-    const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=245%20(MSK)&tq=select%20*%20limit%2022
+    const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=251%20(RS)&tq=select%20*%20limit%2022
 `;
    const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022`; 
   useEffect(() => {
@@ -164,7 +164,7 @@ if(summaryLink)
           <div className="flex gap-2 items-center grow">
             <a className="hover:underline" href="/academics">Academic</a>
             <span>/</span>
-            <span>SIID245</span>
+            <span>SIID251</span>
           </div>
         </div>
       </div>
@@ -173,19 +173,19 @@ if(summaryLink)
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-col md:flex-row md:items-center rounded-lg mt-10">
           <Image
-            src="/SIID245.png"
-            alt="SIID245"
+            src="/SIID251.png"
+            alt="SIID251"
             width={300}
             height={800}
             className="w-full md:w-[300px] h-[250px] object-cover object-top rounded-lg mb-4 md:mb-0 md:mr-8 flex-shrink-0"
           />
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide highlight">Year 2 Semester 1</p>
-            <p className="text-3xl text-gray-700 italic">SIID245</p>
-            <p className="text-base text-gray-600">Integumentary System, Skeleton and Movement</p>
+            <p className="text-3xl text-gray-700 italic">SIID251</p>
+            <p className="text-base text-gray-600">Respiratory System</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
-                href="https://sirirajcanvas.instructure.com/courses/1065"
+                href="https://sirirajcanvas.instructure.com/courses/1081"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-slate-400 text-lg rounded-lg py-1 px-2 w-fit bg-gradient-to-r from-gray-200 to-gray-300 bg-transparent hover:bg-slate-200 transition-colors flex items-center gap-1"
@@ -228,4 +228,4 @@ if(summaryLink)
   );
 };
 
-export default SIID245;
+export default SIID251;
