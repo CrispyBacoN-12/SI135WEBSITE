@@ -204,6 +204,17 @@ if(summaryLink)
         </div>
       </div>
 
+      <div className="mt-4 font-semibold text-2xl container mx-auto px-4 sm:px-6 md:px-8"> เว็บวิชาการรุ่นพี่ </div> 
+                      <ul className="flex flex-wrap gap-4 mt-4 px-4 sm:px-6 md:px-8"> 
+                        {courses.map(({ code, link, linkname }) => 
+                        ( <li key={code}> 
+                        <a href={link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center border border-slate-400 rounded-lg text-sm w-fit px-4 py-2 bg-transparent hover:bg-slate-200 transition-colors" > {linkname} 
+                          </a> 
+                          </li>
+                           ))} 
+                           </ul> 
+                           </div> 
+
       {/* Lectures Section */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4 mt-8">
         {lectures.map((lec, idx) => (
