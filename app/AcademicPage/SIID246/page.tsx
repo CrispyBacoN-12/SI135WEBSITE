@@ -317,6 +317,15 @@ const SIID246 = () => {
   // ใช้ [] เพื่อให้ `useEffect` ทำงานเพียงครั้งเดียวเมื่อ component ถูกโหลด
   const [isSumOpen, setSumIsOpen] = useState(false);
     const [isSum2Open, setSum2IsOpen] = useState(false);
+
+  const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid246', linkname: 'SI134(246)' }, 
+  { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-246', linkname: 'SI133(246)' }, 
+  { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid246', linkname: 'SI132(246)' },
+   { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/228', linkname: 'SI131(228)' },
+    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/228', linkname: 'SI130(228)' },
+     { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/228', linkname: 'SI129(228)'}, 
+     { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/228', linkname: 'SI128(228)'}, ]; 
+
   return (
     <>
       {/* breadcrumb */}
