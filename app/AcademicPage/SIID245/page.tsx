@@ -162,8 +162,6 @@ if(summaryLink)
     { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/216', linkname: 'SI130(216)' },
      { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/216', linkname: 'SI129(216)'}, 
      { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/216', linkname: 'SI128(216)'} ]; 
-
-
   return (
     <>
       {/* breadcrumb */}
@@ -221,7 +219,7 @@ if(summaryLink)
                           </li>
                            ))} 
                            </ul> 
-                           </div> 
+                         
 
       {/* Lectures Section */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4 mt-8">
