@@ -155,6 +155,14 @@ if(summaryLink)
     .catch((e) => console.error("fetch summative failed:", e));
 }, [sumUrl]);
 
+  const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid248', linkname: 'SI134(248)' }, 
+  { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-248', linkname: 'SI133(248)' }, 
+  { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid248', linkname: 'SI132(248)' },
+   { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/218', linkname: 'SI131(218)' },
+    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/218', linkname: 'SI130(218)' },
+     { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/218', linkname: 'SI129(218)'}, 
+     { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/218', linkname: 'SI128(218)'}, ]; 
+
 
   return (
     <>
@@ -203,6 +211,16 @@ if(summaryLink)
           </div>
         </div>
       </div>
+
+      <div className="mt-4 font-semibold text-2xl container mx-auto px-4 sm:px-6 md:px-8"> เว็บวิชาการรุ่นพี่ </div> 
+                      <ul className="flex flex-wrap gap-4 mt-4 px-4 sm:px-6 md:px-8"> 
+                        {courses.map(({ code, link, linkname }) => 
+                        ( <li key={code}> 
+                        <a href={link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center border border-slate-400 rounded-lg text-sm w-fit px-4 py-2 bg-transparent hover:bg-slate-200 transition-colors" > {linkname} 
+                          </a> 
+                          </li>
+                           ))} 
+                           </ul> 
 
       {/* Lectures Section */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4 mt-8">
