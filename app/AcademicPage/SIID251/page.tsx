@@ -155,13 +155,13 @@ if(summaryLink)
     .catch((e) => console.error("fetch summative failed:", e));
 }, [sumUrl]);
 
-const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid255', linkname: 'SI134(255)' }, 
-  { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-255', linkname: 'SI133(255)' }, 
-  { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid255', linkname: 'SI132(255)' },
-   { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/229', linkname: 'SI131(229)' },
-    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/229', linkname: 'SI130(229)' },
-     { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/229', linkname: 'SI129(229)'}, 
-     { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/229', linkname: 'SI128(229)'}, ]; 
+const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid251', linkname: 'SI134(251)' }, 
+  { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-251', linkname: 'SI133(251)' }, 
+  { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid251', linkname: 'SI132(251)' },
+   { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/219', linkname: 'SI131(219)' },
+    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/219', linkname: 'SI130(219)' },
+     { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/219', linkname: 'SI129(219)'}, 
+     { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/219', linkname: 'SI128(219)'}, ]; 
   
   return (
     <>
