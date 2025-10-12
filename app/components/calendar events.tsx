@@ -92,8 +92,7 @@ function formatEventTime(e: EventItem): string {
 export default function GoogleCalendarEvents() {
   const [events, setEvents] = useState<EventItem[]>([]);
   const upcomingDates = useMemo(() => getNextNDates(3), []);
-  const navigate = useNavigate(); // ✅ ใช้ navigate
-
+  const router = useRouter();
   useEffect(() => {
     async function fetchEvents() {
       const apiKey = "AIzaSyCrx-xVU474LSrdeJ57iT5RnXiubzDA93Q";
