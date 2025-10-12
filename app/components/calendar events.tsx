@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ เพิ่ม import นี้
+import { useRouter } from "next/navigation";
 
 type EventItem = {
   summary: string;
@@ -185,7 +185,7 @@ export default function GoogleCalendarEvents() {
               return (
                 <li
                   key={i}
-                  onClick={() => navigate(`/subject/${encodeURIComponent(eventCode)}`)} // ✅ ไปหน้าวิชา
+                  onClick={() => router.push(`/subject/${encodeURIComponent(eventCode)}`)}
                   className="w-full text-sm p-4 rounded-lg shadow-md border border-emerald-500 bg-white cursor-pointer hover:bg-emerald-50 transition"
                 >
                   <div className="flex items-center justify-between">
