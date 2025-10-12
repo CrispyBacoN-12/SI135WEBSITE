@@ -185,7 +185,7 @@ export default function GoogleCalendarEvents() {
                 <li
                   key={i}
                   onClick={() => const cleanCode = eventCode.replace(/\s+/g, "");
-          router.push(`/AcademicPage/${encodeURIComponent(eventCode)}`)}
+          router.push(`/AcademicPage/${encodeURIComponent(cleanCode)}`)}
                   className="w-full text-sm p-4 rounded-lg shadow-md border border-emerald-500 bg-white cursor-pointer hover:bg-emerald-50 transition"
                 >
                   <div className="flex items-center justify-between">
