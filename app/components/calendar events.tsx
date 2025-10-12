@@ -184,8 +184,11 @@ export default function GoogleCalendarEvents() {
               return (
                 <li
                   key={i}
-                  onClick={() => const cleanCode = eventCode.replace(/\s+/g, "");
-          router.push(`/AcademicPage/${encodeURIComponent(cleanCode)}`)}
+                 onClick={() => {
+  const cleanCode = eventCode.replace(/\s+/g, ""); // ลบช่องว่างทั้งหมด
+  router.push(`/AcademicPage/${encodeURIComponent(cleanCode)}`); // ไปยังหน้า AcademicPage
+}}
+
                   className="w-full text-sm p-4 rounded-lg shadow-md border border-emerald-500 bg-white cursor-pointer hover:bg-emerald-50 transition"
                 >
                   <div className="flex items-center justify-between">
