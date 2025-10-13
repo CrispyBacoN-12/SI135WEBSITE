@@ -93,7 +93,7 @@ if(summaryLink)
             return `https://drive.google.com/file/d/${fileId}/preview`;
           };
 
-          const s1Link = cell(22);
+          const s1Link = cell(17);
           if (s1Link) {
             handouts.push({
               name: "Summative",
@@ -106,7 +106,7 @@ if(summaryLink)
             });
           }
 
-          const s1KeyLink = cell(23);
+          const s1KeyLink = cell(18);
           if (s1KeyLink) {
             handouts.push({
               name: "SummativeKey",
@@ -119,7 +119,7 @@ if(summaryLink)
             });
           }
 
-          const s2Link = cell(24);
+          const s2Link = cell(19);
           if (s2Link) {
             handouts.push({
               name: "Summative 2",
@@ -132,7 +132,7 @@ if(summaryLink)
             });
           }
 
-          const s2KeyLink = cell(25);
+          const s2KeyLink = cell(20);
           if (s2KeyLink) {
             handouts.push({
               name: "SummativeKey2",
