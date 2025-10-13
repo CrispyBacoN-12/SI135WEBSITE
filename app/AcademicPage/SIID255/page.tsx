@@ -456,12 +456,11 @@ const SIID255 = () => {
           />
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide highlight">Year 2 Semester 1</p>
-            <p className="text-3xl text-gray-700 italic">SIID246</p>
-            <p className="text-base text-gray-600">Laboratory in Structure of Integumentary System,
-              Skeleton and Movement</p>
+            <p className="text-3xl text-gray-700 italic">SIID255</p>
+            <p className="text-base text-gray-600">Laboratory in Structure of Visceral Systems</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
-                href="https://sirirajcanvas.instructure.com/courses/1071"
+                href="https://sirirajcanvas.instructure.com/courses/1226"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-slate-400 text-lg rounded-lg py-1 px-2 w-fit bg-gradient-to-r from-gray-200 to-gray-300 bg-transparent hover:bg-slate-200 transition-colors flex items-center gap-1"
