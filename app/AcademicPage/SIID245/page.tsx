@@ -231,11 +231,11 @@ if(summaryLink)
       {/* Summative Section */}
       <div className="mx-auto">
         <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-4">
-          <div className="w-full text-left px-4 py-6 text-3xl font-bold text-sky-900 focus:outline-none">
+          <div className="w-full text-left px-4 text-3xl font-bold text-sky-900 focus:outline-none">
             Summative Examination
           </div>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 px-4">
          {summativeList.map((lec, idx) => (
    <SummativeCard key={idx} {...lec} />
 ))}
