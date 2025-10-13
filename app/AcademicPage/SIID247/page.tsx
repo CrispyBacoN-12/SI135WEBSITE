@@ -15,7 +15,7 @@ const SIID247 = () => {
 };
     const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=247%20(CVS)&tq=select%20*%20limit%2022
 `;
-   const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022`; 
+   const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative2&tq=select%20*%20limit%2022`; 
   useEffect(() => {
     fetch(url)
       .then((response) => response.text())
@@ -93,7 +93,7 @@ if(summaryLink)
             return `https://drive.google.com/file/d/${fileId}/preview`;
           };
 
-          const s1Link = cell(22);
+          const s1Link = cell(13);
           if (s1Link) {
             handouts.push({
               name: "Summative",
@@ -106,7 +106,7 @@ if(summaryLink)
             });
           }
 
-          const s1KeyLink = cell(23);
+          const s1KeyLink = cell(14);
           if (s1KeyLink) {
             handouts.push({
               name: "SummativeKey",
@@ -119,7 +119,7 @@ if(summaryLink)
             });
           }
 
-          const s2Link = cell(24);
+          const s2Link = cell(15);
           if (s2Link) {
             handouts.push({
               name: "Summative 2",
@@ -132,7 +132,7 @@ if(summaryLink)
             });
           }
 
-          const s2KeyLink = cell(25);
+          const s2KeyLink = cell(16);
           if (s2KeyLink) {
             handouts.push({
               name: "SummativeKey2",
