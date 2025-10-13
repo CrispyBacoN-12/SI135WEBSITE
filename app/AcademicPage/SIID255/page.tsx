@@ -16,7 +16,7 @@ const SIID255 = () => {
   )}`;
 
   // แท็บ Summative
-  const SUM_SHEET = "Summative";
+  const SUM_SHEET = "Summative2";
   const sumUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(
     SUM_SHEET
   )}`;
@@ -177,32 +177,6 @@ const SIID255 = () => {
               });
             }
 
-            const s2Link = cell(5);
-            const s2Name = "Summative 2";
-            if (s2Link) {
-              handouts.push({
-                name: s2Name,
-                link: s2Link,
-                icon: (
-                  <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                  </svg>
-                ),
-              });
-            }
-            const s2KeyLink = cell(6);
-            const s2KeyName = "SummativeKey2";
-            if (s2KeyLink) {
-              handouts.push({
-                name: s2KeyName,
-                link: s2KeyLink,
-                icon: (
-                  <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                  </svg>
-                ),
-              });
-            }
             // ถ้าชื่อ/ลิงก์ไม่ได้อยู่คอลัมน์ตามนี้ ปรับ index ให้ตรงชีตจริง
             if (!title || handouts.length === 0) return null;
             return { title, handouts };
@@ -226,7 +200,7 @@ const SIID255 = () => {
 
             const title = cell(0);
             const handouts = [];
-            const mock = cell(7);
+            const mock = cell(5);
             const mockname = "MockExam";
             if (mock) {
               handouts.push({
@@ -239,7 +213,7 @@ const SIID255 = () => {
                 ),
               });
             }
-            const mockAns = cell(8);
+            const mockAns = cell(6);
             const mocknameAns = "MockAnswer";
             if (mockAns) {
               handouts.push({
@@ -252,7 +226,7 @@ const SIID255 = () => {
                 ),
               });
             }
-            const s1Link = cell(9);
+            const s1Link = cell(7);
             const s1Name = "Summative";
             if (s1Link) {
               handouts.push({
@@ -265,39 +239,12 @@ const SIID255 = () => {
                 ),
               });
             }
-            const s1KeyLink = cell(10);
+            const s1KeyLink = cell(8);
             const s1KeyName = "SummativeKey";
             if (s1KeyLink) {
               handouts.push({
                 name: s1KeyName,
                 link: s1KeyLink,
-                icon: (
-                  <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                  </svg>
-                ),
-              });
-            }
-
-            const s2Link = cell(11);
-            const s2Name = "Summative 2";
-            if (s2Link) {
-              handouts.push({
-                name: s2Name,
-                link: s2Link,
-                icon: (
-                  <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                  </svg>
-                ),
-              });
-            }
-            const s2KeyLink = cell(12);
-            const s2KeyName = "SummativeKey2";
-            if (s2KeyLink) {
-              handouts.push({
-                name: s2KeyName,
-                link: s2KeyLink,
                 icon: (
                   <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
                     <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
@@ -328,7 +275,7 @@ const SIID255 = () => {
 
             const title = cell(0);
             const handouts = [];
-            const mock = cell(7);
+            const mock = cell(9);
             const mockname = "MockExam";
             if (mock) {
               handouts.push({
@@ -341,7 +288,7 @@ const SIID255 = () => {
                 ),
               });
             }
-            const mockAns = cell(8);
+            const mockAns = cell(10);
             const mocknameAns = "MockAnswer";
             if (mockAns) {
               handouts.push({
@@ -354,7 +301,7 @@ const SIID255 = () => {
                 ),
               });
             }
-            const s1Link = cell(9);
+            const s1Link = cell(11);
             const s1Name = "Summative";
             if (s1Link) {
               handouts.push({
@@ -367,7 +314,7 @@ const SIID255 = () => {
                 ),
               });
             }
-            const s1KeyLink = cell(10);
+            const s1KeyLink = cell(12);
             const s1KeyName = "SummativeKey";
             if (s1KeyLink) {
               handouts.push({
@@ -381,32 +328,7 @@ const SIID255 = () => {
               });
             }
 
-            const s2Link = cell(11);
-            const s2Name = "Summative 2";
-            if (s2Link) {
-              handouts.push({
-                name: s2Name,
-                link: s2Link,
-                icon: (
-                  <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                  </svg>
-                ),
-              });
-            }
-            const s2KeyLink = cell(12);
-            const s2KeyName = "SummativeKey2";
-            if (s2KeyLink) {
-              handouts.push({
-                name: s2KeyName,
-                link: s2KeyLink,
-                icon: (
-                  <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                  </svg>
-                ),
-              });
-            }
+           
             // ถ้าชื่อ/ลิงก์ไม่ได้อยู่คอลัมน์ตามนี้ ปรับ index ให้ตรงชีตจริง
             if (!title || handouts.length === 0) return null;
             return { title, handouts };
