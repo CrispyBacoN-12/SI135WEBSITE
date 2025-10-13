@@ -231,7 +231,7 @@ const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid251', 
       {/* Summative Section */}
       <div className="mx-auto">
         <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-4">
-          <div className="pl-4 max-w-screen-2xl mx-auto font-bold text-3xl text-sky-900">
+          <div className="w-full text-left px-4 text-3xl font-bold text-sky-900 focus:outline-none">
             Summative Examination
           </div>
         </div>
