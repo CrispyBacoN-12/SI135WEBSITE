@@ -122,7 +122,7 @@ if(summaryLink)
           const s2Link = cell(19);
           if (s2Link) {
             handouts.push({
-              name: "Summative 2",
+              name: "Summative(LM)",
               link: convertDriveLink(s2Link),
               icon: (
                 <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
