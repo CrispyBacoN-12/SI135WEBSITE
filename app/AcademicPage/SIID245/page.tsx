@@ -231,7 +231,7 @@ if(summaryLink)
       {/* Summative Section */}
       <div className="mx-auto">
         <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-4">
-          <div className="pl-4 max-w-screen-2xl mx-auto font-bold text-3xl text-sky-900">
+          <div className=" max-w-screen-2xl mx-auto font-bold text-3xl text-sky-900">
             Summative Examination
           </div>
         </div>
