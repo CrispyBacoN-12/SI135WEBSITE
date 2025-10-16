@@ -40,7 +40,7 @@ const SIID248 = () => {
             const handout = [];
             for (let i = 14; i <= 16; i++) {
               const name = "Handout";
-              const link = cell(i + 1);
+              const link = cell(i);
               if (link) handout.push({ name,link, icon });
             }
 
