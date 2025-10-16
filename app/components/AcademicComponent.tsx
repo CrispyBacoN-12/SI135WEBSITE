@@ -20,7 +20,7 @@ export default function LectureCard({ number, title, date, type, lectures, summa
         </div>
 
        <div className="flex flex-wrap gap-2 mt-2 items-center text-sm">
-  {[...lectures, ...summary].map((h, idx) => (
+  {[...handout...lectures, ...summary].map((h, idx) => (
     <a
       key={idx}
       href={h.link}
