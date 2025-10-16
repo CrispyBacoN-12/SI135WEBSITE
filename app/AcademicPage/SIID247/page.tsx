@@ -37,8 +37,9 @@ const SIID247 = () => {
 
             const handout = [];
             for (let i = 14; i <= 16; i++) {
-              const link = cell(i + 1);
-              if (link) handout.push({ link, icon });
+              const name ="Handout";
+              const link = cell(i);
+              if (link) handout.push({ name,link, icon });
             }
 
             const lectureLinks = [];
