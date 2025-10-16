@@ -1,7 +1,7 @@
 // LectureCard.js
 import React from 'react';
 
-export default function LectureCard({ number, title, date, type, lectures, summary }) {
+export default function LectureCard({ number, title, date, type, handout, lectures, summary }) {
   return (
     <div className="flex flex-row gap-1 w-full">
       {/* เลขลำดับ */}
