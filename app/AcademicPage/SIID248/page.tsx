@@ -16,60 +16,52 @@ const SIID248 = () => {
     const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=248%20(Hemato)&tq=select%20*%20limit%2022
 `;
    const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative2&tq=select%20*%20limit%2022`; 
+  const icon = (
+    <svg className="w-4 h-4 mr-1 inline" fill="currentColor" viewBox="0 0 448 512">
+      <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448
+      c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+    </svg>
+  );
+
+  // ✅ ดึงข้อมูล Lecture
   useEffect(() => {
     fetch(url)
-      .then((response) => response.text())
+      .then((res) => res.text())
       .then((text) => {
-        // แปลงข้อมูลที่ได้จาก API เป็น JSON
-        const jsonData = JSON.parse(text.substring(47).slice(0, -2));  // แก้ไขข้อมูลที่ได้จาก JSON
-        const rows = jsonData.table.rows;
+        const rows = parseGViz(text);
 
-        // ดึงข้อมูลจากแถวที่ได้และแปลงเป็นรูปแบบ lectures
-        const lecturesData = rows.map((row) => {
-          const number = row.c[0]?.v; // คอลัมน์ 0 คือ หมายเลขของ Lecture
-          const title = row.c[1]?.v; // คอลัมน์ 1 คือ ชื่อของ Lecture
-          const type = row.c[2]?.v; // คอลัมน์ 2 คือ ประเภท (Lec)
-       const lectures = [];
-for (let i = 13; i <= 18; i += 2) {
-  const name = row.c[i]?.v;
-  const link = row.c[i + 1]?.v;
-  if (name && link) {
-    lectures.push({ name, link,icon: (
-    <svg
-      className="w-4 h-4 mr-1 inline"
-      fill="currentColor"
-      viewBox="0 0 448 512"
-    >
-      <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"></path>
-    </svg>) });
-  }
-}
+        const data = rows
+          .map((row) => {
+            const cell = (i) => row.c?.[i]?.v ?? null;
+            const number = cell(0);
+            const title = cell(1);
+            const type = cell(2);
 
-const summary = [];
-const summaryLink = row.c[19]?.v;
-if(summaryLink)
-{
-  summary.push({ name: 'summary', link: summaryLink,icon:(<svg
-      className="w-4 h-4 mr-1 inline"
-      fill="currentColor"
-      viewBox="0 0 448 512"
-    >
-      <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"></path>
-    </svg>) });
-}
-        if(number && title && type)
-        {
-          return { number, title, type, lectures, summary }; // ส่งข้อมูลที่จัดเตรียมไว้
-        } return null; // ถ้าไม่ครบ return null
-  })
-  .filter(Boolean);
+            const handout = [];
+            for (let i = 14; i <= 16; i++) {
+              const link = cell(i + 1);
+              if (link) handout.push({ link, icon });
+            }
 
+            const lectureLinks = [];
+            for (let i = 17; i <= 22; i += 2) {
+              const name = cell(i);
+              const link = cell(i + 1);
+              if (name && link) lectureLinks.push({ name, link, icon });
+            }
 
-        // อัปเดตข้อมูล lectures ใน state
-        setLectures(lecturesData);
+            const summaryLink = cell(23);
+            const summary = summaryLink ? [{ name: "Summary", link: summaryLink, icon }] : [];
+
+            if (!number || !title || !type) return null;
+            return { number, title, type, handout, lectures: lectureLinks, summary };
+          })
+          .filter(Boolean);
+
+        setLectures(data);
       })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []); // ใช้ [] เพื่อให้ `useEffect` ทำงานเพียงครั้งเดียวเมื่อ component ถูกโหลด
+      .catch((err) => console.error("Error fetching lectures:", err));
+  }, []);
 
   useEffect(() => {
   
