@@ -1,7 +1,15 @@
 // LectureCard.js
 import React from 'react';
 
-export default function LectureCard({ number, title, date, type, handout, lectures, summary }) {
+export default function LectureCard({
+  number,
+  title,
+  date,
+  type,
+  handout = [],     // ✅ ตั้ง default array
+  lectures = [],    // ✅ ตั้ง default array
+  summary = []      // ✅ ตั้ง default array
+}) {
   return (
     <div className="flex flex-row gap-1 w-full">
       {/* เลขลำดับ */}
@@ -20,7 +28,7 @@ export default function LectureCard({ number, title, date, type, handout, lectur
         </div>
 
        <div className="flex flex-wrap gap-2 mt-2 items-center text-sm">
-  {[...handout,...lectures, ...summary].map((h, idx) => (
+  {[...(handout || []), ...(lectures || []), ...(summary || [])].map((h, idx) => (
     <a
       key={idx}
       href={h.link}
@@ -28,8 +36,8 @@ export default function LectureCard({ number, title, date, type, handout, lectur
       rel="noopener noreferrer"
       className="border border-slate-400 rounded-lg py-1 px-2 w-fit bg-transparent hover:bg-slate-200 transition-colors flex items-center"
     >
-      {h.icon && h.icon} {/* แสดง icon ถ้ามี */}
-    <h2 className="inline-block mr-1 text-black-400">{h.name}</h2>
+      {h.icon && h.icon}
+      <h2 className="inline-block mr-1 text-black-400">{h.name}</h2>
     </a>
   ))}
 </div>
