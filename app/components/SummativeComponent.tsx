@@ -1,7 +1,7 @@
 // LectureCard.js
 import React from 'react';
 
-export default function SummativeCard({  title, handouts }) {
+export default function SummativeCard({  title, handouts = [] }) {
   return (
     <div className="flex flex-row mt-1 pl-6 gap-1 w-full">
 
