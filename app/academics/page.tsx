@@ -25,8 +25,8 @@ const coursesY1S1 = [
 { code: "SIID145", href: "https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s2/siid-145?authuser=0", src: "/SIID145.png" },
 { code: "SIID146", href: "https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s1/siid-146?authuser=0", src: "/SIID146.png" },
   { code: "SCID104", href: "https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s1/scid-104?authuser=0", src: "/SCID104.png" },
-  { code: "EGID103", https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s1/egid-103?authuser=08", src: "/EGID103.png" },
-  { code: "ITCS152", https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s1/itcs-152?authuser=0", src: "/ITCS152.png" },
+  { code: "EGID103", href: "https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s1/egid-103?authuser=08", src: "/EGID103.png" },
+  { code: "ITCS152", href: "https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s1/itcs-152?authuser=0", src: "/ITCS152.png" },
 ];
 const coursesY1S2 = [
 { code: "SIID145", href: "https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s2/siid-145?authuser=0", src: "/SIID145.png" },
