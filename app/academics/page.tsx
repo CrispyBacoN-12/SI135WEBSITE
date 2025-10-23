@@ -19,6 +19,21 @@ const courses = [
 { code: "SIID255", href: "/AcademicPage/SIID255", src: "/SIID255.png" },
 
 ];
+const coursesY1S1 = [
+{ code: "SIID143", href: "https://sites.google.com/student.mahidol.edu/siriraj135/archieve/year1/y1s1/siid-143?authuser=0", src: "/SIID243.png" },
+  { code: "SIID144", href: "/AcademicPage/SIID244", src: "/SIID244.png" },
+{ code: "SIID145", href: "/AcademicPage/SIID245", src: "/SIID245.png" },
+{ code: "SIID146", href: "/AcademicPage/SIID246", src: "/SIID246.png" },
+  { code: "SCID104", href: "/AcademicPage/SIID247", src: "/SIID247.png" },
+  { code: "EGID103", href: "/AcademicPage/SIID248", src: "/SIID248.png" },
+  { code: "ITCS152", href: "/AcademicPage/SIID251", src: "/SIID251.png" },
+];
+const coursesY1S2 = [
+{ code: "SIID145", href: "/AcademicPage/SIID245", src: "/SIID245.png" },
+  { code: "SIID147", href: "/AcademicPage/SIID247", src: "/SIID247.png" },
+  { code: "SIID148", href: "/AcademicPage/SIID248", src: "/SIID248.png" },
+  { code: "SCID105", href: "/AcademicPage/SIID251", src: "/SIID251.png" },
+];
 export default function Academics() {
   return (
     <>
