@@ -69,22 +69,28 @@ const SIID255 = () => {
             const number = Number(cell(1)); // ใช้เป็นตัวชี้ trigger
             const title = cell(2);
             const type = "LAB";
-            const date = cell(10);
 
             if (!title) return null;
 
-            const lectures = [];
-            if (cell(14)) lectures.push({ name: "Lecture", link: cell(14), icon: <FileIcon /> });
-            if (cell(15)) lectures.push({ name: "Clinical Lab", link: cell(15), icon: <FileIcon /> });
-            if (cell(16)) lectures.push({ name: "CLO Finished", link: cell(16), icon: <FileIcon /> });
-
-            const summary = [];
-            for (let i = 17; i <= 19; i += 1) {
+           const handout = [];
+            for (let i = 13; i <= 15; i++) {
+              const name = "Handout";
               const link = cell(i);
-              if (link) summary.push({ name: "Summary", link, icon: <FileIcon /> });
+              if (link) handout.push({ name,link, icon });
             }
 
-            return { number, title, type, date, lectures, summary };
+            const lectureLinks = [];
+            for (let i = 16; i <= 21; i += 2) {
+              const name = cell(i);
+              const link = cell(i + 1);
+              if (name && link) lectureLinks.push({ name, link, icon });
+            }
+
+            const summaryLink = cell(22);
+            const summary = summaryLink ? [{ name: "Summary", link: summaryLink, icon }] : [];
+
+            if (!number || !title || !type) return null;
+            return { number, title, type, handout, lectures: lectureLinks, summary };
           })
           .filter(Boolean);
 
