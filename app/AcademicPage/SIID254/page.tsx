@@ -258,6 +258,15 @@ const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid254', 
                     <Image 
                     src="/CANVAS.png" 
                     alt="SI Canvas Logo" width={34} height={20} className="inline" /> Canvas </a> 
+                    <a
+                href="https://www.youtube.com/playlist?list=PLnWAv0tkYmKG_twJfrYi4L-DPfHAmqEor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-slate-400 text-lg rounded-lg py-1 px-2 w-fit bg-gradient-to-r from-gray-200 to-gray-300 bg-transparent hover:bg-slate-200 transition-colors flex items-center gap-1"
+              >
+                <Image src="/youtube.jpg" alt="Youtube Logo" width={34} height={20} className="inline" />
+                Summary By P'Jedi
+              </a>
                     </div> 
                     </div> 
                     </div> 
