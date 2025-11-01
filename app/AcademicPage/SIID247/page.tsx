@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import LectureCard from "../../components/AcademicComponent";
 import SummativeCard from "../../components/SummativeComponent";
-import CLOCard from "../../Components/CLOcard";
+import CLOCard from "../../components/CLOcard";
 import Image from "next/image";
 
 const SIID247 = () => {
