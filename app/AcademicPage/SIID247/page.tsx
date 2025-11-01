@@ -237,6 +237,7 @@ const SIID247 = () => {
             <CLOCard key={idx} {...lec} />
           ))}
       </div>
+       </div>
        
 
       {/* Summative */}
