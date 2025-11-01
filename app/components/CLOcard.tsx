@@ -10,7 +10,7 @@ export default function CLOCard({  title, CLO = [] }) {
         <h2 className="font-bold text-2xl sm:text-xl font-preuksa leading-tight sm:leading-tight">{title}</h2>
 
         <div className="flex flex-wrap gap-2 mt-2 items-center text-sm">
-          {handouts.map((h, idx) => (
+          {CLO.map((h, idx) => (
             <a
               key={idx}
               href={h.link}
