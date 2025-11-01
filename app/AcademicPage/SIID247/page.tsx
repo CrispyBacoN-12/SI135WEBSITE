@@ -9,6 +9,7 @@ import Image from "next/image";
 const SIID247 = () => {
   const [lectures, setLectures] = useState([]);
   const [summativeList, setSummativeList] = useState([]);
+  const [CLOList, setCLOlist] = useState([]);
 
   const parseGViz = (text) => JSON.parse(text.substring(47).slice(0, -2)).table.rows;
 
