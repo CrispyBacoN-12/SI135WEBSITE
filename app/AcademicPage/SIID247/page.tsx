@@ -232,7 +232,6 @@ const SIID247 = () => {
          {CLOList.map((lec, idx) => (
             <CLOCard key={idx} {...lec} />
           ))}
-        ))}
       </div>
        
 
