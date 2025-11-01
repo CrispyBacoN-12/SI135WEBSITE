@@ -98,6 +98,42 @@ const SIID247 = () => {
       })
       .catch((err) => console.error("Error fetching summative:", err));
   }, []);
+  
+ useEffect(() => {
+  fetch(sumUrl)
+    .then((res) => res.text())
+    .then((text) => {
+      const rows = parseGViz(text);
+
+
+      const data = rows
+        .map((row) => {
+          const cell = (i) => row.c?.[i]?.v ?? null;
+          const title = cell(0);
+          if (!title) return null;
+
+          const name = cell(25);
+          const link = cell(26);
+
+          if (!link) return null;
+
+          const CLO = [
+            {
+              name,
+              link,
+              icon: "📄", // ใส่ icon ที่ต้องการได้
+            },
+          ];
+
+          return { title, CLO };
+        })
+        .filter(Boolean);
+
+      setCLOlist(data);
+    })
+    .catch((err) => console.error("Error fetching CLO:", err));
+}, [sumUrl]);
+
 
   // ✅ ข้อมูลเว็บรุ่นพี่
   const courses = [
@@ -190,20 +226,13 @@ const SIID247 = () => {
           <LectureCard key={idx} {...lec} />
         ))}
       </div>
-        <div className="mx-auto">
-        <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-5">
-          <div className="w-full text-left px-4 text-3xl font-bold text-sky-900">Summative Examination</div>
-        </div>
-          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-          CLO assessment1</div>
-          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-          CLO assessment2</div>
-          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-          CLO assessment3</div>
-          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-          CLO assessment4</div>
-          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-          CLO assessment5</div>
+      <div className="mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4 mt-8">
+         {CLOList.map((lec, idx) => (
+            <CLOCard key={idx} {...lec} />
+          ))}
+        ))}
+      </div>
+       
 
       {/* Summative */}
       <div className="mx-auto">
