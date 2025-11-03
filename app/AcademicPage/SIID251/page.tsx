@@ -199,6 +199,21 @@ const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid251', 
                 />
                 Canvas
               </a>
+              <a
+                href="https://www.youtube.com/playlist?list=PLnWAv0tkYmKGz3NUjcnZaR-1YCaYX49P-"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-slate-400 text-lg rounded-lg py-1 px-2 w-fit bg-gradient-to-r from-gray-200 to-gray-300 bg-transparent hover:bg-slate-200 transition-colors flex items-center gap-1"
+              >
+                <Image
+                  src="/youtube.jpg"
+                  alt="Youtube Logo"
+                  width={34}
+                  height={20}
+                  className="inline"
+                />
+                Video By AcadTeam
+              </a>
             </div>
           </div>
         </div>
