@@ -1,7 +1,7 @@
 "used client";
 import Link from "next/link";
 import Image from "next/image";
-import CourseGrid from './components/CourseGrid';
+import CourseGrid from '../components/CourseGrid';
 
 const ChangePage = () => {
   const ToSIID243 = () => {
