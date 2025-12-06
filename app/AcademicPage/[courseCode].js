@@ -3,7 +3,7 @@
 
 import { useRouter } from 'next/router'; // ใช้สำหรับ Pages Router
 import CourseTemplate from '../../components/CourseTemplate'; // ปรับ Path ให้ถูกต้อง
-import { getCourseDetails } from '../../data/courseDetails'; // ดึง Data Store มาใช้
+import { getCourseDetails } from '../../components/courseDetail'; // ดึง Data Store มาใช้
 
 const DynamicCoursePage = () => {
   const router = useRouter();
