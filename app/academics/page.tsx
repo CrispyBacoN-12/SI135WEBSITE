@@ -7,7 +7,7 @@ const ChangePage = () => {
 
   }
 }
-const courses = [
+const coursesY2S1 = [
 { code: "SIID243", href: "/AcademicPage/SIID243", src: "/SIID243.png" },
   { code: "SIID244", href: "/AcademicPage/SIID244", src: "/SIID244.png" },
 { code: "SIID245", href: "/AcademicPage/SIID245", src: "/SIID245.png" },
@@ -17,6 +17,18 @@ const courses = [
   { code: "SIID251", href: "/AcademicPage/SIID251", src: "/SIID251.png" },
 { code: "SIID254", href: "/AcademicPage/SIID254", src: "/SIID254.png" },
 { code: "SIID255", href: "/AcademicPage/SIID255", src: "/SIID255.png" },
+
+];
+const coursesY2S2 = [
+{ code: "SIID249", href: "/AcademicPage/SIID249", src: "/SIID249.png" },
+{ code: "SIID250", href: "/AcademicPage/SIID250", src: "/SIID250.png" },
+{ code: "SIID252", href: "/AcademicPage/SIID252", src: "/SIID252.png" },
+  { code: "SIID253", href: "/AcademicPage/SIID253", src: "/SIID253.png" },
+  { code: "SIID256", href: "/AcademicPage/SIID256", src: "/SIID256.png" },
+  { code: "SIID257", href: "/AcademicPage/SIID257", src: "/SIID257.png" },
+  { code: "SIID258", href: "/AcademicPage/SIID258", src: "/SIID258.png" },
+  { code: "SIID259", href: "/AcademicPage/SIID259", src: "/SIID259.png" },
+  { code: "SIID260", href: "/AcademicPage/SIID260", src: "/SIID260.png" },
 
 ];
 const coursesY1S1 = [
@@ -95,13 +107,50 @@ export default function Academics() {
         </a>
       </div>
       <div className="bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
+        {/* Section banner */}
+<div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
+<div className="w-full max-w-6xl mx-auto text-center font-semibold text-2xl md:text-3xl py-4">
+Year2 Semester 2
+</div>
+</div>
+         <div className="w-full py-6">
+{/* Card grid */}
+<ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-6xl mx-auto px-4">
+{coursesY2S2.map(({ code, href, src }) => (
+<li key={code} className="group">
+<a
+href={href}
+className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-2xl"
+>
+<div className="relative w-full overflow-hidden rounded-2xl shadow-md group transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+  {/* Image wrapper with responsive aspect ratio */}
+  <div className="relative aspect-square md:aspect-[4/3]">
+    <img
+      src={src}
+      alt={code}
+      loading="lazy"
+      className="absolute inset-0 h-full w-full object-cover object-right transition-transform duration-300 group-hover:scale-105"
+    />
+  </div>
+
+  {/* Label */}
+  <span className="block text-center font-semibold text-lg md:text-xl bg-gradient-to-r from-sky-100 to-yellow-100 p-3 rounded-b-2xl transition-colors duration-300 group-hover:from-sky-200 group-hover:to-yellow-200">
+    {code}
+  </span>
+</div>
+
+</a>
+</li>
+))}
+</ul>
+</div>
       <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold ">
         Year2 Semester 1 </div>
     </div>
       <div className="w-full py-6">
 {/* Card grid */}
 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-6xl mx-auto px-4">
-{courses.map(({ code, href, src }) => (
+{coursesY2S1.map(({ code, href, src }) => (
 <li key={code} className="group">
 <a
 href={href}
