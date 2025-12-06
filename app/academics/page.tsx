@@ -108,9 +108,9 @@ export default function Academics() {
       </div>
      
         {/* Section banner */}
-<div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold ">
-        Year2 Semester 2 </div>
-    </div>
+      <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold ">
+        Year2 Semester 2 
+      </div>
       <div className="w-full py-6">
 {/* Card grid */}
 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-6xl mx-auto px-4">
@@ -143,8 +143,8 @@ className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-
 </ul>
         </div>
       <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold ">
-        Year2 Semester 1 </div>
-    </div>
+        Year2 Semester 1 
+      </div>
       <div className="w-full py-6">
 {/* Card grid */}
 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-6xl mx-auto px-4">
