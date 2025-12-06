@@ -106,7 +106,7 @@ export default function Academics() {
           SI134
         </a>
       </div>
-      <div className="bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
+     
         {/* Section banner */}
 <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
 <div className="w-full max-w-6xl mx-auto text-center font-semibold text-2xl md:text-3xl py-4">
