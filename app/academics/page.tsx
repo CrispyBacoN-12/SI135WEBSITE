@@ -112,7 +112,6 @@ export default function Academics() {
 <div className="w-full max-w-6xl mx-auto text-center font-semibold text-2xl md:text-3xl py-4">
 Year2 Semester 2
 </div>
-</div>
          <div className="w-full py-6">
 {/* Card grid */}
 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-6xl mx-auto px-4">
