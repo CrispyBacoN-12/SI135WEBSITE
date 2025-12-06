@@ -108,11 +108,10 @@ export default function Academics() {
       </div>
      
         {/* Section banner */}
-<div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
-<div className="w-full max-w-6xl mx-auto text-center font-semibold text-2xl md:text-3xl py-4">
-Year2 Semester 2
-</div>
-         <div className="w-full py-6">
+<div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold ">
+        Year2 Semester 2 </div>
+    </div>
+      <div className="w-full py-6">
 {/* Card grid */}
 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-6xl mx-auto px-4">
 {coursesY2S2.map(({ code, href, src }) => (
@@ -128,7 +127,7 @@ className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-
       src={src}
       alt={code}
       loading="lazy"
-      className="absolute inset-0 h-full w-full object-cover object-right transition-transform duration-300 group-hover:scale-105"
+      className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
     />
   </div>
 
@@ -142,7 +141,7 @@ className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-
 </li>
 ))}
 </ul>
-</div>
+        </div>
       <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold ">
         Year2 Semester 1 </div>
     </div>
