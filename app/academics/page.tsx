@@ -109,14 +109,18 @@ export default function Academics() {
       </div>
      
       {/* Year2 Semester 2 */}
+      <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
       <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold ">
         Year2 Semester 2 
+      </div>
       </div>
       <CourseGrid courses={coursesY2S2} /> {/* ใช้ component ที่สร้างขึ้น */}
 
       {/* Year2 Semester 1 */}
+      <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
       <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold ">
         Year2 Semester 1 
+      </div>
       </div>
       <CourseGrid courses={coursesY2S1} /> {/* ใช้ component ที่สร้างขึ้น */}
 
