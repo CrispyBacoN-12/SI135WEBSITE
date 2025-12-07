@@ -173,7 +173,7 @@ const SIID247 = () => {
           />
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide">Year 2 Semester 2</p>
-            <p className="text-3xl text-gray-700 italic">SIID252</p>
+            <p className="text-3xl text-gray-700 italic">SIID253</p>
             <p className="text-base text-gray-600">Reproductive System I</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
