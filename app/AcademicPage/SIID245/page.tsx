@@ -17,6 +17,7 @@ const SIID245 = () => {
     const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=245%20(MSK)&tq=select%20*%20limit%2022
 `;
    const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative&tq=select%20*%20limit%2022`; 
+  const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=CLO&tq=select%20*%20limit%2022`; 
   useEffect(() => {
     fetch(url)
       .then((response) => response.text())
@@ -156,6 +157,59 @@ if(summaryLink)
     .catch((e) => console.error("fetch summative failed:", e));
 }, [sumUrl]);
 
+    useEffect(() => {
+  
+  fetch(CLOUrl)
+    .then((r) => r.text())
+    .then((t) => {
+      const rows = parseGViz(t);
+
+      const data = rows
+        .map((row) => {
+          const cell = (i) => row.c?.[i]?.v ?? null;
+
+          const title = cell(0);
+          const handouts = [];
+
+          // helper แปลงลิงก์
+          const convertDriveLink = (url) => {
+            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (!match) return url;
+            const fileId = match[1];
+            return `https://drive.google.com/file/d/${fileId}/preview`;
+          };
+
+          const s1Link = cell(1);
+          if (s1Link) {
+            handouts.push({
+              name: "Question",
+              link: convertDriveLink(s1Link),   // ✅ ใช้ฟังก์ชันแปลง
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+          const s1KeyLink = cell(2);
+          if (s1KeyLink) {
+            handouts.push({
+              name: "Answer",
+              link: convertDriveLink(s1KeyLink),
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+         
+}, [CLOUrl]);
+
+
+
   const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid245', linkname: 'SI134(245)' }, 
   { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-245', linkname: 'SI133(245)' }, 
   { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid245', linkname: 'SI132(245)' },
@@ -244,7 +298,18 @@ if(summaryLink)
           <LectureCard key={idx} {...lec} /> // แสดงผลข้อมูล lectures
         ))}
       </div>
-
+<div className="mx-auto">
+        <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-4">
+          <div className="w-full text-left px-4 text-3xl font-bold text-sky-900 focus:outline-none">
+            CLO ASSESSMENT
+          </div>
+        </div>
+        <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
+         {summativeList.map((lec, idx) => (
+   <SummativeCard key={idx} {...lec} />
+))}
+        </div>
+      </div>
       {/* Summative Section */}
       <div className="mx-auto">
         <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-4">
