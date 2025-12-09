@@ -187,7 +187,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
                   const CLO2Link = cell(5);
           if (CLO2Link) {
             handouts.push({
-              name: "Question",
+              name: "Question2",
               link: convertDriveLink(CLO2Link),   // ✅ ใช้ฟังก์ชันแปลง
               icon: (
                 <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
@@ -200,7 +200,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
           const CLO2KeyLink = cell(6);
           if (CLO2KeyLink) {
             handouts.push({
-              name: "Answer",
+              name: "Answer2",
               link: convertDriveLink(CLO2KeyLink),
               icon: (
                 <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
@@ -209,11 +209,11 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
               ),
             });
           }
-                  const CLOLink = cell(7);
+                  const CLO3Link = cell(7);
           if (CLO3Link) {
             handouts.push({
-              name: "Question",
-              link: convertDriveLink(CLOLink),   // ✅ ใช้ฟังก์ชันแปลง
+              name: "Question3",
+              link: convertDriveLink(CLO3Link),   // ✅ ใช้ฟังก์ชันแปลง
               icon: (
                 <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
                   <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
@@ -225,7 +225,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
           const CLO3KeyLink = cell(8);
           if (CLO3KeyLink) {
             handouts.push({
-              name: "Answer",
+              name: "Answer3",
               link: convertDriveLink(CLO3KeyLink),
               icon: (
                 <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
