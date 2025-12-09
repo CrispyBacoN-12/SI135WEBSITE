@@ -102,40 +102,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
       .catch((err) => console.error("Error fetching summative:", err));
   }, []);
   
- useEffect(() => {
-  fetch(sumUrl)
-    .then((res) => res.text())
-    .then((text) => {
-      const rows = parseGViz(text);
-
-
-      const data = rows
-        .map((row) => {
-          const cell = (i) => row.c?.[i]?.v ?? null;
-          const title = cell(0);
-          if (!title) return null;
-
-          const name = cell(25);
-          const link = cell(26);
-
-          if (!link) return null;
-
-          const CLO = [
-            {
-              name,
-              link,
-              icon: "📄", // ใส่ icon ที่ต้องการได้
-            },
-          ];
-
-          return { title, CLO };
-        })
-        .filter(Boolean);
-
-      setCLOlist(data);
-    })
-    .catch((err) => console.error("Error fetching CLO:", err));
-}, [sumUrl]);
+ 
 
    useEffect(() => {
   
