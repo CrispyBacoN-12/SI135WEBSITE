@@ -180,8 +180,8 @@ if(summaryLink)
             return `https://drive.google.com/file/d/${fileId}/preview`;
           };
 
-          const s1Link = cell(1);
-          if (s1Link) {
+          const CLOLink = cell(1);
+          if (CLOLink) {
             handouts.push({
               name: "Question",
               link: convertDriveLink(s1Link),   // ✅ ใช้ฟังก์ชันแปลง
@@ -193,8 +193,8 @@ if(summaryLink)
             });
           }
 
-          const s1KeyLink = cell(2);
-          if (s1KeyLink) {
+          const CLOKeyLink = cell(2);
+          if (CLOKeyLink) {
             handouts.push({
               name: "Answer",
               link: convertDriveLink(s1KeyLink),
