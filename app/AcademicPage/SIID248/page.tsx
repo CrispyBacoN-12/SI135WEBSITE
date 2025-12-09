@@ -8,6 +8,7 @@ import Image from "next/image";
 const SIID248 = () => {
   const [lectures, setLectures] = useState([]);  // เก็บข้อมูล lectures ที่ดึงมาจาก Google Sheets
   const [summativeList, setSummativeList] = useState([]);
+   const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
   const summative = [{ title: 'SI134', handouts: [{ name: 'Summative', link: '#' }] }]; // ข้อมูล Summative ที่เป็นตัวอย่าง
    const parseGViz = (text) => {
   const json = JSON.parse(text.substring(47).slice(0, -2));
@@ -16,6 +17,7 @@ const SIID248 = () => {
     const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=248%20(Hemato)&tq=select%20*%20limit%2022
 `;
    const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative2&tq=select%20*%20limit%2022`; 
+  const CLOUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=CLO&tq=select%20*%20limit%2022`; 
   const icon = (
     <svg className="w-4 h-4 mr-1 inline" fill="currentColor" viewBox="0 0 448 512">
       <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448
@@ -148,6 +150,65 @@ const SIID248 = () => {
     .catch((e) => console.error("fetch summative failed:", e));
 }, [sumUrl]);
 
+  useEffect(() => {
+  
+  fetch(CLOUrl)
+    .then((r) => r.text())
+    .then((t) => {
+      const rows = parseGViz(t);
+
+      const data = rows
+        .map((row) => {
+          const cell = (i) => row.c?.[i]?.v ?? null;
+
+          const title = cell(0);
+          const handouts = [];
+
+          // helper แปลงลิงก์
+          const convertDriveLink = (url) => {
+            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (!match) return url;
+            const fileId = match[1];
+            return `https://drive.google.com/file/d/${fileId}/preview`;
+          };
+
+          const CLOLink = cell(9);
+          if (CLOLink) {
+            handouts.push({
+              name: "Question",
+              link: convertDriveLink(CLOLink),   // ✅ ใช้ฟังก์ชันแปลง
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+          const CLOKeyLink = cell(10);
+          if (CLOKeyLink) {
+            handouts.push({
+              name: "Answer",
+              link: convertDriveLink(CLOKeyLink),
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+          
+  if (!title || handouts.length === 0) return null;
+          return { title, handouts };
+        })
+        .filter(Boolean);
+
+      setCLOASSESSMENT(data);
+    })
+    .catch((e) => console.error("fetch summative failed:", e));
+         
+}, [CLOUrl]);
+
   const courses = [ { code: 'SI134', link: 'https://siriraj134.com/acad/siid248', linkname: 'SI134(248)' }, 
   { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-248', linkname: 'SI133(248)' }, 
   { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid248', linkname: 'SI132(248)' },
@@ -236,7 +297,18 @@ const SIID248 = () => {
           <LectureCard key={idx} {...lec} /> // แสดงผลข้อมูล lectures
         ))}
       </div>
-
+<div className="mx-auto">
+        <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-4">
+          <div className="w-full text-left px-4 text-3xl font-bold text-sky-900 focus:outline-none">
+            CLO ASSESSMENT
+          </div>
+        </div>
+        <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
+         {CLOASSESSMENT.map((lec, idx) => (
+   <SummativeCard key={idx} {...lec} />
+))}
+        </div>
+      </div>
       {/* Summative Section */}
       <div className="mx-auto">
         <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-4">
