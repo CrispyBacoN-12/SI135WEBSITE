@@ -205,6 +205,7 @@ if(summaryLink)
               ),
             });
           }
+          
   if (!title || handouts.length === 0) return null;
           return { title, handouts };
         })
