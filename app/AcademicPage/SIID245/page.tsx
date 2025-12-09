@@ -314,7 +314,7 @@ if(summaryLink)
           </div>
         </div>
         <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-         {summativeList.map((lec, idx) => (
+         {CLOASSESSMENT.map((lec, idx) => (
    <SummativeCard key={idx} {...lec} />
 ))}
         </div>
