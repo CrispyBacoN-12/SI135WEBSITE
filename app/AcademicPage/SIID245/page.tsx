@@ -9,6 +9,7 @@ import Image from "next/image";
 const SIID245 = () => {
   const [lectures, setLectures] = useState([]);  // เก็บข้อมูล lectures ที่ดึงมาจาก Google Sheets
   const [summativeList, setSummativeList] = useState([]);
+  const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
   const summative = [{ title: 'SI134', handouts: [{ name: 'Summative', link: '#' }] }]; // ข้อมูล Summative ที่เป็นตัวอย่าง
    const parseGViz = (text) => {
   const json = JSON.parse(text.substring(47).slice(0, -2));
@@ -204,7 +205,14 @@ if(summaryLink)
               ),
             });
           }
+  if (!title || handouts.length === 0) return null;
+          return { title, handouts };
+        })
+        .filter(Boolean);
 
+      setCLOASSESSMENT(data);
+    })
+    .catch((e) => console.error("fetch summative failed:", e));
          
 }, [CLOUrl]);
 
