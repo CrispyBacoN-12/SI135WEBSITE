@@ -54,42 +54,60 @@ const GoogleLoginButton = () => {
     [login]
   );
 
-  useEffect(() => {
-    if (!GOOGLE_CLIENT_ID) return;
+useEffect(() => {
+  if (!GOOGLE_CLIENT_ID) {
+    console.error("Missing NEXT_PUBLIC_GOOGLE_CLIENT_ID");
+    return;
+  }
 
-    // โหลด Google Identity script ถ้ายังไม่มี
-    const existing = document.getElementById("google-identity");
-    if (!existing) {
-      const script = document.createElement("script");
-      script.id = "google-identity";
-      script.src = "https://accounts.google.com/gsi/client";
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
-        window.google.accounts.id.initialize({
-          client_id: GOOGLE_CLIENT_ID,
-          callback: handleCredentialResponse,
-          // ใส่ไว้ช่วย “ชี้” ไปโดเมนมหาลัย (ไม่ใช่ security ต้องเช็คที่ backend)
-          // hosted_domain: "youruni.edu",
-        });
-        window.google.accounts.id.renderButton(
-          document.getElementById("signInDiv"),
-          { theme: "filled_blue", size: "large", width: "280", text: "signin_with" }
-        );
-      };
-      document.body.appendChild(script);
-    } else {
-      // ถ้ามี script อยู่แล้ว
-      window.google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback: handleCredentialResponse,
-      });
-      window.google.accounts.id.renderButton(
-        document.getElementById("signInDiv"),
-        { theme: "filled_blue", size: "large", width: "280", text: "signin_with" }
-      );
-    }
-  }, [handleCredentialResponse]);
+  const init = () => {
+    const el = document.getElementById("signInDiv");
+    if (!el) return;
+
+    // กัน render ซ้ำ (Google จะยัด iframe ซ้อน)
+    el.innerHTML = "";
+
+    window.google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleCredentialResponse,
+    });
+
+    window.google.accounts.id.renderButton(el, {
+      theme: "filled_blue",
+      size: "large",
+      width: "280",
+      text: "signin_with",
+    });
+  };
+
+  // ถ้า script โหลดแล้ว
+  if (window.google?.accounts?.id) {
+    init();
+    return;
+  }
+
+  // ถ้ายังไม่โหลด ให้ inject script แล้วรอ
+  const existing = document.getElementById("google-identity") as HTMLScriptElement | null;
+  if (!existing) {
+    const script = document.createElement("script");
+    script.id = "google-identity";
+    script.src = "https://accounts.google.com/gsi/client";
+    script.async = true;
+    script.defer = true;
+    script.onload = init;
+    script.onerror = () => console.error("Failed to load Google Identity script");
+    document.body.appendChild(script);
+  } else {
+    // มี script แต่ยังไม่พร้อม -> รอด้วย polling สั้น ๆ
+    const t = setInterval(() => {
+      if (window.google?.accounts?.id) {
+        clearInterval(t);
+        init();
+      }
+    }, 200);
+    return () => clearInterval(t);
+  }
+}, [handleCredentialResponse, isLoggedIn]);
 
   if (isLoggedIn) return <p>กำลังเปลี่ยนหน้า...</p>;
 
