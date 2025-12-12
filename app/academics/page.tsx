@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import CourseGrid from '../components/courseGrid';
+import RequireAuth from "../components/RequireAuth";
 
 const ChangePage = () => {
   const ToSIID243 = () => {
@@ -49,7 +50,8 @@ const coursesY1S2 = [
 ];
 export default function Academics() {
   return (
-    <>
+    
+    <RequireAuth>
       <div className="w-full px-6 py-4 highlight font-semibold text-2xl ">
         Academics site
       </div>
@@ -140,6 +142,6 @@ export default function Academics() {
         </div>
       </div>
       <CourseGrid courses={coursesY1S1} /> {/* ใช้ component ที่สร้างขึ้น */}
-    </>
+    </RequireAuth>
   );
 }
