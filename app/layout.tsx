@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import Link from "next/link";
 import Header from "./components/Header";
 import { useState } from "react";
+import Providers from "./components/Providers";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Header />
 
             {/* Page Content */}
-            {children}
+            <Providers>{children}</Providers>
           </div>
         </div>
       </body>
