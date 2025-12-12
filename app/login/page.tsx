@@ -1,15 +1,9 @@
-import Script from "next/script";
-import LoginClient from "../components/login"; // component ปุ่มของคุณ
+import Login from "../components/login";
 
 export default function LoginPage() {
   return (
-    <>
-      <Script
-        src="https://accounts.google.com/gsi/client"
-        strategy="afterInteractive"
-      />
-      <LoginClient />
-    </>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <Login />
+    </div>
   );
 }
-
