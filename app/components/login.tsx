@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./component/AuthContext";
+import { useAuth } from "./AuthContext";
 
 interface CredentialResponse {
   credential: string;
