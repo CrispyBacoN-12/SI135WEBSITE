@@ -6,13 +6,16 @@ import { useAuth } from "./AuthContext";
 
 export default function RequireAuth({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isLoading } = useAuth();
 
   useEffect(() => {
-    if (!isLoggedIn) router.replace("/login");
-  }, [isLoggedIn, router]);
+    if (!isLoading && !isLoggedIn) {
+      router.replace("/login");
+    }
+  }, [isLoading, isLoggedIn, router]);
 
-  if (!isLoggedIn) return <p>กำลังพาไปหน้า login...</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (!isLoggedIn) return <p>Redirecting to login...</p>;
 
   return <>{children}</>;
 }
