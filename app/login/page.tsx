@@ -1,10 +1,15 @@
-import Login from "../components/login";
+import Script from "next/script";
+import LoginClient from "../components/login"; // component ปุ่มของคุณ
 
 export default function LoginPage() {
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Login Route OK</h1>
-      <Login />
-    </div>
+    <>
+      <Script
+        src="https://accounts.google.com/gsi/client"
+        strategy="afterInteractive"
+      />
+      <LoginClient />
+    </>
   );
 }
+
