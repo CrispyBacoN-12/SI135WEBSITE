@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect, type ReactNode }
 
 // กำหนด Type สำหรับ Context
 interface AuthContextType {
-    isLoggedIn: boolean;
+    isLoading: boolean;
     isLoggedIn: boolean;
     userEmail: string | null;
     login: (email: string) => void;
