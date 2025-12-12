@@ -6,7 +6,7 @@ interface CredentialResponse {
   select_by: string;
 }
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 const BACKEND_URL = "http://localhost:3000/api/auth/google";
 const ALLOWED_DOMAIN = "student.mahidol.edu";
 
