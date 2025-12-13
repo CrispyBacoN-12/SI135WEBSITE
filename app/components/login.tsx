@@ -39,8 +39,8 @@ const GoogleLoginButton = () => {
 
         if (!token || !email) throw new Error("Invalid server response");
 
-        localStorage.setItem("userAuthToken", token);
-        localStorage.setItem("userEmail", email);
+        sessionStorage.setItem("userAuthToken", token);
+        sessionStorage.setItem("userEmail", email);
 
         login(email);
       } catch (error) {
