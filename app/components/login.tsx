@@ -11,8 +11,8 @@ interface CredentialResponse {
 }
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string;
-const BACKEND_URL =
-  (process.env.NEXT_PUBLIC_BACKEND_URL as string) + "/api/auth/google";
+const base = (process.env.NEXT_PUBLIC_BACKEND_URL || "").replace(/\/+$/, "");
+const BACKEND_URL = base + "/api/auth/google";
 
 const GoogleLoginButton = () => {
   const router = useRouter();
