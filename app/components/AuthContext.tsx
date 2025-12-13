@@ -63,7 +63,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         </AuthContext.Provider>
     );
 };
+useEffect(() => {
+  const clearSession = () => {
+    sessionStorage.removeItem("userAuthToken");
+    sessionStorage.removeItem("userEmail");
+  };
 
+  window.addEventListener("beforeunload", clearSession);
+  return () => window.removeEventListener("beforeunload", clearSession);
+}, []);
 // Hook สำหรับเรียกใช้ Context
 export const useAuth = () => {
     const context = useContext(AuthContext);
