@@ -44,8 +44,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const logout = () => {
         // ลบข้อมูลทั้งหมด
-        localStorage.removeItem('userAuthToken');
-        localStorage.removeItem('userEmail');
+        sessionStorage.removeItem('userAuthToken');
+        sessionStorage.removeItem('userEmail');
         
         // อัปเดต State
         setIsLoggedIn(false);
