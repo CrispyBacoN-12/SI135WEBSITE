@@ -22,7 +22,7 @@ const GoogleLoginButton = () => {
   const [loginError, setLoginError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isLoggedIn) router.replace("/dashboard");
+    if (isLoggedIn) router.replace("/academics");
   }, [isLoggedIn, router]);
 
   const handleCredentialResponse = useCallback(
