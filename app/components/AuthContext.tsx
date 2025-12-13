@@ -1,82 +1,79 @@
-// ไฟล์: AuthContext.tsx
 "use client";
-import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
-// กำหนด Type สำหรับ Context
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
+
 interface AuthContextType {
-    isLoading: boolean;
-    isLoggedIn: boolean;
-    userEmail: string | null;
-    login: (email: string) => void;
-    logout: () => void;
+  isLoading: boolean;
+  isLoggedIn: boolean;
+  userEmail: string | null;
+  login: (email: string) => void;
+  logout: () => void;
 }
 
-// กำหนดค่าเริ่มต้น
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Provider Component
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    // 1. ตรวจสอบสถานะการล็อกอินเริ่มต้นจาก Local Storage
-    const [isLoading, setIsLoading] = useState(true); // 🚨 เริ่มต้นด้วย true
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
-    useEffect(() => {
-        // ตรวจสอบเมื่อ Component ถูก Mount ครั้งแรก
-        const token = localStorage.getItem('userAuthToken');
-        const email = localStorage.getItem('userEmail');
-        
-        if (token && email) {
-            setIsLoggedIn(true);
-            setUserEmail(email);
-        } else {
-            setIsLoggedIn(false);
-            setUserEmail(null);
-        }
-        setIsLoading(false);
-    }, []);
+  // ✅ อ่านจาก sessionStorage (ปิดเว็บแล้วหาย)
+  useEffect(() => {
+    const token = sessionStorage.getItem("userAuthToken");
+    const email = sessionStorage.getItem("userEmail");
 
-    const login = (email: string) => {
-        setIsLoggedIn(true);
-        setUserEmail(email);
-        // localStorage.setItem('userEmail', email); // Token ถูกเก็บใน google-button แล้ว
-    };
+    if (token && email) {
+      setIsLoggedIn(true);
+      setUserEmail(email);
+    } else {
+      setIsLoggedIn(false);
+      setUserEmail(null);
+    }
+    setIsLoading(false);
+  }, []);
 
-    const logout = () => {
-        // ลบข้อมูลทั้งหมด
-        sessionStorage.removeItem('userAuthToken');
-        sessionStorage.removeItem('userEmail');
-        
-        // อัปเดต State
-        setIsLoggedIn(false);
-        setUserEmail(null);
-
-        // Optional: เคลียร์ Google Session
-        if (window.google && window.google.accounts && window.google.accounts.id) {
-            window.google.accounts.id.disableAutoSelect();
-        }
-    };
-
-    return (
-        <AuthContext.Provider value={{ isLoading, isLoggedIn, userEmail, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
-useEffect(() => {
-  const clearSession = () => {
-    sessionStorage.removeItem("userAuthToken");
-    sessionStorage.removeItem("userEmail");
+  const login = (email: string) => {
+    setIsLoggedIn(true);
+    setUserEmail(email);
   };
 
-  window.addEventListener("beforeunload", clearSession);
-  return () => window.removeEventListener("beforeunload", clearSession);
-}, []);
-// Hook สำหรับเรียกใช้ Context
+  const logout = () => {
+    sessionStorage.removeItem("userAuthToken");
+    sessionStorage.removeItem("userEmail");
+
+    setIsLoggedIn(false);
+    setUserEmail(null);
+
+    const g = (window as any).google;
+    if (g?.accounts?.id) g.accounts.id.disableAutoSelect();
+  };
+
+  // ✅ (ไม่บังคับ) ล้าง session ตอนปิดแท็บ/ปิดเว็บ
+  useEffect(() => {
+    const clearSession = () => {
+      sessionStorage.removeItem("userAuthToken");
+      sessionStorage.removeItem("userEmail");
+    };
+
+    window.addEventListener("beforeunload", clearSession);
+    return () => window.removeEventListener("beforeunload", clearSession);
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ isLoading, isLoggedIn, userEmail, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
 export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (context === undefined) {
-        throw new Error('useAuth must be used within an AuthProvider');
-    }
-    return context;
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within an AuthProvider");
+  return ctx;
 };
