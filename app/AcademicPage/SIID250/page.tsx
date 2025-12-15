@@ -114,8 +114,8 @@ const SIID247 = () => {
           const title = cell(0);
           if (!title) return null;
 
-          const name = cell(25);
-          const link = cell(26);
+          const name = cell(17);
+          const link = cell(18);
 
           if (!link) return null;
 
