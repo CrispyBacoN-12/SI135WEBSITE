@@ -251,8 +251,8 @@ if(summaryLink)
           />
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide highlight">Year 2 Semester 2</p>
-            <p className="text-3xl text-gray-700 italic">SIID249</p>
-            <p className="text-base text-gray-600">Urinary System I</p>
+            <p className="text-3xl text-gray-700 italic">SIID250</p>
+            <p className="text-base text-gray-600">Gastrointestinal and Hepatobiliary System</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
                 href="https://sirirajcanvas.instructure.com/courses/1065"
