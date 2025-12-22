@@ -22,15 +22,15 @@ const coursesY2S1 = [
 
 ];
 const coursesY2S2 = [
-{ code: "SIID249", href: "/AcademicPage/SIID249", src: "/SIID249.png" },
-{ code: "SIID250", href: "/AcademicPage/SIID250", src: "/SIID250.png" },
-{ code: "SIID252", href: "/AcademicPage/SIID252", src: "/SIID252.png" },
-  { code: "SIID253", href: "/AcademicPage/SIID253", src: "/SIID253.png" },
-  { code: "SIID256", href: "/AcademicPage/SIID256", src: "/SIID256.png" },
-  { code: "SIID257", href: "/AcademicPage/SIID257", src: "/SIID257.png" },
-  { code: "SIID258", href: "/AcademicPage/SIID258", src: "/SIID258.png" },
-  { code: "SIID259", href: "/AcademicPage/SIID259", src: "/SIID259.png" },
-  { code: "SIID260", href: "/AcademicPage/SIID260", src: "/SIID260.png" },
+{ code: "SIID249", href: "/AcademicPage/SIID249", src: "/SIID 249.png" },
+{ code: "SIID250", href: "/AcademicPage/SIID250", src: "/SIID 250.png" },
+{ code: "SIID252", href: "/AcademicPage/SIID252", src: "/SIID 252.png" },
+  { code: "SIID253", href: "/AcademicPage/SIID253", src: "/SIID 253.png" },
+  { code: "SIID256", href: "/AcademicPage/SIID256", src: "/SIID 256.png" },
+  { code: "SIID257", href: "/AcademicPage/SIID257", src: "/SIID 257.png" },
+  { code: "SIID258", href: "/AcademicPage/SIID258", src: "/SIID 258.png" },
+  { code: "SIID259", href: "/AcademicPage/SIID259", src: "/SIID 259.png" },
+  { code: "SIID260", href: "/AcademicPage/SIID260", src: "/SIID 260.png" },
 
 ];
 const coursesY1S1 = [
