@@ -6,7 +6,7 @@ import LectureCard from "../../components/AcademicComponent"; // คอมโพ
 import SummativeCard from "../../components/SummativeComponent"; // คอมโพเนนต์สำหรับแสดง Summative
 import Image from "next/image";
 
-const SIID245 = () => {
+const SIID252 = () => {
   const [lectures, setLectures] = useState([]);  // เก็บข้อมูล lectures ที่ดึงมาจาก Google Sheets
   const [summativeList, setSummativeList] = useState([]);
   const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
@@ -337,4 +337,4 @@ IN PUBLIC HEALTH PRACTICE</p>
   );
 };
 
-export default SIID245;
+export default SIID252;
