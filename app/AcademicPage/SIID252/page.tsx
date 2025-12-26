@@ -167,13 +167,13 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
 
   // ✅ ข้อมูลเว็บรุ่นพี่
   const courses = [
-    { code: 'SI134', link: 'https://siriraj134.com/acad/siid250', linkname: 'SI134(250)' },
-    { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-250', linkname: 'SI133(250)' },
-    { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid250', linkname: 'SI132(250)' },
-    { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/220', linkname: 'SI131(220)' },
-    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/220', linkname: 'SI130(220)' },
-    { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/220', linkname: 'SI129(220)' },
-    { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/220', linkname: 'SI128(220)' },
+    { code: 'SI134', link: 'https://siriraj134.com/acad/siid252', linkname: 'SI134(252)' },
+    { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-252', linkname: 'SI133(252)' },
+    { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid252', linkname: 'SI132(252)' },
+    { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/227', linkname: 'SI131(227)' },
+    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/227', linkname: 'SI130(227)' },
+    { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/227', linkname: 'SI129(227)' },
+    { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/227', linkname: 'SI128(227)' },
   ];
 
   return (
