@@ -201,7 +201,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
           />
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide">Year 2 Semester 1</p>
-            <p className="text-3xl text-gray-700 italic">SIID250</p>
+            <p className="text-3xl text-gray-700 italic">SIID253</p>
             <p className="text-base text-gray-600">Reproductive System</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
