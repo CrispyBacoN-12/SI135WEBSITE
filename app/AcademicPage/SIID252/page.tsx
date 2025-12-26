@@ -184,7 +184,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
           <div className="flex gap-2 items-center grow">
             <a className="hover:underline" href="/academics">Academic</a>
             <span>/</span>
-            <span>SIID250</span>
+            <span>SIID252</span>
           </div>
         </div>
       </div>
@@ -193,16 +193,16 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-col md:flex-row md:items-center rounded-lg mt-10">
           <Image
-            src="/SIID250.png"
-            alt="SIID250"
+            src="/SIID252.png"
+            alt="SIID252"
             width={300}
             height={800}
             className="w-full md:w-[300px] h-[250px] object-cover object-top rounded-lg mb-4 md:mb-0 md:mr-8 flex-shrink-0"
           />
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide">Year 2 Semester 1</p>
-            <p className="text-3xl text-gray-700 italic">SIID250</p>
-            <p className="text-base text-gray-600">Gastrointestinal and Hepatobiliary System</p>
+            <p className="text-3xl text-gray-700 italic">SIID252</p>
+            <p className="text-base text-gray-600">EPIDEMIOLOGY AND BIOSTATISTICSReproductive System I</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
                 href="https://sirirajcanvas.instructure.com/courses/1072"
