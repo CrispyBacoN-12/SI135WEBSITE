@@ -184,7 +184,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
           <div className="flex gap-2 items-center grow">
             <a className="hover:underline" href="/academics">Academic</a>
             <span>/</span>
-            <span>SIID250</span>
+            <span>SIID249</span>
           </div>
         </div>
       </div>
@@ -193,7 +193,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-col md:flex-row md:items-center rounded-lg mt-10">
           <Image
-            src="/SIID249.png"
+            src="/SIID 249.png"
             alt="SIID249"
             width={300}
             height={800}
