@@ -193,7 +193,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-col md:flex-row md:items-center rounded-lg mt-10">
           <Image
-            src="/SIID252.png"
+            src="/SIID 252.png"
             alt="SIID252"
             width={300}
             height={800}
