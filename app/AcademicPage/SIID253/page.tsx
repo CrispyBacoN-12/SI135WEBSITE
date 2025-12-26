@@ -6,7 +6,7 @@ import SummativeCard from "../../components/SummativeComponent";
 import CLOCard from "../../components/CLOcard";
 import Image from "next/image";
 
-const SIID252 = () => {
+const SIID253 = () => {
   const [lectures, setLectures] = useState([]);
   const [summativeList, setSummativeList] = useState([]);
 const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
@@ -284,4 +284,4 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
   );
 };
 
-export default SIID252;
+export default SIID253;
