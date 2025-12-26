@@ -19,146 +19,86 @@ const SIID245 = () => {
 `;
    const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative3&tq=select%20*%20limit%2022`; 
   const CLOUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=CLO&tq=select%20*%20limit%2022`; 
-  useEffect(() => {
+   useEffect(() => {
     fetch(url)
-      .then((response) => response.text())
+      .then((res) => res.text())
       .then((text) => {
-        // แปลงข้อมูลที่ได้จาก API เป็น JSON
-        const jsonData = JSON.parse(text.substring(47).slice(0, -2));  // แก้ไขข้อมูลที่ได้จาก JSON
-        const rows = jsonData.table.rows;
+        const rows = parseGViz(text);
 
-        // ดึงข้อมูลจากแถวที่ได้และแปลงเป็นรูปแบบ lectures
-        const lecturesData = rows.map((row) => {
-          const number = row.c[0]?.v; // คอลัมน์ 0 คือ หมายเลขของ Lecture
-          const title = row.c[1]?.v; // คอลัมน์ 1 คือ ชื่อของ Lecture
-          const type = row.c[2]?.v; // คอลัมน์ 2 คือ ประเภท (Lec)
-       const lectures = [];
-for (let i = 13; i <= 18; i += 2) {
-  const name = row.c[i]?.v;
-  const link = row.c[i + 1]?.v;
-  if (name && link) {
-    lectures.push({ name, link,icon: (
-    <svg
-      className="w-4 h-4 mr-1 inline"
-      fill="currentColor"
-      viewBox="0 0 448 512"
-    >
-      <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"></path>
-    </svg>) });
-  }
-}
+        const data = rows
+          .map((row) => {
+            const cell = (i) => row.c?.[i]?.v ?? null;
+            const number = cell(0);
+            const title = cell(1);
+            const type = cell(2);
 
-const summary = [];
-const summaryLink = row.c[19]?.v;
-if(summaryLink)
-{
-  summary.push({ name: 'summary', link: summaryLink,icon:(<svg
-      className="w-4 h-4 mr-1 inline"
-      fill="currentColor"
-      viewBox="0 0 448 512"
-    >
-      <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"></path>
-    </svg>) });
-}
-        if(number && title && type)
-        {
-          return { number, title, type, lectures, summary }; // ส่งข้อมูลที่จัดเตรียมไว้
-        } return null; // ถ้าไม่ครบ return null
-  })
-  .filter(Boolean);
+            const handout = [];
+            for (let i = 14; i <= 16; i++) {
+              const name ="Handout";
+              const link = cell(i);
+              if (link) handout.push({ name,link, icon });
+            }
 
+            const lectureLinks = [];
+            for (let i = 17; i <= 22; i += 2) {
+              const name = cell(i);
+              const link = cell(i + 1);
+              if (name && link) lectureLinks.push({ name, link, icon });
+            }
 
-        // อัปเดตข้อมูล lectures ใน state
-        setLectures(lecturesData);
+            const summaryLink = cell(23);
+            const summary = summaryLink ? [{ name: "Summary", link: summaryLink, icon }] : [];
+
+            if (!number || !title || !type) return null;
+            return { number, title, type, handout, lectures: lectureLinks, summary };
+          })
+          .filter(Boolean);
+
+        setLectures(data);
       })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []); // ใช้ [] เพื่อให้ `useEffect` ทำงานเพียงครั้งเดียวเมื่อ component ถูกโหลด
+      .catch((err) => console.error("Error fetching lectures:", err));
+  }, []);
 
+  // ✅ ดึงข้อมูล Summative
   useEffect(() => {
+    fetch(sumUrl)
+      .then((res) => res.text())
+      .then((text) => {
+        const rows = parseGViz(text);
+
+        const convertDriveLink = (url) => {
+          const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+          if (!match) return url;
+          return `https://drive.google.com/file/d/${match[1]}/preview`;
+        };
+
+        const data = rows
+          .map((row) => {
+            const cell = (i) => row.c?.[i]?.v ?? null;
+            const title = cell(0);
+            if (!title) return null;
+
+            const handouts = [13, 14, 15, 16]
+              .map((i, idx) => {
+                const name = ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"][idx];
+                const link = cell(i);
+                return link ? { name, link: convertDriveLink(link), icon } : null;
+              })
+              .filter(Boolean);
+
+            if (handouts.length === 0) return null;
+            return { title, handouts };
+          })
+          .filter(Boolean);
+
+        setSummativeList(data);
+      })
+      .catch((err) => console.error("Error fetching summative:", err));
+  }, []);
   
-  fetch(sumUrl)
-    .then((r) => r.text())
-    .then((t) => {
-      const rows = parseGViz(t);
+ 
 
-      const data = rows
-        .map((row) => {
-          const cell = (i) => row.c?.[i]?.v ?? null;
-
-          const title = cell(0);
-          const handouts = [];
-
-          // helper แปลงลิงก์
-          const convertDriveLink = (url) => {
-            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-            if (!match) return url;
-            const fileId = match[1];
-            return `https://drive.google.com/file/d/${fileId}/preview`;
-          };
-
-          const s1Link = cell(5);
-          if (s1Link) {
-            handouts.push({
-              name: "Summative",
-              link: convertDriveLink(s1Link),   // ✅ ใช้ฟังก์ชันแปลง
-              icon: (
-                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                </svg>
-              ),
-            });
-          }
-
-          const s1KeyLink = cell(6);
-          if (s1KeyLink) {
-            handouts.push({
-              name: "SummativeKey",
-              link: convertDriveLink(s1KeyLink),
-              icon: (
-                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                </svg>
-              ),
-            });
-          }
-
-          const s2Link = cell(7);
-          if (s2Link) {
-            handouts.push({
-              name: "Summative 2",
-              link: convertDriveLink(s2Link),
-              icon: (
-                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                </svg>
-              ),
-            });
-          }
-
-          const s2KeyLink = cell(8);
-          if (s2KeyLink) {
-            handouts.push({
-              name: "SummativeKey2",
-              link: convertDriveLink(s2KeyLink),
-              icon: (
-                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
-                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
-                </svg>
-              ),
-            });
-          }
-
-          if (!title || handouts.length === 0) return null;
-          return { title, handouts };
-        })
-        .filter(Boolean);
-
-      setSummativeList(data);
-    })
-    .catch((e) => console.error("fetch summative failed:", e));
-}, [sumUrl]);
-
-    useEffect(() => {
+   useEffect(() => {
   
   fetch(CLOUrl)
     .then((r) => r.text())
@@ -180,7 +120,7 @@ if(summaryLink)
             return `https://drive.google.com/file/d/${fileId}/preview`;
           };
 
-          const CLOLink = cell(17);
+          const CLOLink = cell(3);
           if (CLOLink) {
             handouts.push({
               name: "Question",
@@ -193,7 +133,7 @@ if(summaryLink)
             });
           }
 
-          const CLOKeyLink = cell(18);
+          const CLOKeyLink = cell(4);
           if (CLOKeyLink) {
             handouts.push({
               name: "Answer",
@@ -205,7 +145,56 @@ if(summaryLink)
               ),
             });
           }
-          
+                  const CLO2Link = cell(5);
+          if (CLO2Link) {
+            handouts.push({
+              name: "Question2",
+              link: convertDriveLink(CLO2Link),   // ✅ ใช้ฟังก์ชันแปลง
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+          const CLO2KeyLink = cell(6);
+          if (CLO2KeyLink) {
+            handouts.push({
+              name: "Answer2",
+              link: convertDriveLink(CLO2KeyLink),
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+                  const CLO3Link = cell(7);
+          if (CLO3Link) {
+            handouts.push({
+              name: "Question3",
+              link: convertDriveLink(CLO3Link),   // ✅ ใช้ฟังก์ชันแปลง
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
+
+          const CLO3KeyLink = cell(8);
+          if (CLO3KeyLink) {
+            handouts.push({
+              name: "Answer3",
+              link: convertDriveLink(CLO3KeyLink),
+              icon: (
+                <svg className="w-4 h-4 mr-1 inline" viewBox="0 0 448 512" fill="currentColor">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
+                </svg>
+              ),
+            });
+          }
   if (!title || handouts.length === 0) return null;
           return { title, handouts };
         })
