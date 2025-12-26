@@ -167,13 +167,13 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
 
   // ✅ ข้อมูลเว็บรุ่นพี่
   const courses = [
-    { code: 'SI134', link: 'https://siriraj134.com/acad/siid247', linkname: 'SI134(247)' },
-    { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-247', linkname: 'SI133(247)' },
-    { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid247', linkname: 'SI132(247)' },
-    { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/217', linkname: 'SI131(217)' },
-    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/217', linkname: 'SI130(217)' },
-    { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/217', linkname: 'SI129(217)' },
-    { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/217', linkname: 'SI128(217)' },
+    { code: 'SI134', link: 'https://siriraj134.com/acad/siid250', linkname: 'SI134(250)' },
+    { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-250', linkname: 'SI133(250)' },
+    { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid250', linkname: 'SI132(250)' },
+    { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/220', linkname: 'SI131(220)' },
+    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/220', linkname: 'SI130(220)' },
+    { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/220', linkname: 'SI129(220)' },
+    { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/220', linkname: 'SI128(220)' },
   ];
 
   return (
@@ -184,7 +184,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
           <div className="flex gap-2 items-center grow">
             <a className="hover:underline" href="/academics">Academic</a>
             <span>/</span>
-            <span>SIID247</span>
+            <span>SIID250</span>
           </div>
         </div>
       </div>
@@ -193,19 +193,19 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-col md:flex-row md:items-center rounded-lg mt-10">
           <Image
-            src="/SIID247.png"
-            alt="SIID247"
+            src="/SIID250.png"
+            alt="SIID250"
             width={300}
             height={800}
             className="w-full md:w-[300px] h-[250px] object-cover object-top rounded-lg mb-4 md:mb-0 md:mr-8 flex-shrink-0"
           />
           <div className="text-left space-y-1 font-preuksa">
             <p className="text-xl font-bold text-gray-900 tracking-wide">Year 2 Semester 1</p>
-            <p className="text-3xl text-gray-700 italic">SIID247</p>
-            <p className="text-base text-gray-600">Circulatory System</p>
+            <p className="text-3xl text-gray-700 italic">SIID250</p>
+            <p className="text-base text-gray-600">Gastrointestinal and Hepatobiliary System</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
-                href="https://sirirajcanvas.instructure.com/courses/1078"
+                href="https://sirirajcanvas.instructure.com/courses/1072"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-slate-400 text-lg rounded-lg py-1 px-2 w-fit bg-gradient-to-r from-gray-200 to-gray-300 hover:bg-slate-200 transition-colors flex items-center gap-1"
