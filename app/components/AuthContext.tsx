@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // ✅ อ่านจาก sessionStorage (ปิดเว็บแล้วหาย)
   useEffect(() => {
-    const token = sessionStorage.getItem("userAuthToken");
-    const email = sessionStorage.getItem("userEmail");
+    const token = localStorage.getItem("userAuthToken");
+    const email = localStorage.getItem("userEmail");
 
     if (token && email) {
       setIsLoggedIn(true);
@@ -57,8 +57,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // ✅ (ไม่บังคับ) ล้าง session ตอนปิดแท็บ/ปิดเว็บ
   useEffect(() => {
     const clearSession = () => {
-      sessionStorage.removeItem("userAuthToken");
-      sessionStorage.removeItem("userEmail");
+      localStorage.removeItem("userAuthToken");
+      localStorage.removeItem("userEmail");
     };
 
     window.addEventListener("beforeunload", clearSession);
