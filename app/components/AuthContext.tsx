@@ -12,7 +12,7 @@ interface AuthContextType {
   isLoading: boolean;
   isLoggedIn: boolean;
   userEmail: string | null;
-  login: (email: string) => void;
+  login: (email: string, token: string) => void;
   logout: () => void;
 }
 
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
 
-  // ✅ อ่านจาก sessionStorage (ปิดเว็บแล้วหาย)
+  // ✅ อ่านจาก localStorage (ปิดแท็บ/ปิดเว็บแล้วยังอยู่)
   useEffect(() => {
     const token = localStorage.getItem("userAuthToken");
     const email = localStorage.getItem("userEmail");
@@ -38,14 +38,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(false);
   }, []);
 
-  const login = (email: string) => {
+  const login = (email: string, token: string) => {
+    localStorage.setItem("userAuthToken", token);
+    localStorage.setItem("userEmail", email);
+
     setIsLoggedIn(true);
     setUserEmail(email);
   };
 
   const logout = () => {
-    sessionStorage.removeItem("userAuthToken");
-    sessionStorage.removeItem("userEmail");
+    localStorage.removeItem("userAuthToken");
+    localStorage.removeItem("userEmail");
 
     setIsLoggedIn(false);
     setUserEmail(null);
@@ -54,19 +57,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (g?.accounts?.id) g.accounts.id.disableAutoSelect();
   };
 
-  // ✅ (ไม่บังคับ) ล้าง session ตอนปิดแท็บ/ปิดเว็บ
-  useEffect(() => {
-    const clearSession = () => {
-      localStorage.removeItem("userAuthToken");
-      localStorage.removeItem("userEmail");
-    };
-
-    window.addEventListener("beforeunload", clearSession);
-    return () => window.removeEventListener("beforeunload", clearSession);
-  }, []);
-
   return (
-    <AuthContext.Provider value={{ isLoading, isLoggedIn, userEmail, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoading, isLoggedIn, userEmail, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
