@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import CourseGrid from '../components/courseGrid';
-import RequireAuth from "../components/RequireAuth";
 
 const ChangePage = () => {
   const ToSIID243 = () => {
