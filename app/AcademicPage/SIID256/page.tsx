@@ -6,14 +6,14 @@ import SummativeCard from "../../components/SummativeComponent";
 import CLOCard from "../../components/CLOcard";
 import Image from "next/image";
 
-const SIID252 = () => {
+const SIID256 = () => {
   const [lectures, setLectures] = useState([]);
   const [summativeList, setSummativeList] = useState([]);
 const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
 
   const parseGViz = (text) => JSON.parse(text.substring(47).slice(0, -2)).table.rows;
 
-  const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=252%20(Epidem)&tq=select%20*%20limit%2022`;
+  const url = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=256%20(Microbio)&tq=select%20*%20limit%2022`;
   const sumUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=Summative3&tq=select%20*%20limit%2022`;
  const CLOUrl = `https://docs.google.com/spreadsheets/d/1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg/gviz/tq?tqx=out:json&sheet=CLO&tq=select%20*%20limit%2022`;  
 
@@ -167,13 +167,13 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
 
   // ✅ ข้อมูลเว็บรุ่นพี่
   const courses = [
-    { code: 'SI134', link: 'https://siriraj134.com/acad/siid252', linkname: 'SI134(252)' },
-    { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-252', linkname: 'SI133(252)' },
-    { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid252', linkname: 'SI132(252)' },
-    { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/sophomore/227', linkname: 'SI131(227)' },
-    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-2/227', linkname: 'SI130(227)' },
-    { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/sophomore/227', linkname: 'SI129(227)' },
-    { code: 'SI128', link: 'https://sites.google.com/view/siriraj128/227', linkname: 'SI128(227)' },
+    { code: 'SI134', link: 'https://siriraj134.com/acad/siid256', linkname: 'SI134(256)' },
+    { code: 'SI133', link: 'https://sites.google.com/view/siriraj133official/archives/year-2/siid-256', linkname: 'SI133(256)' },
+    { code: 'SI132', link: 'https://sites.google.com/view/siriraj132/archives/year-2/siid256', linkname: 'SI132(256)' },
+    { code: 'SI131', link: 'https://sites.google.com/view/siriraj131official/archives/middler/siid-314', linkname: 'SI131(314)' },
+    { code: 'SI130', link: 'https://sites.google.com/view/siriraj130/archives/year-3/siid-314', linkname: 'SI130(314)' },
+    { code: 'SI129', link: 'https://sites.google.com/view/si129academicportal/archive/middler/314', linkname: 'SI129(314)' },
+    { code: 'SI128', link: 'https://si128-site.web.app/314', linkname: 'SI128(314)' },
   ];
 
   return (
@@ -184,7 +184,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
           <div className="flex gap-2 items-center grow">
             <a className="hover:underline" href="/academics">Academic</a>
             <span>/</span>
-            <span>SIID252</span>
+            <span>SIID256</span>
           </div>
         </div>
       </div>
@@ -193,19 +193,19 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-col md:flex-row md:items-center rounded-lg mt-10">
           <Image
-            src="/SIID 252.png"
-            alt="SIID252"
+            src="/SIID 256.png"
+            alt="SIID256"
             width={300}
             height={800}
             className="w-full md:w-[300px] h-[250px] object-cover object-top rounded-lg mb-4 md:mb-0 md:mr-8 flex-shrink-0"
           />
           <div className="text-left space-y-1 font-preuksa">
-            <p className="text-xl font-bold text-gray-900 tracking-wide">Year 2 Semester 1</p>
-            <p className="text-3xl text-gray-700 italic">SIID252</p>
-            <p className="text-base text-gray-600">EPIDEMIOLOGY AND BIOSTATISTICSReproductive System I</p>
+            <p className="text-xl font-bold text-gray-900 tracking-wide">Year 2 Semester 2</p>
+            <p className="text-3xl text-gray-700 italic">SIID256</p>
+            <p className="text-base text-gray-600">Principles of Microbiology and Parasitology</p>
             <div className="flex gap-2 items-center flex-wrap">
               <a
-                href="https://sirirajcanvas.instructure.com/courses/1072"
+                href="https://sirirajcanvas.instructure.com/courses/1080"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-slate-400 text-lg rounded-lg py-1 px-2 w-fit bg-gradient-to-r from-gray-200 to-gray-300 hover:bg-slate-200 transition-colors flex items-center gap-1"
@@ -214,7 +214,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
                 Canvas
               </a>
                <a
-                href="https://www.youtube.com/playlist?app=desktop&list=PLnWAv0tkYmKGjolHgkric3CR4SZHLydb6"
+                href="https://www.youtube.com/playlist?list=PLnWAv0tkYmKHjsnEGXIrju5gx3-TpTQCp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-slate-400 text-lg rounded-lg py-1 px-2 w-fit bg-gradient-to-r from-gray-200 to-gray-300 bg-transparent hover:bg-slate-200 transition-colors flex items-center gap-1"
@@ -284,4 +284,4 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
   );
 };
 
-export default SIID252;
+export default SIID256;
