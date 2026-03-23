@@ -84,7 +84,7 @@ const [CLOASSESSMENT, setCLOASSESSMENT] = useState([]);
             const title = cell(0);
             if (!title) return null;
 
-            const handouts = [25, 26, 27, 28]
+            const handouts = [29, 30, 31, 32]
               .map((i, idx) => {
                 const name = ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"][idx];
                 const link = cell(i);
