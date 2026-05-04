@@ -14,4 +14,4 @@ SIID247: {
       { code: "SI134", link: "https://siriraj134.com/acad/siid247", linkname: "SI134(247)" },
       { code: "SI133", link: "https://sites.google.com/view/siriraj133official/archives/year-2/siid-247", linkname: "SI133(247)" },
       // ...
-    ],
+    ],};
