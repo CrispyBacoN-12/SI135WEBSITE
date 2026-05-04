@@ -1,3 +1,4 @@
+export const subjectsConfig = {
 SIID247: {
     code: "SIID247",
     title: "Circulatory System",
@@ -15,3 +16,4 @@ SIID247: {
       { code: "SI133", link: "https://sites.google.com/view/siriraj133official/archives/year-2/siid-247", linkname: "SI133(247)" },
       // ...
     ],};
+};
