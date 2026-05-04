@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { subjectsConfig } from "app/data/subjectsConfig";
+import { subjectsConfig } from "../../data/subjectsConfig";
 import LectureCard from "../../components/AcademicComponent";
 import SummativeCard from "../../components/SummativeComponent";
 import Image from "next/image";
