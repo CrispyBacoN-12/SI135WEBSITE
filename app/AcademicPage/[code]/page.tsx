@@ -36,71 +36,82 @@ export default function SubjectPage() {
   const [summativeList, setSummativeList] = useState([]);
   const [cloList, setCloList] = useState([]);
 
-  if (!subject) return notFound();
-
-  const { sheetId, lectureSheet, summativeSheet, cloSheet, lectureLimit = 22 } = subject;
+  const sheetId = subject?.sheetId;
+  const lectureSheet = subject?.lectureSheet;
+  const summativeSheet = subject?.summativeSheet;
+  const cloSheet = subject?.cloSheet;
+  const lectureLimit = subject?.lectureLimit ?? 22;
 
   // Fetch Lectures
   useEffect(() => {
+    if (!sheetId || !lectureSheet) return;
     fetch(makeUrl(sheetId, lectureSheet, lectureLimit))
       .then((r) => r.text())
       .then((text) => {
         const rows = parseGViz(text);
-        const data = rows.map((row) => {
+        const data = rows.map((row, rowIdx) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const number = cell(0), title = cell(1), type = cell(2);
 
-          const handout = [];
-          for (let i = 14; i <= 16; i++) {
-            const link = cell(i);
-            if (link) handout.push({ name: "Handout", link, icon });
-          }
+          // Include all slots (even null) so admin can upload to empty positions
+          const handout = [14, 15, 16].map((col, i) => ({
+            name: `Handout ${i + 1}`, link: cell(col) as string | null, icon, col,
+          }));
 
-          const lectureLinks = [];
-          for (let i = 17; i <= 22; i += 2) {
-            const name = cell(i), link = cell(i + 1);
-            if (name && link) lectureLinks.push({ name, link, icon });
-          }
+          const lectures = [
+            { nameCol: 17, linkCol: 18, label: "Video 1" },
+            { nameCol: 19, linkCol: 20, label: "Video 2" },
+            { nameCol: 21, linkCol: 22, label: "Video 3" },
+          ].map(({ nameCol, linkCol, label }) => ({
+            name: (cell(nameCol) as string | null) ?? label,
+            link: cell(linkCol) as string | null,
+            icon,
+            col: linkCol,
+            nameCol,
+            defaultName: label,
+          }));
 
-          const summaryLink = cell(23);
-          const summary = summaryLink ? [{ name: "Summary", link: summaryLink, icon }] : [];
+          const summary = [{ name: "Summary", link: cell(23) as string | null, icon, col: 23 }];
 
           if (!number || !title || !type) return null;
-          return { number, title, type, handout, lectures: lectureLinks, summary };
+          return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + 2 };
         }).filter(Boolean);
         setLectures(data);
       })
       .catch(console.error);
-  }, [sheetId, lectureSheet]);
+  }, [sheetId, lectureSheet, lectureLimit]);
 
   // Fetch Summative
   useEffect(() => {
+    if (!sheetId || !summativeSheet) return;
     fetch(makeUrl(sheetId, summativeSheet, lectureLimit))
       .then((r) => r.text())
       .then((text) => {
         const rows = parseGViz(text);
-        const data = rows.map((row) => {
+        const summativeNames = ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"];
+        const data = rows.map((row, rowIdx: number) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const title = cell(0);
           if (!title) return null;
 
-          const names = ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"];
-          const handouts = [13, 14, 15, 16]
-            .map((i, idx) => {
-              const link = cell(i);
-              return link ? { name: names[idx], link: convertDriveLink(link), icon } : null;
-            })
-            .filter(Boolean);
+          // Include all 4 slots (even null) so admin can upload
+          const handouts = [13, 14, 15, 16].map((col, idx) => ({
+            name: summativeNames[idx],
+            link: convertDriveLink(cell(col) as string | null),
+            icon,
+            col,
+          }));
 
-          return handouts.length ? { title, handouts } : null;
+          return { title, handouts, sheetRow: rowIdx + 2 };
         }).filter(Boolean);
         setSummativeList(data);
       })
       .catch(console.error);
-  }, [sheetId, summativeSheet]);
+  }, [sheetId, summativeSheet, lectureLimit]);
 
   // Fetch CLO
   useEffect(() => {
+    if (!sheetId || !cloSheet) return;
     fetch(makeUrl(sheetId, cloSheet, lectureLimit))
       .then((r) => r.text())
       .then((text) => {
@@ -110,22 +121,27 @@ export default function SubjectPage() {
           { col: 5, name: "Question2" }, { col: 6, name: "Answer2" },
           { col: 7, name: "Question3" }, { col: 8, name: "Answer3" },
         ];
-        const data = rows.map((row) => {
+        const data = rows.map((row, rowIdx: number) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const title = cell(0);
-          const handouts = cloFields
-            .map(({ col, name }) => {
-              const link = cell(col);
-              return link ? { name, link: convertDriveLink(link), icon } : null;
-            })
-            .filter(Boolean);
+          if (!title) return null;
 
-          return title && handouts.length ? { title, handouts } : null;
+          // Include all CLO slots (even null) so admin can upload
+          const handouts = cloFields.map(({ col, name }) => ({
+            name,
+            link: convertDriveLink(cell(col) as string | null),
+            icon,
+            col,
+          }));
+
+          return { title, handouts, sheetRow: rowIdx + 2 };
         }).filter(Boolean);
         setCloList(data);
       })
       .catch(console.error);
-  }, [sheetId, cloSheet]);
+  }, [sheetId, cloSheet, lectureLimit]);
+
+  if (!subject) return notFound();
 
   return (
     <>
@@ -193,7 +209,9 @@ export default function SubjectPage() {
 
       {/* Lectures */}
       <div className="mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4 mt-8">
-        {lectures.map((lec, idx) => <LectureCard key={idx} {...lec} />)}
+        {lectures.map((lec, idx) => (
+          <LectureCard key={idx} {...lec} sheetId={sheetId} sheetName={lectureSheet} />
+        ))}
       </div>
 
       {/* CLO */}
@@ -203,7 +221,9 @@ export default function SubjectPage() {
             <div className="w-full text-left px-4 text-3xl font-bold text-sky-900">CLO ASSESSMENT</div>
           </div>
           <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-            {cloList.map((lec, idx) => <SummativeCard key={idx} {...lec} />)}
+            {cloList.map((lec, idx) => (
+              <SummativeCard key={idx} {...lec} sheetId={sheetId} sheetName={cloSheet} />
+            ))}
           </div>
         </div>
       )}
@@ -215,7 +235,9 @@ export default function SubjectPage() {
             <div className="w-full text-left px-4 text-3xl font-bold text-sky-900">Summative Examination</div>
           </div>
           <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-            {summativeList.map((lec, idx) => <SummativeCard key={idx} {...lec} />)}
+            {summativeList.map((lec, idx) => (
+              <SummativeCard key={idx} {...lec} sheetId={sheetId} sheetName={summativeSheet} />
+            ))}
           </div>
         </div>
       )}
