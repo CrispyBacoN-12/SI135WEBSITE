@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { createHmac } from "crypto";
 
 function verifyToken(token: string) {
@@ -24,25 +25,23 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const formData = await req.formData();
-  const file = formData.get("file") as File | null;
-  if (!file) {
-    return NextResponse.json({ error: "No file provided" }, { status: 400 });
+  const { filename, contentType } = await req.json();
+  if (!filename || !contentType) {
+    return NextResponse.json({ error: "Missing filename or contentType" }, { status: 400 });
   }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-  const key = `uploads/${Date.now()}-${file.name.replace(/\s+/g, "_")}`;
+  const key = `uploads/${Date.now()}-${filename.replace(/\s+/g, "_")}`;
 
-  await s3.send(
+  const presignedUrl = await getSignedUrl(
+    s3,
     new PutObjectCommand({
       Bucket: process.env.R2_BUCKET_NAME!,
       Key: key,
-      Body: buffer,
-      ContentType: file.type || "application/octet-stream",
-    })
+      ContentType: contentType,
+    }),
+    { expiresIn: 300 }
   );
 
-  const url = `${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${key}`;
-  return NextResponse.json({ url });
+  const publicUrl = `${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${key}`;
+  return NextResponse.json({ presignedUrl, publicUrl });
 }

@@ -38,30 +38,41 @@ export default function UploadButton({ target, existingLink, onUploaded }: Props
     const token = localStorage.getItem("adminToken") ?? "";
 
     try {
-      // 1. Upload file to R2
-      const fd = new FormData();
-      fd.append("file", file);
-      const uploadRes = await fetch("/api/admin/upload", {
+      // 1. Request presigned URL from server (tiny request, no file data)
+      const presignRes = await fetch("/api/admin/presign", {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: fd,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ filename: file.name, contentType: file.type || "application/octet-stream" }),
+      });
+      if (!presignRes.ok) {
+        const err = await presignRes.json().catch(() => ({}));
+        throw new Error(err.error ?? "ขอ presigned URL ล้มเหลว");
+      }
+      const { presignedUrl, publicUrl } = await presignRes.json();
+
+      // 2. Upload file directly to R2 (bypasses Vercel size limit)
+      const uploadRes = await fetch(presignedUrl, {
+        method: "PUT",
+        headers: { "Content-Type": file.type || "application/octet-stream" },
+        body: file,
       });
       if (!uploadRes.ok) {
-        const err = await uploadRes.json().catch(() => ({}));
-        throw new Error(err.error ?? "Upload ล้มเหลว");
+        throw new Error(`R2 upload ล้มเหลว (${uploadRes.status})`);
       }
-      const { url } = await uploadRes.json();
 
-      // 2. Write URL to Google Sheets (link column)
-      await writeCell(token, target.sheetId, target.sheetName, target.row, target.col, url);
+      // 3. Write public URL to Google Sheets (link column)
+      await writeCell(token, target.sheetId, target.sheetName, target.row, target.col, publicUrl);
 
-      // 3. If this slot also has a name column, set the display name
+      // 4. If this slot also has a name column, set the display name
       if (target.nameCol !== undefined && target.defaultName) {
         await writeCell(token, target.sheetId, target.sheetName, target.row, target.nameCol, target.defaultName);
       }
 
       setSuccess(true);
-      onUploaded?.(url);
+      onUploaded?.(publicUrl);
     } catch (err: any) {
       setErrorMsg(err.message ?? "เกิดข้อผิดพลาด");
     } finally {
@@ -93,7 +104,7 @@ export default function UploadButton({ target, existingLink, onUploaded }: Props
         {loading ? "⏳" : existingLink ? "↑ Replace" : "↑ Upload"}
       </button>
       {errorMsg && (
-        <span className="text-red-500 text-xs" title={errorMsg}>⚠</span>
+        <span className="text-red-500 text-xs" title={errorMsg}>⚠ {errorMsg}</span>
       )}
       {success && !errorMsg && (
         <span className="text-green-500 text-xs">✓</span>
