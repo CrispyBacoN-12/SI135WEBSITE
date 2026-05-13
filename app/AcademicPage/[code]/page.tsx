@@ -10,12 +10,9 @@ import { notFound } from "next/navigation";
 
 const parseGViz = (text) => {
   const table = JSON.parse(text.substring(47).slice(0, -2)).table;
-  const parsedNumHeaders = table.parsedNumHeaders ?? 1;
-  const rowOffset = parsedNumHeaders + 1;
-  if (typeof window !== "undefined") {
-    (window as any).__gvizRowOffset = rowOffset;
-    (window as any).__gvizParsedNumHeaders = parsedNumHeaders;
-  }
+  // parsedNumHeaders=0 means no header row, data starts at sheet row 1
+  // rowOffset = parsedNumHeaders + 1 = the actual sheet row of rows[0]
+  const rowOffset = (table.parsedNumHeaders ?? 0) + 1;
   return { rows: table.rows, rowOffset };
 };
 
