@@ -17,6 +17,10 @@ const s3 = new S3Client({
     accessKeyId: process.env.Access_Key_ID!,
     secretAccessKey: process.env.Secret_Access_Key!,
   },
+  // AWS SDK v3 >= 3.726 adds checksum headers by default which browsers don't send,
+  // causing R2 to reject presigned PUT requests with 413. Disable this behavior.
+  requestChecksumCalculation: "WHEN_REQUIRED",
+  responseChecksumValidation: "WHEN_REQUIRED",
 });
 
 export async function POST(req: Request) {
