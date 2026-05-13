@@ -38,43 +38,51 @@ export default function UploadButton({ target, existingLink, onUploaded }: Props
     const token = localStorage.getItem("adminToken") ?? "";
 
     try {
-      // 1. Request presigned URL from server (tiny request, no file data)
-      const presignRes = await fetch("/api/admin/presign", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ filename: file.name, contentType: file.type || "application/octet-stream" }),
-      });
-      if (!presignRes.ok) {
-        const err = await presignRes.json().catch(() => ({}));
-        throw new Error(err.error ?? "ขอ presigned URL ล้มเหลว");
-      }
-      const { presignedUrl, publicUrl } = await presignRes.json();
-
-      // 2. Upload file directly to R2 (bypasses Vercel size limit)
-      const uploadRes = await fetch(presignedUrl, {
-        method: "PUT",
-        headers: { "Content-Type": file.type || "application/octet-stream" },
-        body: file,
-      });
-      if (!uploadRes.ok) {
-        throw new Error(`R2 upload ล้มเหลว (${uploadRes.status})`);
+      // 1. Request presigned URL from server
+      let presignedUrl: string, publicUrl: string;
+      try {
+        const presignRes = await fetch("/api/admin/presign", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ filename: file.name, contentType: file.type || "application/octet-stream" }),
+        });
+        const presignData = await presignRes.json().catch(() => ({}));
+        if (!presignRes.ok) throw new Error(`[Step 1] ${presignData.error ?? presignRes.status}`);
+        presignedUrl = presignData.presignedUrl;
+        publicUrl = presignData.publicUrl;
+      } catch (e: any) {
+        throw new Error(e.message.startsWith("[Step 1]") ? e.message : `[Step 1] ${e.message}`);
       }
 
-      // 3. Write public URL to Google Sheets (link column)
-      await writeCell(token, target.sheetId, target.sheetName, target.row, target.col, publicUrl);
+      // 2. Upload file directly to R2 via presigned URL
+      try {
+        const uploadRes = await fetch(presignedUrl, {
+          method: "PUT",
+          headers: { "Content-Type": file.type || "application/octet-stream" },
+          body: file,
+        });
+        if (!uploadRes.ok) throw new Error(`HTTP ${uploadRes.status}`);
+      } catch (e: any) {
+        throw new Error(`[Step 2 - R2 Upload] ${e.message} — ตรวจสอบ CORS ใน R2 bucket`);
+      }
 
-      // 4. If this slot also has a name column, set the display name
-      if (target.nameCol !== undefined && target.defaultName) {
-        await writeCell(token, target.sheetId, target.sheetName, target.row, target.nameCol, target.defaultName);
+      // 3. Write public URL to Google Sheets
+      try {
+        await writeCell(token, target.sheetId, target.sheetName, target.row, target.col, publicUrl!);
+        if (target.nameCol !== undefined && target.defaultName) {
+          await writeCell(token, target.sheetId, target.sheetName, target.row, target.nameCol, target.defaultName);
+        }
+      } catch (e: any) {
+        throw new Error(`[Step 3 - Sheets] ${e.message}`);
       }
 
       setSuccess(true);
-      onUploaded?.(publicUrl);
+      onUploaded?.(publicUrl!);
     } catch (err: any) {
-      setErrorMsg(err.message ?? "เกิดข้อผิดพลาด");
+      setErrorMsg(err.message || "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ");
     } finally {
       setLoading(false);
       if (fileInputRef.current) fileInputRef.current.value = "";
