@@ -10,9 +10,12 @@ import { notFound } from "next/navigation";
 
 const parseGViz = (text) => {
   const table = JSON.parse(text.substring(47).slice(0, -2)).table;
-  // parsedNumHeaders = จำนวน header rows ที่ GViz ตัดออก (ปกติ 1)
-  // rowOffset = sheet row ของ rows[0] = parsedNumHeaders + 1
-  const rowOffset = (table.parsedNumHeaders ?? 1) + 1;
+  const parsedNumHeaders = table.parsedNumHeaders ?? 1;
+  const rowOffset = parsedNumHeaders + 1;
+  if (typeof window !== "undefined") {
+    (window as any).__gvizRowOffset = rowOffset;
+    (window as any).__gvizParsedNumHeaders = parsedNumHeaders;
+  }
   return { rows: table.rows, rowOffset };
 };
 
