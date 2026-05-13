@@ -12,10 +12,10 @@
     "@aws-sdk/s3-request-presigner": "^3.758.0",
     "axios": "^1.6.8",
     "googleapis": "^171.4.0",
-    "next": "15.3.1",
+    "next": "15.3.9",
     "next-auth": "^4.24.14",
-    "react": "^19.0.0",
-    "react-dom": "19.0.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/node": "24.1.0",
