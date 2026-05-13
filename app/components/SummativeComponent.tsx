@@ -42,7 +42,7 @@ export default function SummativeCard({
         <div className="flex flex-wrap gap-2 mt-2 items-center text-sm">
           {visibleSlots.map((h, idx) => (
             <span key={idx} className="inline-flex items-center gap-1">
-              {h.link && (
+              {h.link ? (
                 <a
                   href={h.link}
                   target="_blank"
@@ -51,7 +51,11 @@ export default function SummativeCard({
                 >
                   <span className="inline-block mr-1 text-black-400 font-semibold">{h.name}</span>
                 </a>
-              )}
+              ) : isAdmin ? (
+                <span className="text-xs text-gray-400 border border-dashed border-gray-200 rounded px-1 py-0.5">
+                  {h.name}
+                </span>
+              ) : null}
               {isAdmin && sheetId && sheetName && sheetRow !== undefined && (
                 <UploadButton
                   target={{ sheetId, sheetName, row: sheetRow, col: h.col }}

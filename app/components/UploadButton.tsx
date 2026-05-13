@@ -71,7 +71,8 @@ export default function UploadButton({ target, existingLink, onUploaded }: Props
 
       // 3. Write public URL to Google Sheets
       try {
-        await writeCell(token, target.sheetId, target.sheetName, target.row, target.col, publicUrl!);
+        const { range } = await writeCell(token, target.sheetId, target.sheetName, target.row, target.col, publicUrl!);
+        console.log(`[Upload] Written to: ${range}`);
         if (target.nameCol !== undefined && target.defaultName) {
           await writeCell(token, target.sheetId, target.sheetName, target.row, target.nameCol, target.defaultName);
         }
@@ -128,7 +129,7 @@ async function writeCell(
   row: number,
   col: number,
   value: string
-) {
+): Promise<{ range: string }> {
   const res = await fetch("/api/admin/sheets", {
     method: "POST",
     headers: {
@@ -137,8 +138,9 @@ async function writeCell(
     },
     body: JSON.stringify({ sheetId, sheetName, row, col, value }),
   });
+  const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error ?? "Sheets update ล้มเหลว");
+    throw new Error(data.error ?? "Sheets update ล้มเหลว");
   }
+  return data;
 }
