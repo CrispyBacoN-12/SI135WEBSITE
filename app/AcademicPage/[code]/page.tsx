@@ -8,8 +8,13 @@ import SummativeCard from "../../components/SummativeComponent";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-const parseGViz = (text) =>
-  JSON.parse(text.substring(47).slice(0, -2)).table.rows;
+const parseGViz = (text) => {
+  const table = JSON.parse(text.substring(47).slice(0, -2)).table;
+  // parsedNumHeaders = จำนวน header rows ที่ GViz ตัดออก (ปกติ 1)
+  // rowOffset = sheet row ของ rows[0] = parsedNumHeaders + 1
+  const rowOffset = (table.parsedNumHeaders ?? 1) + 1;
+  return { rows: table.rows, rowOffset };
+};
 
 const icon = (
   <svg className="w-4 h-4 mr-1 inline" fill="currentColor" viewBox="0 0 448 512">
@@ -48,7 +53,7 @@ export default function SubjectPage() {
     fetch(makeUrl(sheetId, lectureSheet, lectureLimit))
       .then((r) => r.text())
       .then((text) => {
-        const rows = parseGViz(text);
+        const { rows, rowOffset } = parseGViz(text);
         const data = rows.map((row, rowIdx) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const number = cell(0), title = cell(1), type = cell(2);
@@ -74,7 +79,7 @@ export default function SubjectPage() {
           const summary = [{ name: "Summary", link: cell(23) as string | null, icon, col: 23 }];
 
           if (!number || !title || !type) return null;
-          return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + 2 };
+          return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + rowOffset };
         }).filter(Boolean);
         setLectures(data);
       })
@@ -87,7 +92,7 @@ export default function SubjectPage() {
     fetch(makeUrl(sheetId, summativeSheet, lectureLimit))
       .then((r) => r.text())
       .then((text) => {
-        const rows = parseGViz(text);
+        const { rows, rowOffset } = parseGViz(text);
         const summativeNames = ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"];
         const data = rows.map((row, rowIdx: number) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
@@ -102,7 +107,7 @@ export default function SubjectPage() {
             col,
           }));
 
-          return { title, handouts, sheetRow: rowIdx + 2 };
+          return { title, handouts, sheetRow: rowIdx + rowOffset };
         }).filter(Boolean);
         setSummativeList(data);
       })
@@ -115,7 +120,7 @@ export default function SubjectPage() {
     fetch(makeUrl(sheetId, cloSheet, lectureLimit))
       .then((r) => r.text())
       .then((text) => {
-        const rows = parseGViz(text);
+        const { rows, rowOffset } = parseGViz(text);
         const cloFields = [
           { col: 3, name: "Question" }, { col: 4, name: "Answer" },
           { col: 5, name: "Question2" }, { col: 6, name: "Answer2" },
@@ -134,7 +139,7 @@ export default function SubjectPage() {
             col,
           }));
 
-          return { title, handouts, sheetRow: rowIdx + 2 };
+          return { title, handouts, sheetRow: rowIdx + rowOffset };
         }).filter(Boolean);
         setCloList(data);
       })
