@@ -35,20 +35,37 @@ export async function POST(req: Request) {
     );
   }
 
+  let credentials: object;
+  try {
+    credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  } catch {
+    return NextResponse.json({ error: "GOOGLE_SERVICE_ACCOUNT_JSON parse failed" }, { status: 500 });
+  }
+
   const auth = new google.auth.GoogleAuth({
-    credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON),
+    credentials,
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
 
   const sheets = google.sheets({ version: "v4", auth });
-  const range = `${sheetName}!${colToLetter(col)}${row}`;
 
-  await sheets.spreadsheets.values.update({
-    spreadsheetId: sheetId,
-    range,
-    valueInputOption: "RAW",
-    requestBody: { values: [[value]] },
-  });
+  // Wrap sheet names containing spaces or special chars in single quotes
+  const safeName = sheetName.includes(" ") || sheetName.includes("(")
+    ? `'${sheetName}'`
+    : sheetName;
+  const range = `${safeName}!${colToLetter(col)}${row}`;
+
+  try {
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: sheetId,
+      range,
+      valueInputOption: "RAW",
+      requestBody: { values: [[value]] },
+    });
+  } catch (err: any) {
+    const message = err?.response?.data?.error?.message ?? err?.message ?? "Google Sheets API error";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 
   return NextResponse.json({ success: true });
 }
