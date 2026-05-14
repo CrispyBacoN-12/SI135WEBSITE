@@ -44,8 +44,17 @@ export default function SubjectPage() {
   const sheetId = subject?.sheetId;
   const lectureSheet = subject?.lectureSheet;
   const summativeSheet = subject?.summativeSheet;
-  const cloSheet = subject?.cloSheet;
+  const cloSheet = subject?.cloSheet ?? null;
   const lectureLimit = subject?.lectureLimit ?? 22;
+
+  // Per-course column config with defaults
+  const handoutCols: number[]       = subject?.lectureHandoutCols ?? [14, 15, 16];
+  const videoCols: number[][]       = subject?.lectureVideoCols   ?? [[17,18],[19,20],[21,22]];
+  const summaryCol: number | null   = subject?.lectureSummaryCol  ?? 23;
+  const summCols: number[]          = subject?.summativeCols      ?? [13, 14, 15, 16];
+  const summNames: string[]         = subject?.summativeNames     ?? ["Summative","SummativeKey","Summative 2","SummativeKey2"];
+  const cloCols: number[]           = subject?.cloCols            ?? [];
+  const cloNamesList: string[]      = subject?.cloNames           ?? [];
 
   // Fetch Lectures
   useEffect(() => {
@@ -58,25 +67,19 @@ export default function SubjectPage() {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const number = cell(0), title = cell(1), type = cell(2);
 
-          // Include all slots (even null) so admin can upload to empty positions
-          const handout = [14, 15, 16].map((col, i) => ({
+          const handout = handoutCols.map((col, i) => ({
             name: `Handout ${i + 1}`, link: cell(col) as string | null, icon, col,
           }));
 
-          const lectures = [
-            { nameCol: 17, linkCol: 18, label: "Video 1" },
-            { nameCol: 19, linkCol: 20, label: "Video 2" },
-            { nameCol: 21, linkCol: 22, label: "Video 3" },
-          ].map(({ nameCol, linkCol, label }) => ({
-            name: (cell(nameCol) as string | null) ?? label,
+          const lectures = videoCols.map(([nameCol, linkCol], i) => ({
+            name: (cell(nameCol) as string | null) ?? `Video ${i + 1}`,
             link: cell(linkCol) as string | null,
-            icon,
-            col: linkCol,
-            nameCol,
-            defaultName: label,
+            icon, col: linkCol, nameCol, defaultName: `Video ${i + 1}`,
           }));
 
-          const summary = [{ name: "Summary", link: cell(23) as string | null, icon, col: 23 }];
+          const summary = summaryCol != null
+            ? [{ name: "Summary", link: cell(summaryCol) as string | null, icon, col: summaryCol }]
+            : [];
 
           if (!number || !title || !type) return null;
           return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + rowOffset };
@@ -93,18 +96,15 @@ export default function SubjectPage() {
       .then((r) => r.text())
       .then((text) => {
         const { rows, rowOffset } = parseGViz(text);
-        const summativeNames = ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"];
         const data = rows.map((row, rowIdx: number) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const title = cell(0);
           if (!title) return null;
 
-          // Include all 4 slots (even null) so admin can upload
-          const handouts = [13, 14, 15, 16].map((col, idx) => ({
-            name: summativeNames[idx],
+          const handouts = summCols.map((col, idx) => ({
+            name: summNames[idx] ?? `Slot ${idx + 1}`,
             link: convertDriveLink(cell(col) as string | null),
-            icon,
-            col,
+            icon, col,
           }));
 
           return { title, handouts, sheetRow: rowIdx + rowOffset };
@@ -116,27 +116,20 @@ export default function SubjectPage() {
 
   // Fetch CLO
   useEffect(() => {
-    if (!sheetId || !cloSheet) return;
+    if (!sheetId || !cloSheet || cloCols.length === 0) return;
     fetch(makeUrl(sheetId, cloSheet, lectureLimit))
       .then((r) => r.text())
       .then((text) => {
         const { rows, rowOffset } = parseGViz(text);
-        const cloFields = [
-          { col: 3, name: "Question" }, { col: 4, name: "Answer" },
-          { col: 5, name: "Question2" }, { col: 6, name: "Answer2" },
-          { col: 7, name: "Question3" }, { col: 8, name: "Answer3" },
-        ];
         const data = rows.map((row, rowIdx: number) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const title = cell(0);
           if (!title) return null;
 
-          // Include all CLO slots (even null) so admin can upload
-          const handouts = cloFields.map(({ col, name }) => ({
-            name,
+          const handouts = cloCols.map((col, idx) => ({
+            name: cloNamesList[idx] ?? `CLO ${idx + 1}`,
             link: convertDriveLink(cell(col) as string | null),
-            icon,
-            col,
+            icon, col,
           }));
 
           return { title, handouts, sheetRow: rowIdx + rowOffset };
