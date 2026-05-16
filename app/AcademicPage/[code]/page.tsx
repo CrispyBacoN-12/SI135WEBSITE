@@ -40,6 +40,7 @@ export default function SubjectPage() {
   const [lectures, setLectures] = useState([]);
   const [summativeList, setSummativeList] = useState([]);
   const [cloList, setCloList] = useState([]);
+  const [specialList, setSpecialList] = useState([]);
 
   const sheetId = subject?.sheetId;
   const lectureSheet = subject?.lectureSheet;
@@ -55,6 +56,9 @@ export default function SubjectPage() {
   const summNames: string[]         = subject?.summativeNames     ?? ["Summative","SummativeKey","Summative 2","SummativeKey2"];
   const cloCols: number[]           = subject?.cloCols            ?? [];
   const cloNamesList: string[]      = subject?.cloNames           ?? [];
+  const specialSheet                = subject?.specialSheet       ?? null;
+  const specialCols: number[]       = subject?.specialCols        ?? [];
+  const specialNames: string[]      = subject?.specialNames       ?? [];
 
   // Fetch Lectures
   useEffect(() => {
@@ -139,6 +143,31 @@ export default function SubjectPage() {
       .catch(console.error);
   }, [sheetId, cloSheet, lectureLimit]);
 
+  // Fetch Special Materials
+  useEffect(() => {
+    if (!sheetId || !specialSheet || specialCols.length === 0) return;
+    fetch(makeUrl(sheetId, specialSheet, 50))
+      .then((r) => r.text())
+      .then((text) => {
+        const { rows, rowOffset } = parseGViz(text);
+        const data = rows.map((row, rowIdx: number) => {
+          const cell = (i) => row.c?.[i]?.v ?? null;
+          const title = cell(0);
+          if (!title) return null;
+
+          const handouts = specialCols.map((col, idx) => ({
+            name: specialNames[idx] ?? `Material ${idx + 1}`,
+            link: convertDriveLink(cell(col) as string | null),
+            icon, col,
+          }));
+
+          return { title, handouts, sheetRow: rowIdx + rowOffset };
+        }).filter(Boolean);
+        setSpecialList(data);
+      })
+      .catch(console.error);
+  }, [sheetId, specialSheet]);
+
   if (!subject) return notFound();
 
   return (
@@ -205,28 +234,27 @@ export default function SubjectPage() {
         </>
       )}
 
-      {/* Special Material */}
-      {subject.specialMaterials?.length > 0 && (
-        <>
-          <div className="mt-4 font-semibold text-2xl container mx-auto px-4 sm:px-6 md:px-8">Special material</div>
-          <ul className="flex flex-wrap gap-4 mt-4 px-4 sm:px-6 md:px-8">
-            {subject.specialMaterials.map(({ name, link }, idx) => (
-              <li key={idx}>
-                <a href={link} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center border border-slate-400 rounded-lg text-sm w-fit px-4 py-2 hover:bg-slate-200 transition-colors">
-                  {name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-
       {/* Lectures */}
       <div className="mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4 mt-8">
         {lectures.map((lec, idx) => (
           <LectureCard key={idx} {...lec} sheetId={sheetId} sheetName={lectureSheet} />
         ))}
+      </div>
+
+      {/* Special Material */}
+      <div className="mx-auto">
+        <div className="bg-gradient-to-r from-yellow-100 to-orange-100 shadow-md py-7 mt-4">
+          <div className="w-full text-left px-4 text-3xl font-bold text-sky-900">Special Material</div>
+        </div>
+        <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
+          {specialList.length > 0 ? (
+            specialList.map((item, idx) => (
+              <SummativeCard key={idx} {...item} sheetId={sheetId} sheetName={specialSheet} />
+            ))
+          ) : (
+            <p className="mt-4 text-sm text-gray-400">ยังไม่มีข้อมูล</p>
+          )}
+        </div>
       </div>
 
       {/* CLO */}
