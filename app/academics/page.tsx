@@ -2,30 +2,33 @@
 
 import CourseGrid from "../components/courseGrid";
 
-const coursesY2S1 = [
-  { code: "SIID243", href: "/AcademicPage/SIID243", src: "/SIID243.png" },
-  { code: "SIID244", href: "/AcademicPage/SIID244", src: "/SIID244.png" },
+const coursesY2B1 = [
   { code: "SIID245", href: "/AcademicPage/SIID245", src: "/SIID245.png" },
   { code: "SIID246", href: "/AcademicPage/SIID246", src: "/SIID246.png" },
-  { code: "SIID247", href: "/AcademicPage/SIID247", src: "/SIID247.png" },
-  { code: "SIID248", href: "/AcademicPage/SIID248", src: "/SIID248.png" },
-  { code: "SIID251", href: "/AcademicPage/SIID251", src: "/SIID251.png" },
   { code: "SIID254", href: "/AcademicPage/SIID254", src: "/SIID254.png" },
   { code: "SIID255", href: "/AcademicPage/SIID255", src: "/SIID255.png" },
 ];
 
-const coursesY2S2 = [
+const coursesY2B2 = [
+{ code: "SIID247", href: "/AcademicPage/SIID247", src: "/SIID247.png" },
+  { code: "SIID248", href: "/AcademicPage/SIID248", src: "/SIID248.png" },
+  { code: "SIID251", href: "/AcademicPage/SIID251", src: "/SIID251.png" },
+];
+const coursesY2B3 = [
   { code: "SIID249", href: "/AcademicPage/SIID249", src: "/SIID 249.png" },
   { code: "SIID250", href: "/AcademicPage/SIID250", src: "/SIID 250.png" },
-  { code: "SIID252", href: "/AcademicPage/SIID252", src: "/SIID 252.png" },
   { code: "SIID253", href: "/AcademicPage/SIID253", src: "/SIID 253.png" },
+];
+const coursesY2B4 = [
+  { code: "SIID243", href: "/AcademicPage/SIID243", src: "/SIID 243.png" },
+  { code: "SIID244", href: "/AcademicPage/SIID244", src: "/SIID 244.png" },
+  { code: "SIID252", href: "/AcademicPage/SIID252", src: "/SIID 252.png" },
   { code: "SIID256", href: "/AcademicPage/SIID256", src: "/SIID 256.png" },
   { code: "SIID257", href: "/AcademicPage/SIID257", src: "/SIID 257.png" },
   { code: "SIID258", href: "/AcademicPage/SIID258", src: "/SIID 258.png" },
   { code: "SIID259", href: "/AcademicPage/SIID259", src: "/SIID 259.png" },
   { code: "SIID260", href: "/AcademicPage/SIID260", src: "/SIID 260.png" },
 ];
-
 const coursesY1S1 = [
   {
     code: "SIID143",
@@ -157,14 +160,25 @@ export default function Academics() {
           SI134
         </a>
       </div>
-
+  <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
+        <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold">
+          Year2 Semester 1
+        </div>
+      </div>
+      <CourseGrid courses={coursesY2B4} />
+        <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
+        <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold">
+          Year2 Semester 1
+        </div>
+      </div>
+      <CourseGrid courses={coursesY2B3} />
       {/* Year2 Semester 2 */}
       <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
         <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold">
           Year2 Semester 2
         </div>
       </div>
-      <CourseGrid courses={coursesY2S2} />
+      <CourseGrid courses={coursesY2B2} />
 
       {/* Year2 Semester 1 */}
       <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
@@ -172,7 +186,7 @@ export default function Academics() {
           Year2 Semester 1
         </div>
       </div>
-      <CourseGrid courses={coursesY2S1} />
+      <CourseGrid courses={coursesY2B1} />
 
       {/* Year1 Semester 2 */}
       <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
