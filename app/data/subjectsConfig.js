@@ -11,7 +11,7 @@ export const subjectsConfig = {
   SIID243: {
     code: "SIID243", title: "Human Life",
     semester: "Year 2 Semester 1", image: "/SIID243.png", sheetId: SHEET_ID,
-    lectureSheet: "243, 244", lectureLimit: 22,
+    lectureSheet: "243", lectureLimit: 22,
     summativeSheet: "Summative", summativeCols: [22, 23, 24, 25],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: null, cloCols: null, cloNames: null,
@@ -22,7 +22,7 @@ export const subjectsConfig = {
   SIID244: {
     code: "SIID244", title: "Integumentary System, Skeleton and Movement",
     semester: "Year 2 Semester 1", image: "/SIID243.png", sheetId: SHEET_ID,
-    lectureSheet: "243, 244", lectureLimit: 22,
+    lectureSheet: "244", lectureLimit: 22,
     summativeSheet: "Summative", summativeCols: [22, 23, 24, 25],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: null, cloCols: null, cloNames: null,
