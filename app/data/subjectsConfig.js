@@ -17,6 +17,7 @@ export const subjectsConfig = {
     cloSheet: null, cloCols: null, cloNames: null,
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1067", youtubeLink: null,
     seniors: [],
+    specialMaterials: [],
     lectureHandoutCols: [], lectureVideoCols: [[13, 14], [15, 16], [17, 18]], lectureSummaryCol: 19,
   },
   SIID244: {
@@ -28,6 +29,7 @@ export const subjectsConfig = {
     cloSheet: null, cloCols: null, cloNames: null,
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1067", youtubeLink: null,
     seniors: [],
+    specialMaterials: [],
     lectureHandoutCols: [], lectureVideoCols: [[13, 14], [15, 16], [17, 18]], lectureSummaryCol: 19,
   },
   SIID245: {
@@ -48,6 +50,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/216", linkname: "SI129(216)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/216", linkname: "SI128(216)" },
     ],
+    specialMaterials: [],
     lectureHandoutCols: [], lectureVideoCols: [[13, 14], [15, 16], [17, 18]], lectureSummaryCol: 19,
   },
   SIID246: {
@@ -68,6 +71,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/228", linkname: "SI129(228)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/228", linkname: "SI128(228)" },
     ],
+    specialMaterials: [],
     lectureHandoutCols: [14, 15, 16], lectureVideoCols: [], lectureSummaryCol: null,
   },
   SIID247: {
@@ -89,6 +93,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/217", linkname: "SI129(217)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/217", linkname: "SI128(217)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID248: {
@@ -109,6 +114,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/218", linkname: "SI129(218)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/218", linkname: "SI128(218)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID249: {
@@ -129,6 +135,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/222", linkname: "SI129(222)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/222", linkname: "SI128(222)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID250: {
@@ -149,6 +156,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/220", linkname: "SI129(220)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/220", linkname: "SI128(220)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID251: {
@@ -169,6 +177,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/219", linkname: "SI129(219)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/219", linkname: "SI128(219)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID252: {
@@ -189,6 +198,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/227", linkname: "SI129(227)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/227", linkname: "SI128(227)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID253: {
@@ -209,6 +219,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/223", linkname: "SI129(223)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/223", linkname: "SI128(223)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID254: {
@@ -229,6 +240,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/224", linkname: "SI129(224)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/224", linkname: "SI128(224)" },
     ],
+    specialMaterials: [],
     lectureHandoutCols: [], lectureVideoCols: [[12, 13], [14, 15], [16, 17]], lectureSummaryCol: 18,
   },
   SIID255: {
@@ -249,6 +261,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/229", linkname: "SI129(229)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/229", linkname: "SI128(229)" },
     ],
+    specialMaterials: [],
     lectureHandoutCols: [13, 14, 15], lectureVideoCols: [[16, 17], [18, 19], [20, 21]], lectureSummaryCol: 22,
   },
   SIID256: {
@@ -269,6 +282,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/middler/314", linkname: "SI129(314)" },
       { code: "SI128", link: "https://si128-site.web.app/314", linkname: "SI128(314)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID257: {
@@ -289,6 +303,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/middler/312", linkname: "SI129(312)" },
       { code: "SI128", link: "https://si128-site.web.app/312", linkname: "SI128(312)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID258: {
@@ -309,6 +324,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/middler/315", linkname: "SI129(315)" },
       { code: "SI128", link: "https://si128-site.web.app/315", linkname: "SI128(315)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID259: {
@@ -329,6 +345,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/225", linkname: "SI129(225)" },
       { code: "SI128", link: "https://si128-site.web.app/225", linkname: "SI128(225)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
   SIID260: {
@@ -343,6 +360,7 @@ export const subjectsConfig = {
     seniors: [
       { code: "SI134", link: "https://siriraj134.com/acad/siid260", linkname: "SI134(260)" },
     ],
+    specialMaterials: [],
     ...DEFAULT_LECTURE_COLS,
   },
 };
