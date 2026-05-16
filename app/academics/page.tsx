@@ -162,20 +162,20 @@ export default function Academics() {
       </div>
   <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
         <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold">
-          Year2 Semester 1
+          Year2 Block4
         </div>
       </div>
       <CourseGrid courses={coursesY2B4} />
         <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
         <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold">
-          Year2 Semester 1
+          Year2 Block 3
         </div>
       </div>
       <CourseGrid courses={coursesY2B3} />
       {/* Year2 Semester 2 */}
       <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
         <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold">
-          Year2 Semester 2
+          Year2 Block 2
         </div>
       </div>
       <CourseGrid courses={coursesY2B2} />
@@ -183,7 +183,7 @@ export default function Academics() {
       {/* Year2 Semester 1 */}
       <div className="mt-8 bg-gradient-to-r from-sky-100 to-yellow-100 shadow-md">
         <div className="container w-full max-w-screen-2xl mx-auto text-3xl py-4 px-0 text-center font-semibold">
-          Year2 Semester 1
+          Year2 Block 1
         </div>
       </div>
       <CourseGrid courses={coursesY2B1} />
