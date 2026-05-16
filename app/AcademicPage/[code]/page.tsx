@@ -143,20 +143,22 @@ export default function SubjectPage() {
       .catch(console.error);
   }, [sheetId, cloSheet, lectureLimit]);
 
-  // Fetch Special Materials
+  // Fetch Special Materials (rows in lecture sheet with no type = dedicated special rows)
   useEffect(() => {
     if (!sheetId || !specialSheet || specialCols.length === 0) return;
-    fetch(makeUrl(sheetId, specialSheet, 50))
+    fetch(makeUrl(sheetId, specialSheet, 200))
       .then((r) => r.text())
       .then((text) => {
         const { rows, rowOffset } = parseGViz(text);
         const data = rows.map((row, rowIdx: number) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const title = cell(0);
-          if (!title) return null;
+          const type = cell(2);
+          // Skip lecture rows (have type) and empty rows
+          if (!title || type) return null;
 
           const handouts = specialCols.map((col, idx) => ({
-            name: specialNames[idx] ?? `Material ${idx + 1}`,
+            name: specialNames[idx] ?? `Special ${idx + 1}`,
             link: convertDriveLink(cell(col) as string | null),
             icon, col,
           }));
