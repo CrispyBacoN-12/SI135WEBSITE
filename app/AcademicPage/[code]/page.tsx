@@ -57,8 +57,9 @@ export default function SubjectPage() {
   const cloCols: number[]            = subject?.cloCols            ?? [];
   const cloNamesList: string[]      = subject?.cloNames           ?? [];
   const specialSheet                = subject?.specialSheet       ?? null;
-  const specialCols: number[]        = subject?.specialCols        ?? [];
-  const specialNames: string[]      = subject?.specialNames       ?? [];
+  const specialRow: number          = subject?.specialRow         ?? 3;
+  const specialCols: number[]       = subject?.specialCols        ?? [25, 26, 27, 28, 29];
+  const specialNames: string[]      = subject?.specialNames       ?? ["Special 1","Special 2","Special 3","Special 4","Special 5"];
 
   // Fetch Lectures
   useEffect(() => {
@@ -143,29 +144,22 @@ export default function SubjectPage() {
       .catch(console.error);
   }, [sheetId, cloSheet, lectureLimit]);
 
-  // Fetch Special Materials (rows in lecture sheet with no type = dedicated special rows)
+  // Fetch Special Materials — fixed row (specialRow), fixed cols (specialCols)
   useEffect(() => {
-    if (!sheetId || !specialSheet || specialCols.length === 0) return;
-    fetch(makeUrl(sheetId, specialSheet, 200))
+    if (!sheetId || !specialSheet) return;
+    fetch(makeUrl(sheetId, specialSheet, specialRow + 2))
       .then((r) => r.text())
       .then((text) => {
         const { rows, rowOffset } = parseGViz(text);
-        const data = rows.map((row, rowIdx: number) => {
-          const cell = (i) => row.c?.[i]?.v ?? null;
-          const title = cell(0);
-          const type = cell(2);
-          // Skip lecture rows (have type) and empty rows
-          if (!title || type) return null;
-
-          const handouts = specialCols.map((col, idx) => ({
-            name: specialNames[idx] ?? `Special ${idx + 1}`,
-            link: convertDriveLink(cell(col) as string | null),
-            icon, col,
-          }));
-
-          return { title, handouts, sheetRow: rowIdx + rowOffset };
-        }).filter(Boolean);
-        setSpecialList(data);
+        const targetIdx = specialRow - rowOffset;
+        const row = rows[targetIdx];
+        const cell = (i) => row?.c?.[i]?.v ?? null;
+        const handouts = specialCols.map((col, idx) => ({
+          name: specialNames[idx] ?? `Special ${idx + 1}`,
+          link: convertDriveLink(cell(col) as string | null),
+          icon, col,
+        }));
+        setSpecialList([{ handouts, sheetRow: specialRow }]);
       })
       .catch(console.error);
   }, [sheetId, specialSheet]);
@@ -259,34 +253,29 @@ export default function SubjectPage() {
             <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-400">Special Material</h2>
           </div>
           <ul className="flex flex-wrap gap-3">
-            {specialList.length > 0 ? (
-              specialList.flatMap((item, iIdx) =>
-                item.handouts.map((h, hIdx) => (
-                  <li key={`${iIdx}-${hIdx}`} className="inline-flex items-center gap-2 group">
-                    {h.link ? (
-                      <a href={h.link} target="_blank" rel="noopener noreferrer"
-                        className="flex items-center border border-slate-200/80 rounded-xl text-sm font-medium px-4 py-2 bg-white hover:bg-amber-50/40 hover:text-amber-700 hover:border-amber-300 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200">
-                        {item.handouts.length > 1 ? `${item.title} (${h.name})` : item.title}
-                      </a>
-                    ) : isAdmin ? (
-                      <span className="text-xs font-medium text-slate-400 border border-dashed border-slate-300 rounded-xl px-4 py-2 bg-slate-50/50">
-                        {item.handouts.length > 1 ? `${item.title} (${h.name})` : item.title}
-                      </span>
-                    ) : null}
-                    {isAdmin && sheetId && specialSheet && item.sheetRow !== undefined && (
-                      <div className="transform scale-90 opacity-80 hover:opacity-100 transition-opacity">
-                        <UploadButton
-                          target={{ sheetId, sheetName: specialSheet, row: item.sheetRow, col: h.col }}
-                          existingLink={h.link}
-                        />
-                      </div>
-                    )}
-                  </li>
-                ))
-              )
-            ) : (
-              <li className="text-sm text-slate-400 italic font-medium px-1">ยังไม่มีข้อมูลในส่วนนี้</li>
-            )}
+            {(specialList[0]?.handouts ?? specialCols.map((col, idx) => ({
+              name: specialNames[idx] ?? `Special ${idx + 1}`,
+              link: null, col, icon,
+            }))).map((h, idx) => (
+              <li key={idx} className="inline-flex items-center gap-2">
+                {h.link ? (
+                  <a href={h.link} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center border border-slate-200/80 rounded-xl text-sm font-medium px-4 py-2 bg-white hover:bg-amber-50/40 hover:text-amber-700 hover:border-amber-300 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200">
+                    {h.name}
+                  </a>
+                ) : isAdmin ? (
+                  <span className="text-xs font-medium text-slate-400 border border-dashed border-slate-300 rounded-xl px-4 py-2 bg-slate-50/50">
+                    {h.name}
+                  </span>
+                ) : null}
+                {isAdmin && sheetId && specialSheet && (
+                  <UploadButton
+                    target={{ sheetId, sheetName: specialSheet, row: specialRow, col: h.col }}
+                    existingLink={h.link}
+                  />
+                )}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
