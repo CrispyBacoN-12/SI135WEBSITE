@@ -5,6 +5,8 @@ import { useParams } from "next/navigation";
 import { subjectsConfig } from "../../data/subjectsConfig";
 import LectureCard from "../../components/AcademicComponent";
 import SummativeCard from "../../components/SummativeComponent";
+import { useAdmin } from "../../components/AdminContext";
+import UploadButton from "../../components/UploadButton";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -36,6 +38,7 @@ const makeUrl = (sheetId, sheet, limit) =>
 export default function SubjectPage() {
   const { code } = useParams();
   const subject = subjectsConfig[code];
+  const { isAdmin } = useAdmin();
 
   const [lectures, setLectures] = useState([]);
   const [summativeList, setSummativeList] = useState([]);
@@ -234,27 +237,44 @@ export default function SubjectPage() {
         </>
       )}
 
+      {/* Special Material */}
+      <>
+        <div className="mt-4 font-semibold text-2xl container mx-auto px-4 sm:px-6 md:px-8">Special Material</div>
+        <ul className="flex flex-wrap gap-4 mt-4 px-4 sm:px-6 md:px-8">
+          {specialList.length > 0 ? (
+            specialList.flatMap((item, iIdx) =>
+              item.handouts.map((h, hIdx) => (
+                <li key={`${iIdx}-${hIdx}`} className="inline-flex items-center gap-1">
+                  {h.link ? (
+                    <a href={h.link} target="_blank" rel="noopener noreferrer"
+                      className="flex items-center justify-center border border-slate-400 rounded-lg text-sm w-fit px-4 py-2 hover:bg-slate-200 transition-colors">
+                      {item.handouts.length > 1 ? `${item.title} (${h.name})` : item.title}
+                    </a>
+                  ) : isAdmin ? (
+                    <span className="text-xs text-gray-400 border border-dashed border-gray-200 rounded px-2 py-1.5">
+                      {item.handouts.length > 1 ? `${item.title} (${h.name})` : item.title}
+                    </span>
+                  ) : null}
+                  {isAdmin && sheetId && specialSheet && item.sheetRow !== undefined && (
+                    <UploadButton
+                      target={{ sheetId, sheetName: specialSheet, row: item.sheetRow, col: h.col }}
+                      existingLink={h.link}
+                    />
+                  )}
+                </li>
+              ))
+            )
+          ) : (
+            <li className="text-sm text-gray-400">ยังไม่มีข้อมูล</li>
+          )}
+        </ul>
+      </>
+
       {/* Lectures */}
       <div className="mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4 mt-8">
         {lectures.map((lec, idx) => (
           <LectureCard key={idx} {...lec} sheetId={sheetId} sheetName={lectureSheet} />
         ))}
-      </div>
-
-      {/* Special Material */}
-      <div className="mx-auto">
-        <div className="bg-gradient-to-r from-yellow-100 to-orange-100 shadow-md py-7 mt-4">
-          <div className="w-full text-left px-4 text-3xl font-bold text-sky-900">Special Material</div>
-        </div>
-        <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
-          {specialList.length > 0 ? (
-            specialList.map((item, idx) => (
-              <SummativeCard key={idx} {...item} sheetId={sheetId} sheetName={specialSheet} />
-            ))
-          ) : (
-            <p className="mt-4 text-sm text-gray-400">ยังไม่มีข้อมูล</p>
-          )}
-        </div>
       </div>
 
       {/* CLO */}
