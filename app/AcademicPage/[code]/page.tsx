@@ -176,114 +176,139 @@ export default function SubjectPage() {
   return (
     <>
       {/* Breadcrumb */}
-      <div className="mt-8 w-full bg-black text-white sticky top-12 z-40">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-2 flex gap-2">
+      <div className="w-full bg-black text-white sticky top-12 z-40">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-2 flex gap-2 text-sm">
           <div className="flex gap-2 items-center grow">
-            <a className="hover:underline" href="/academics">Academic</a>
-            <span>/</span>
-            <span>{subject.code}</span>
+            <a className="hover:underline text-gray-400" href="/academics">Academic</a>
+            <span className="text-gray-600">/</span>
+            <span className="font-medium">{subject.code}</span>
           </div>
         </div>
       </div>
 
-      {/* Header */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-8">
-        <div className="flex flex-col md:flex-row md:items-center rounded-lg mt-10">
-          <Image
-            src={subject.image}
-            alt={subject.code}
-            width={300}
-            height={800}
-            className="w-full md:w-[300px] h-[250px] object-cover object-top rounded-lg mb-4 md:mb-0 md:mr-8 flex-shrink-0"
-          />
-          <div className="text-left space-y-1">
-            <p className="text-xl font-bold text-gray-900">{subject.semester}</p>
-            <p className="text-3xl text-gray-700 italic">{subject.code}</p>
-            <p className="text-base text-gray-600">{subject.title}</p>
-            <div className="flex gap-2 items-center flex-wrap">
-              {subject.canvasLink && (
-                <a href={subject.canvasLink} target="_blank" rel="noopener noreferrer"
-                  className="border border-slate-400 text-lg rounded-lg py-1 px-2 bg-gradient-to-r from-gray-200 to-gray-300 hover:bg-slate-200 transition-colors flex items-center gap-1">
-                  <Image src="/CANVAS.png" alt="Canvas" width={34} height={20} className="inline" />
-                  Canvas
-                </a>
-              )}
-              {subject.youtubeLink && (
-                <a href={subject.youtubeLink} target="_blank" rel="noopener noreferrer"
-                  className="border border-slate-400 text-lg rounded-lg py-1 px-2 bg-gradient-to-r from-gray-200 to-gray-300 hover:bg-slate-200 transition-colors flex items-center gap-1">
-                  <Image src="/youtube.jpg" alt="YouTube" width={34} height={20} className="inline" />
-                  Video By AcadTeam
-                </a>
-              )}
+      {/* Hero Header */}
+      <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50 border-b border-slate-100">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-10">
+          <div className="flex flex-col md:flex-row md:items-start gap-7">
+            <Image
+              src={subject.image}
+              alt={subject.code}
+              width={260}
+              height={700}
+              className="w-full md:w-[260px] h-[220px] object-cover object-top rounded-2xl shadow-lg flex-shrink-0"
+            />
+            <div className="flex flex-col justify-center space-y-2 pt-1">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-500">
+                {subject.semester}
+              </span>
+              <h1 className="text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
+                {subject.code}
+              </h1>
+              <p className="text-base text-gray-500 max-w-xl leading-relaxed">{subject.title}</p>
+              <div className="flex gap-2 items-center flex-wrap pt-2">
+                {subject.canvasLink && (
+                  <a href={subject.canvasLink} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 border border-slate-200 text-sm rounded-xl py-1.5 px-3 bg-white hover:bg-slate-50 shadow-sm hover:shadow transition-all">
+                    <Image src="/CANVAS.png" alt="Canvas" width={26} height={16} />
+                    Canvas
+                  </a>
+                )}
+                {subject.youtubeLink && (
+                  <a href={subject.youtubeLink} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 border border-slate-200 text-sm rounded-xl py-1.5 px-3 bg-white hover:bg-slate-50 shadow-sm hover:shadow transition-all">
+                    <Image src="/youtube.jpg" alt="YouTube" width={26} height={16} />
+                    Video By AcadTeam
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Seniors */}
-      {subject.seniors?.length > 0 && (
-        <>
-          <div className="mt-4 font-semibold text-2xl container mx-auto px-4 sm:px-6 md:px-8">เว็บวิชาการรุ่นพี่</div>
-          <ul className="flex flex-wrap gap-4 mt-4 px-4 sm:px-6 md:px-8">
-            {subject.seniors.map(({ code, link, linkname }) => (
-              <li key={code}>
-                <a href={link} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center border border-slate-400 rounded-lg text-sm w-fit px-4 py-2 hover:bg-slate-200 transition-colors">
-                  {linkname}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      {/* Seniors + Special Material */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-8 space-y-6">
 
-      {/* Special Material */}
-      <>
-        <div className="mt-4 font-semibold text-2xl container mx-auto px-4 sm:px-6 md:px-8">Special Material</div>
-        <ul className="flex flex-wrap gap-4 mt-4 px-4 sm:px-6 md:px-8">
-          {specialList.length > 0 ? (
-            specialList.flatMap((item, iIdx) =>
-              item.handouts.map((h, hIdx) => (
-                <li key={`${iIdx}-${hIdx}`} className="inline-flex items-center gap-1">
-                  {h.link ? (
-                    <a href={h.link} target="_blank" rel="noopener noreferrer"
-                      className="flex items-center justify-center border border-slate-400 rounded-lg text-sm w-fit px-4 py-2 hover:bg-slate-200 transition-colors">
-                      {item.handouts.length > 1 ? `${item.title} (${h.name})` : item.title}
-                    </a>
-                  ) : isAdmin ? (
-                    <span className="text-xs text-gray-400 border border-dashed border-gray-200 rounded px-2 py-1.5">
-                      {item.handouts.length > 1 ? `${item.title} (${h.name})` : item.title}
-                    </span>
-                  ) : null}
-                  {isAdmin && sheetId && specialSheet && item.sheetRow !== undefined && (
-                    <UploadButton
-                      target={{ sheetId, sheetName: specialSheet, row: item.sheetRow, col: h.col }}
-                      existingLink={h.link}
-                    />
-                  )}
+        {subject.seniors?.length > 0 && (
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-1 h-5 bg-blue-400 rounded-full" />
+              <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400">เว็บวิชาการรุ่นพี่</h2>
+            </div>
+            <ul className="flex flex-wrap gap-2">
+              {subject.seniors.map(({ code, link, linkname }) => (
+                <li key={code}>
+                  <a href={link} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center border border-slate-200 rounded-lg text-sm px-4 py-1.5 bg-white hover:bg-blue-50 hover:border-blue-300 shadow-sm transition-all">
+                    {linkname}
+                  </a>
                 </li>
-              ))
-            )
-          ) : (
-            <li className="text-sm text-gray-400">ยังไม่มีข้อมูล</li>
-          )}
-        </ul>
-      </>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-1 h-5 bg-amber-400 rounded-full" />
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400">Special Material</h2>
+          </div>
+          <ul className="flex flex-wrap gap-2">
+            {specialList.length > 0 ? (
+              specialList.flatMap((item, iIdx) =>
+                item.handouts.map((h, hIdx) => (
+                  <li key={`${iIdx}-${hIdx}`} className="inline-flex items-center gap-1">
+                    {h.link ? (
+                      <a href={h.link} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center border border-slate-200 rounded-lg text-sm px-4 py-1.5 bg-white hover:bg-amber-50 hover:border-amber-300 shadow-sm transition-all">
+                        {item.handouts.length > 1 ? `${item.title} (${h.name})` : item.title}
+                      </a>
+                    ) : isAdmin ? (
+                      <span className="text-xs text-gray-400 border border-dashed border-gray-200 rounded px-2 py-1.5">
+                        {item.handouts.length > 1 ? `${item.title} (${h.name})` : item.title}
+                      </span>
+                    ) : null}
+                    {isAdmin && sheetId && specialSheet && item.sheetRow !== undefined && (
+                      <UploadButton
+                        target={{ sheetId, sheetName: specialSheet, row: item.sheetRow, col: h.col }}
+                        existingLink={h.link}
+                      />
+                    )}
+                  </li>
+                ))
+              )
+            ) : (
+              <li className="text-sm text-gray-400">ยังไม่มีข้อมูล</li>
+            )}
+          </ul>
+        </div>
+      </div>
 
       {/* Lectures */}
-      <div className="mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4 mt-8">
-        {lectures.map((lec, idx) => (
-          <LectureCard key={idx} {...lec} sheetId={sheetId} sheetName={lectureSheet} />
-        ))}
+      <div className="mt-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 mb-4">
+          <div className="flex items-center gap-2">
+            <span className="w-1 h-5 bg-green-400 rounded-full" />
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400">Lectures</h2>
+          </div>
+        </div>
+        <div className="mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-4">
+          {lectures.map((lec, idx) => (
+            <LectureCard key={idx} {...lec} sheetId={sheetId} sheetName={lectureSheet} />
+          ))}
+        </div>
       </div>
 
       {/* CLO */}
       {cloList.length > 0 && (
-        <div className="mx-auto">
-          <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-4">
-            <div className="w-full text-left px-4 text-3xl font-bold text-sky-900">CLO ASSESSMENT</div>
+        <div className="mt-12">
+          <div className="bg-gradient-to-r from-green-50 to-teal-50 border-y border-green-100 py-5">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 flex items-center gap-3">
+              <span className="w-1.5 h-7 bg-green-400 rounded-full" />
+              <h2 className="text-2xl font-bold text-slate-800">CLO Assessment</h2>
+            </div>
           </div>
-          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
+          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8 mt-4">
             {cloList.map((lec, idx) => (
               <SummativeCard key={idx} {...lec} sheetId={sheetId} sheetName={cloSheet} />
             ))}
@@ -293,17 +318,22 @@ export default function SubjectPage() {
 
       {/* Summative */}
       {summativeList.length > 0 && (
-        <div className="mx-auto">
-          <div className="bg-gradient-to-r from-green-100 to-blue-100 shadow-md py-7 mt-5">
-            <div className="w-full text-left px-4 text-3xl font-bold text-sky-900">Summative Examination</div>
+        <div className="mt-12">
+          <div className="bg-gradient-to-r from-violet-50 to-purple-50 border-y border-violet-100 py-5">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 flex items-center gap-3">
+              <span className="w-1.5 h-7 bg-violet-400 rounded-full" />
+              <h2 className="text-2xl font-bold text-slate-800">Summative Examination</h2>
+            </div>
           </div>
-          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8">
+          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8 mt-4">
             {summativeList.map((lec, idx) => (
               <SummativeCard key={idx} {...lec} sheetId={sheetId} sheetName={summativeSheet} />
             ))}
           </div>
         </div>
       )}
+
+      <div className="h-16" />
     </>
   );
 }
