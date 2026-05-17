@@ -20,8 +20,8 @@ const coursesY2B3 = [
   { code: "SIID253", href: "/AcademicPage/SIID253", src: "/SIID 253.png" },
 ];
 const coursesY2B4 = [
-  { code: "SIID243", href: "/AcademicPage/SIID243", src: "/SIID 243.png" },
-  { code: "SIID244", href: "/AcademicPage/SIID244", src: "/SIID 244.png" },
+  { code: "SIID243", href: "/AcademicPage/SIID243", src: "/SIID243.png" },
+  { code: "SIID244", href: "/AcademicPage/SIID244", src: "/SIID244.png" },
   { code: "SIID252", href: "/AcademicPage/SIID252", src: "/SIID 252.png" },
   { code: "SIID256", href: "/AcademicPage/SIID256", src: "/SIID 256.png" },
   { code: "SIID257", href: "/AcademicPage/SIID257", src: "/SIID 257.png" },
