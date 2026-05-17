@@ -105,7 +105,7 @@ const convertDriveLink = (url) => {
 };
 
 const makeUrl = (sheetId, sheet, limit) =>
-  `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&tq=select%20*%20limit%100${limit}`;
+  `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&tq=select%20*%20limit%20${limit}`;
 
 // ==========================================
 // MAIN COMPONENT: LabPage
