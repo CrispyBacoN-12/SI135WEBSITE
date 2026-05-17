@@ -16,7 +16,7 @@ const parseGViz = (text) => {
 };
 
 const icon = (
-  <svg className="w-4 h-4 mr-1 inline" fill="currentColor" viewBox="0 0 448 512">
+  <svg className="w-4 h-4 mr-1.5 inline transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 448 512">
     <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448
     c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
   </svg>
@@ -90,7 +90,6 @@ export default function LabPage({ code }: { code: string }) {
           return { number, title, type: "LAB", handout, lectures, summary, sheetRow: rowIdx + rowOffset };
         }).filter(Boolean);
 
-        // Group into anatomical sections: new section starts when number === labTrigger
         let sectionIndex = -1;
         let current = null;
         const grouped = [];
@@ -157,45 +156,53 @@ export default function LabPage({ code }: { code: string }) {
   }, [sheetId, specialSheet]);
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50/50 text-slate-800 antialiased selection:bg-blue-500 selection:text-white">
       {/* Breadcrumb */}
-      <div className="w-full bg-black text-white sticky top-12 z-40">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-2 flex gap-2 text-sm">
+      <div className="w-full bg-slate-900/95 backdrop-blur-md text-white sticky top-12 z-40 border-b border-slate-800 transition-all">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-3 flex gap-2 text-xs sm:text-sm tracking-wide font-medium">
           <div className="flex gap-2 items-center">
-            <a className="hover:underline text-gray-400" href="/academics">Academic</a>
-            <span className="text-gray-600">/</span>
-            <span className="font-medium">{subject.code}</span>
+            <a className="hover:text-blue-400 text-slate-400 transition-colors" href="/academics">Academic</a>
+            <span className="text-slate-600">/</span>
+            <span className="text-blue-400 font-semibold">{subject.code}</span>
           </div>
         </div>
       </div>
 
       {/* Hero Header */}
-      <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50 border-b border-slate-100">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-10">
-          <div className="flex flex-col md:flex-row md:items-start gap-7">
-            <Image
-              src={subject.image}
-              alt={subject.code}
-              width={260}
-              height={700}
-              className="w-full md:w-[260px] h-[220px] object-cover object-top rounded-2xl shadow-lg flex-shrink-0"
-            />
-            <div className="flex flex-col justify-center space-y-2 pt-1">
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-500">{subject.semester}</span>
-              <h1 className="text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">{subject.code}</h1>
-              <p className="text-base text-gray-500 max-w-xl leading-relaxed">{subject.title}</p>
-              <div className="flex gap-2 items-center flex-wrap pt-2">
+      <div className="bg-gradient-to-b from-slate-100 via-white to-slate-50/30 border-b border-slate-200/60 shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12">
+          <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
+            <div className="relative group mx-auto md:mx-0 w-full max-w-[260px] flex-shrink-0">
+              <div className="absolute inset-0 bg-blue-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-70" />
+              <Image
+                src={subject.image}
+                alt={subject.code}
+                width={260}
+                height={700}
+                className="w-full h-[240px] object-cover object-top rounded-2xl shadow-md border border-slate-200/80 relative z-10 transform group-hover:scale-[1.02] transition-all duration-300"
+              />
+            </div>
+            <div className="flex flex-col justify-center space-y-3 pt-1 text-center md:text-left">
+              <span className="inline-block self-center md:self-start text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                {subject.semester}
+              </span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-none tracking-tight">
+                {subject.code} <span className="text-blue-500 text-xl sm:text-2xl font-semibold align-middle ml-2">(LAB)</span>
+              </h1>
+              <p className="text-base sm:text-lg text-slate-500 max-w-xl font-medium leading-relaxed">{subject.title}</p>
+              
+              <div className="flex gap-3 items-center justify-center md:justify-start flex-wrap pt-3">
                 {subject.canvasLink && (
                   <a href={subject.canvasLink} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 border border-slate-200 text-sm rounded-xl py-1.5 px-3 bg-white hover:bg-slate-50 shadow-sm transition-all">
-                    <Image src="/CANVAS.png" alt="Canvas" width={26} height={16} />
+                    className="flex items-center gap-2.5 border border-slate-200 text-sm font-semibold rounded-xl py-2 px-4 bg-white hover:bg-slate-50 text-slate-700 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200">
+                    <Image src="/CANVAS.png" alt="Canvas" width={22} height={14} className="object-contain" />
                     Canvas
                   </a>
                 )}
                 {subject.youtubeLink && (
                   <a href={subject.youtubeLink} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 border border-slate-200 text-sm rounded-xl py-1.5 px-3 bg-white hover:bg-slate-50 shadow-sm transition-all">
-                    <Image src="/youtube.jpg" alt="YouTube" width={26} height={16} />
+                    className="flex items-center gap-2.5 border border-slate-200 text-sm font-semibold rounded-xl py-2 px-4 bg-white hover:bg-slate-50 text-slate-700 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200">
+                    <Image src="/youtube.jpg" alt="YouTube" width={22} height={14} className="object-contain" />
                     Video By AcadTeam
                   </a>
                 )}
@@ -206,18 +213,18 @@ export default function LabPage({ code }: { code: string }) {
       </div>
 
       {/* Seniors + Special Material */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-8 space-y-6">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-12 space-y-10">
         {subject.seniors?.length > 0 && (
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-1 h-5 bg-blue-400 rounded-full" />
-              <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400">เว็บวิชาการรุ่นพี่</h2>
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="w-1.5 h-5 bg-blue-500 rounded-full shadow-sm shadow-blue-500/50" />
+              <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-400">เว็บวิชาการรุ่นพี่</h2>
             </div>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap gap-2.5">
               {subject.seniors.map(({ code, link, linkname }) => (
-                <li key={code}>
+                <li key={code} className="group">
                   <a href={link} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center border border-slate-200 rounded-lg text-sm px-4 py-1.5 bg-white hover:bg-blue-50 hover:border-blue-300 shadow-sm transition-all">
+                    className="flex items-center border border-slate-200/80 rounded-xl text-sm font-medium px-4 py-2 bg-white hover:bg-blue-50/50 hover:text-blue-600 hover:border-blue-200 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200">
                     {linkname}
                   </a>
                 </li>
@@ -226,30 +233,32 @@ export default function LabPage({ code }: { code: string }) {
           </div>
         )}
 
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-1 h-5 bg-amber-400 rounded-full" />
-            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400">Special Material</h2>
+        <div className="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+          <div className="flex items-center gap-2.5 mb-4">
+            <span className="w-1.5 h-5 bg-amber-500 rounded-full shadow-sm shadow-amber-500/50" />
+            <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-400">Special Material</h2>
           </div>
-          <ul className="flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-3">
             {(specialList[0]?.handouts ?? specialCols.map((col, idx) => ({
               name: specialNames[idx] ?? `Special ${idx + 1}`,
               link: null, col, icon,
             }))).map((h, idx) => (
-              <li key={idx} className="inline-flex items-center gap-1">
+              <li key={idx} className="inline-flex items-center gap-2 group">
                 {h.link ? (
                   <a href={h.link} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center border border-slate-200 rounded-lg text-sm px-4 py-1.5 bg-white hover:bg-amber-50 hover:border-amber-300 shadow-sm transition-all">
+                    className="flex items-center border border-slate-200/80 rounded-xl text-sm font-medium px-4 py-2 bg-white hover:bg-amber-50/40 hover:text-amber-700 hover:border-amber-300 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200">
                     {h.name}
                   </a>
                 ) : isAdmin ? (
-                  <span className="text-xs text-gray-400 border border-dashed border-gray-200 rounded px-2 py-1.5">{h.name}</span>
+                  <span className="text-xs font-medium text-slate-400 border border-dashed border-slate-300 rounded-xl px-4 py-2 bg-slate-50/50">{h.name}</span>
                 ) : null}
                 {isAdmin && sheetId && specialSheet && (
-                  <UploadButton
-                    target={{ sheetId, sheetName: specialSheet, row: specialRow, col: h.col }}
-                    existingLink={h.link}
-                  />
+                  <div className="transform scale-90 opacity-80 hover:opacity-100 transition-opacity">
+                    <UploadButton
+                      target={{ sheetId, sheetName: specialSheet, row: specialRow, col: h.col }}
+                      existingLink={h.link}
+                    />
+                  </div>
                 )}
               </li>
             ))}
@@ -257,39 +266,41 @@ export default function LabPage({ code }: { code: string }) {
         </div>
       </div>
 
-      {/* Lab Sections */}
-      <div className="mt-10">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 mb-4">
-          <div className="flex items-center gap-2">
-            <span className="w-1 h-5 bg-green-400 rounded-full" />
-            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400">Lab Sessions</h2>
-          </div>
+      {/* Lab Sections (ปรับครอบ container mx-auto เพื่อความสมมาตร) */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-12">
+        <div className="flex items-center gap-2.5 mb-5">
+          <span className="w-1.5 h-5 bg-emerald-500 rounded-full shadow-sm shadow-emerald-500/50" />
+          <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-400">Lab Sessions</h2>
         </div>
-        <div className="px-4 sm:px-6 md:px-8">
+        <div className="flex flex-col gap-6">
           {sections.map((sec, idx) => (
-            <SectionCard key={idx} name={sec.name} lectures={sec.lectures} sheetId={sheetId} sheetName={lectureSheet} />
+            <div key={idx} className="hover:-translate-y-0.5 transition-all duration-200">
+              <SectionCard name={sec.name} lectures={sec.lectures} sheetId={sheetId} sheetName={lectureSheet} />
+            </div>
           ))}
         </div>
       </div>
 
       {/* Summative */}
       {summativeList.length > 0 && (
-        <div className="mt-12">
-          <div className="bg-gradient-to-r from-violet-50 to-purple-50 border-y border-violet-100 py-5">
+        <div className="mt-16">
+          <div className="bg-gradient-to-r from-violet-500/10 via-purple-500/5 to-transparent border-y border-violet-500/10 py-6 mb-6">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 flex items-center gap-3">
-              <span className="w-1.5 h-7 bg-violet-400 rounded-full" />
-              <h2 className="text-2xl font-bold text-slate-800">Summative Examination</h2>
+              <span className="w-2 h-7 bg-violet-400 rounded-full shadow-sm shadow-violet-400/40" />
+              <h2 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">Summative Examination</h2>
             </div>
           </div>
-          <div className="flex flex-col gap-4 px-4 sm:px-6 md:px-8 mt-4">
+          <div className="container mx-auto flex flex-col gap-4 px-4 sm:px-6 md:px-8">
             {summativeList.map((item, idx) => (
-              <SummativeCard key={idx} {...item} sheetId={sheetId} sheetName={summativeSheet} />
+              <div key={idx} className="hover:-translate-y-0.5 transition-all duration-200">
+                <SummativeCard {...item} sheetId={sheetId} sheetName={summativeSheet} />
+              </div>
             ))}
           </div>
         </div>
       )}
 
-      <div className="h-16" />
-    </>
-  );
+      <div className="h-20" />
+    </div>
+  ); 
 }
