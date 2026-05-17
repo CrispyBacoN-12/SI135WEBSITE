@@ -105,7 +105,7 @@ const convertDriveLink = (url) => {
 };
 
 const makeUrl = (sheetId, sheet, limit) =>
-  `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&tq=select%20*%20limit%20${limit}`;
+  `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&tq=select%20*%20limit%100${limit}`;
 
 // ==========================================
 // MAIN COMPONENT: LabPage
@@ -122,7 +122,7 @@ export default function LabPage({ code }: { code: string }) {
 
   const sheetId          = subject.sheetId;
   const lectureSheet     = subject.lectureSheet;
-  const lectureLimit     = subject.lectureLimit ?? 50;
+  const lectureLimit     = subject.lectureLimit ?? 100;
   const summativeSheet   = subject.summativeSheet;
   const summCols: number[]   = subject.summativeCols ?? [];
   const summNames: string[]  = subject.summativeNames ?? [];
