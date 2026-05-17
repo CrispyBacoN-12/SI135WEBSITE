@@ -49,16 +49,16 @@ export default function SubjectPage() {
   const cloSheet = subject?.cloSheet ?? null;
   const lectureLimit = subject?.lectureLimit ?? 22;
 
-  const handoutCols: number[]       = subject?.lectureHandoutCols ?? [14, 15, 16];
-  const videoCols: number[][]       = subject?.lectureVideoCols   ?? [[17,18],[19,20],[21,22]];
-  const summaryCol: number | null   = subject?.lectureSummaryCol  ?? 23;
+  const handoutCols: number[]       = subject?.lectureHandoutCols  ?? [14, 15, 16, 17];
+  const lectureLinkCols: number[]   = subject?.lectureLectureCols  ?? [18, 19, 20, 21];
+  const summaryCols: number[]       = subject?.lectureSummaryCols  ?? [22, 23];
   const summCols: number[]          = subject?.summativeCols      ?? [13, 14, 15, 16];
   const summNames: string[]          = subject?.summativeNames     ?? ["Summative","SummativeKey","Summative 2","SummativeKey2"];
   const cloCols: number[]            = subject?.cloCols            ?? [];
   const cloNamesList: string[]      = subject?.cloNames           ?? [];
   const specialSheet                = subject?.specialSheet       ?? null;
   const specialRow: number          = subject?.specialRow         ?? 3;
-  const specialCols: number[]       = subject?.specialCols        ?? [25, 26, 27, 28, 29];
+  const specialCols: number[]       = subject?.specialCols        ?? [24, 25, 26, 27, 28];
   const specialNames: string[]      = subject?.specialNames       ?? ["Special 1","Special 2","Special 3","Special 4","Special 5"];
 
   // Fetch Lectures
@@ -76,15 +76,17 @@ export default function SubjectPage() {
             name: `Handout ${i + 1}`, link: cell(col) as string | null, icon, col,
           }));
 
-          const lectures = videoCols.map(([nameCol, linkCol], i) => ({
-            name: (cell(nameCol) as string | null) ?? `Video ${i + 1}`,
-            link: cell(linkCol) as string | null,
-            icon, col: linkCol, nameCol, defaultName: `Video ${i + 1}`,
+          const lectures = lectureLinkCols.map((col, i) => ({
+            name: `Lecture ${i + 1}`,
+            link: cell(col) as string | null,
+            icon, col,
           }));
 
-          const summary = summaryCol != null
-            ? [{ name: "Summary", link: cell(summaryCol) as string | null, icon, col: summaryCol }]
-            : [];
+          const summary = summaryCols.map((col, i) => ({
+            name: summaryCols.length > 1 ? `Summary ${i + 1}` : "Summary",
+            link: cell(col) as string | null,
+            icon, col,
+          }));
 
           if (!number || !title || !type) return null;
           return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + rowOffset };

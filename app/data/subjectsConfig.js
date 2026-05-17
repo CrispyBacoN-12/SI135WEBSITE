@@ -1,11 +1,18 @@
 const SHEET_ID = "1BycR2oOEWS5FlGe5KZLcwm6nPuCpHvmn8p-3SCo3rcg";
 
+// Handout 4 slots (14-17) + Lecture 4 slots (18-21) + Summary 2 slots (22-23)
 const DEFAULT_LECTURE_COLS = {
-  lectureHandoutCols: [14, 15, 16],
-  lectureVideoCols: [[17, 18], [19, 20], [21, 22]],
-  lectureSummaryCol: 23,
+  lectureHandoutCols: [14, 15, 16, 17],
+  lectureLectureCols: [18, 19, 20, 21],
+  lectureSummaryCols: [22, 23],
 };
 
+// Special material 5 slots starting right after summary (col 24-28)
+const DEFAULT_SPECIAL = {
+  specialRow: 3,
+  specialCols: [24, 25, 26, 27, 28],
+  specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+};
 
 export const subjectsConfig = {
   SIID243: {
@@ -17,8 +24,8 @@ export const subjectsConfig = {
     cloSheet: null, cloCols: null, cloNames: null,
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1067", youtubeLink: null,
     seniors: [],
-    specialSheet: "243", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
-    lectureHandoutCols: [], lectureVideoCols: [[13, 14], [15, 16], [17, 18]], lectureSummaryCol: 19,
+    specialSheet: "243", ...DEFAULT_SPECIAL,
+    ...DEFAULT_LECTURE_COLS,
   },
   SIID244: {
     code: "SIID244", title: "Integumentary System, Skeleton and Movement",
@@ -29,8 +36,8 @@ export const subjectsConfig = {
     cloSheet: null, cloCols: null, cloNames: null,
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1068", youtubeLink: null,
     seniors: [],
-    specialSheet: "244", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
-    lectureHandoutCols: [], lectureVideoCols: [[13, 14], [15, 16], [17, 18]], lectureSummaryCol: 19,
+    specialSheet: "244", ...DEFAULT_SPECIAL,
+    ...DEFAULT_LECTURE_COLS,
   },
   SIID245: {
     code: "SIID245", title: "Integumentary System, Skeleton and Movement",
@@ -50,8 +57,8 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/216", linkname: "SI129(216)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/216", linkname: "SI128(216)" },
     ],
-    specialSheet: "245 (MSK)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
-    lectureHandoutCols: [], lectureVideoCols: [[13, 14], [15, 16], [17, 18]], lectureSummaryCol: 19,
+    specialSheet: "245 (MSK)", ...DEFAULT_SPECIAL,
+    ...DEFAULT_LECTURE_COLS,
   },
   SIID246: {
     code: "SIID246", title: "Laboratory in Structure of Integumentary System, Skeleton and Movement",
@@ -96,7 +103,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/217", linkname: "SI129(217)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/217", linkname: "SI128(217)" },
     ],
-    specialSheet: "247 (CVS)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "247 (CVS)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID248: {
@@ -117,7 +124,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/218", linkname: "SI129(218)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/218", linkname: "SI128(218)" },
     ],
-    specialSheet: "248 (Hemato)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "248 (Hemato)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID249: {
@@ -138,7 +145,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/222", linkname: "SI129(222)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/222", linkname: "SI128(222)" },
     ],
-    specialSheet: "249 (KUB)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "249 (KUB)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID250: {
@@ -159,7 +166,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/220", linkname: "SI129(220)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/220", linkname: "SI128(220)" },
     ],
-    specialSheet: "250 (GI)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "250 (GI)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID251: {
@@ -180,7 +187,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/219", linkname: "SI129(219)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/219", linkname: "SI128(219)" },
     ],
-    specialSheet: "251 (RS)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "251 (RS)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID252: {
@@ -201,7 +208,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/227", linkname: "SI129(227)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/227", linkname: "SI128(227)" },
     ],
-    specialSheet: "252 (Epidem)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "252 (Epidem)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID253: {
@@ -222,7 +229,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/223", linkname: "SI129(223)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/223", linkname: "SI128(223)" },
     ],
-    specialSheet: "253 (Repro)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "253 (Repro)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID254: {
@@ -243,8 +250,8 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/224", linkname: "SI129(224)" },
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/224", linkname: "SI128(224)" },
     ],
-    specialSheet: "254 (Neuro)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
-    lectureHandoutCols: [], lectureVideoCols: [[12, 13], [14, 15], [16, 17]], lectureSummaryCol: 18,
+    specialSheet: "254 (Neuro)", ...DEFAULT_SPECIAL,
+    ...DEFAULT_LECTURE_COLS,
   },
   SIID255: {
     code: "SIID255", title: "Laboratory in Structure of Visceral Systems",
@@ -287,7 +294,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/middler/314", linkname: "SI129(314)" },
       { code: "SI128", link: "https://si128-site.web.app/314", linkname: "SI128(314)" },
     ],
-    specialSheet: "256 (Microbio)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "256 (Microbio)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID257: {
@@ -308,7 +315,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/middler/312", linkname: "SI129(312)" },
       { code: "SI128", link: "https://si128-site.web.app/312", linkname: "SI128(312)" },
     ],
-    specialSheet: "257 (Immuno)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "257 (Immuno)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID258: {
@@ -329,7 +336,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/middler/315", linkname: "SI129(315)" },
       { code: "SI128", link: "https://si128-site.web.app/315", linkname: "SI128(315)" },
     ],
-    specialSheet: "258 (Pharmaco)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "258 (Pharmaco)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID259: {
@@ -350,7 +357,7 @@ export const subjectsConfig = {
       { code: "SI129", link: "https://sites.google.com/view/si129academicportal/archive/sophomore/225", linkname: "SI129(225)" },
       { code: "SI128", link: "https://si128-site.web.app/225", linkname: "SI128(225)" },
     ],
-    specialSheet: "259 (APK)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "259 (APK)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
   SIID260: {
@@ -365,7 +372,7 @@ export const subjectsConfig = {
     seniors: [
       { code: "SI134", link: "https://siriraj134.com/acad/siid260", linkname: "SI134(260)" },
     ],
-    specialSheet: "260 (Research)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    specialSheet: "260 (Research)", ...DEFAULT_SPECIAL,
     ...DEFAULT_LECTURE_COLS,
   },
 };
