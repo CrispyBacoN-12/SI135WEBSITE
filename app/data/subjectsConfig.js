@@ -56,7 +56,7 @@ export const subjectsConfig = {
   SIID246: {
     code: "SIID246", title: "Laboratory in Structure of Integumentary System, Skeleton and Movement",
     semester: "Year 2 Semester 1", image: "/SIID246.png", sheetId: SHEET_ID,
-    lectureSheet: "246 (Gross1)", lectureLimit: 22,
+    lectureSheet: "246 (Gross1)", lectureLimit: 100,
     summativeSheet: "Summative", summativeCols: [1, 2, 3, 4, 5, 6],
     summativeNames: ["MockExam", "MockAnswer", "Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: null, cloCols: null, cloNames: null,
@@ -249,7 +249,7 @@ export const subjectsConfig = {
   SIID255: {
     code: "SIID255", title: "Laboratory in Structure of Visceral Systems",
     semester: "Year 2 Semester 1", image: "/SIID255.png", sheetId: SHEET_ID,
-    lectureSheet: "255 (Gross2)", lectureLimit: 22,
+    lectureSheet: "255 (Gross2)", lectureLimit: 100,
     summativeSheet: "Summative2", summativeCols: [1, 2, 3, 4],
     summativeNames: ["MockExam", "MockAnswer", "Summative", "SummativeKey"],
     cloSheet: null, cloCols: null, cloNames: null,
