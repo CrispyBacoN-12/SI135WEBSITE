@@ -72,7 +72,10 @@ export const subjectsConfig = {
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/228", linkname: "SI128(228)" },
     ],
     specialSheet: "246 (Gross1)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
-    lectureHandoutCols: [14, 15, 16], lectureVideoCols: [], lectureSummaryCol: null,
+    labSections: ["Body Wall & Axilla", "Upper Limb", "Head & Neck", "Lower Limb", "Ultrasographic Study"],
+    labTrigger: 1,
+    lectureHandoutCols: [14, 15, 16], lectureHandoutNames: ["Lecture", "Clinical Lab", "CLO Finished"],
+    lectureVideoCols: [], lectureSummaryCol: null,
   },
   SIID247: {
     code: "SIID247", title: "Circulatory System",
@@ -262,6 +265,8 @@ export const subjectsConfig = {
       { code: "SI128", link: "https://sites.google.com/view/siriraj128/229", linkname: "SI128(229)" },
     ],
     specialSheet: "255 (Gross2)", specialRow: 3, specialCols: [25, 26, 27, 28, 29], specialNames: ["Special 1", "Special 2", "Special 3", "Special 4", "Special 5"],
+    labSections: ["Cranial nerve & Organs of special senses", "Circulatory system", "Respiratory system", "Gastrointestinal & Hepatobiliary system", "KUB System, Fluid & Electrolyte Balance", "Reproductive System"],
+    labTrigger: 1,
     lectureHandoutCols: [13, 14, 15], lectureVideoCols: [[16, 17], [18, 19], [20, 21]], lectureSummaryCol: 22,
   },
   SIID256: {
