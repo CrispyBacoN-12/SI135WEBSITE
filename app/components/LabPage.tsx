@@ -116,6 +116,8 @@ export default function LabPage({ code }: { code: string }) {
 
   const [sections, setSections] = useState([]);
   const [summativeList, setSummativeList] = useState([]);
+  const [summative2List, setSummative2List] = useState([]);
+  const [summative3List, setSummative3List] = useState([]);
   const [specialList, setSpecialList] = useState([]);
 
   if (!subject) return notFound();
@@ -124,8 +126,12 @@ export default function LabPage({ code }: { code: string }) {
   const lectureSheet     = subject.lectureSheet;
   const lectureLimit     = subject.lectureLimit ?? 100;
   const summativeSheet   = subject.summativeSheet;
-  const summCols: number[]   = subject.summativeCols ?? [];
-  const summNames: string[]  = subject.summativeNames ?? [];
+  const summCols: number[]    = subject.summativeCols  ?? [];
+  const summNames: string[]   = subject.summativeNames ?? [];
+  const summ2Cols: number[]   = subject.summative2Cols  ?? [];
+  const summ2Names: string[]  = subject.summative2Names ?? summNames;
+  const summ3Cols: number[]   = subject.summative3Cols  ?? [];
+  const summ3Names: string[]  = subject.summative3Names ?? summNames;
   const handoutCols: number[]  = subject.lectureHandoutCols ?? [];
   const handoutNames: string[] = subject.lectureHandoutNames ?? handoutCols.map((_, i) => `Handout ${i + 1}`);
   const videoCols: number[][]  = subject.lectureVideoCols ?? [];
@@ -192,9 +198,9 @@ export default function LabPage({ code }: { code: string }) {
       .catch(console.error);
   }, [sheetId, lectureSheet]);
 
-  // Fetch Summative
+  // Fetch Summative 1
   useEffect(() => {
-    if (!sheetId || !summativeSheet) return;
+    if (!sheetId || !summativeSheet || summCols.length === 0) return;
     fetch(makeUrl(sheetId, summativeSheet, 50))
       .then((r) => r.text())
       .then((text) => {
@@ -211,6 +217,52 @@ export default function LabPage({ code }: { code: string }) {
           return { title, handouts, sheetRow: rowIdx + rowOffset };
         }).filter(Boolean);
         setSummativeList(data);
+      })
+      .catch(console.error);
+  }, [sheetId, summativeSheet]);
+
+  // Fetch Summative 2 (same sheet, different cols)
+  useEffect(() => {
+    if (!sheetId || !summativeSheet || summ2Cols.length === 0) return;
+    fetch(makeUrl(sheetId, summativeSheet, 50))
+      .then((r) => r.text())
+      .then((text) => {
+        const { rows, rowOffset } = parseGViz(text);
+        const data = rows.map((row, rowIdx) => {
+          const cell = (i) => row.c?.[i]?.v ?? null;
+          const title = cell(0);
+          if (!title) return null;
+          const handouts = summ2Cols.map((col, idx) => ({
+            name: summ2Names[idx] ?? `Slot ${idx + 1}`,
+            link: convertDriveLink(cell(col) as string | null),
+            icon, col,
+          }));
+          return { title, handouts, sheetRow: rowIdx + rowOffset };
+        }).filter(Boolean);
+        setSummative2List(data);
+      })
+      .catch(console.error);
+  }, [sheetId, summativeSheet]);
+
+  // Fetch Summative 3 (same sheet, different cols)
+  useEffect(() => {
+    if (!sheetId || !summativeSheet || summ3Cols.length === 0) return;
+    fetch(makeUrl(sheetId, summativeSheet, 50))
+      .then((r) => r.text())
+      .then((text) => {
+        const { rows, rowOffset } = parseGViz(text);
+        const data = rows.map((row, rowIdx) => {
+          const cell = (i) => row.c?.[i]?.v ?? null;
+          const title = cell(0);
+          if (!title) return null;
+          const handouts = summ3Cols.map((col, idx) => ({
+            name: summ3Names[idx] ?? `Slot ${idx + 1}`,
+            link: convertDriveLink(cell(col) as string | null),
+            icon, col,
+          }));
+          return { title, handouts, sheetRow: rowIdx + rowOffset };
+        }).filter(Boolean);
+        setSummative3List(data);
       })
       .catch(console.error);
   }, [sheetId, summativeSheet]);
@@ -365,17 +417,57 @@ export default function LabPage({ code }: { code: string }) {
         </div>
       </div>
 
-      {/* Summative */}
+      {/* Summative 1 */}
       {summativeList.length > 0 && (
         <div className="mt-16">
           <div className="bg-gradient-to-r from-violet-500/10 via-purple-500/5 to-transparent border-y border-violet-500/10 py-6 mb-6">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 flex items-center gap-3">
               <span className="w-2 h-7 bg-violet-400 rounded-full shadow-sm shadow-violet-400/40" />
-              <h2 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">Summative Examination</h2>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">
+                Summative Examination {summ2Cols.length > 0 ? "1" : ""}
+              </h2>
             </div>
           </div>
           <div className="container mx-auto flex flex-col gap-4 px-4 sm:px-6 md:px-8">
             {summativeList.map((item, idx) => (
+              <div key={idx} className="hover:-translate-y-0.5 transition-all duration-200">
+                <SummativeCard {...item} sheetId={sheetId} sheetName={summativeSheet} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Summative 2 */}
+      {summative2List.length > 0 && (
+        <div className="mt-10">
+          <div className="bg-gradient-to-r from-purple-500/10 via-pink-500/5 to-transparent border-y border-purple-500/10 py-6 mb-6">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 flex items-center gap-3">
+              <span className="w-2 h-7 bg-purple-400 rounded-full shadow-sm shadow-purple-400/40" />
+              <h2 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">Summative Examination 2</h2>
+            </div>
+          </div>
+          <div className="container mx-auto flex flex-col gap-4 px-4 sm:px-6 md:px-8">
+            {summative2List.map((item, idx) => (
+              <div key={idx} className="hover:-translate-y-0.5 transition-all duration-200">
+                <SummativeCard {...item} sheetId={sheetId} sheetName={summativeSheet} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Summative 3 */}
+      {summative3List.length > 0 && (
+        <div className="mt-10">
+          <div className="bg-gradient-to-r from-pink-500/10 via-rose-500/5 to-transparent border-y border-pink-500/10 py-6 mb-6">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 flex items-center gap-3">
+              <span className="w-2 h-7 bg-pink-400 rounded-full shadow-sm shadow-pink-400/40" />
+              <h2 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">Summative Examination 3</h2>
+            </div>
+          </div>
+          <div className="container mx-auto flex flex-col gap-4 px-4 sm:px-6 md:px-8">
+            {summative3List.map((item, idx) => (
               <div key={idx} className="hover:-translate-y-0.5 transition-all duration-200">
                 <SummativeCard {...item} sheetId={sheetId} sheetName={summativeSheet} />
               </div>
