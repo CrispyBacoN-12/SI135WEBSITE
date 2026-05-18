@@ -47,7 +47,8 @@ export default function SubjectPage() {
   const lectureSheet = subject?.lectureSheet;
   const summativeSheet = subject?.summativeSheet;
   const cloSheet = subject?.cloSheet ?? null;
-  const lectureLimit = subject?.lectureLimit ?? 22;
+  const lectureLimit    = subject?.lectureLimit    ?? 22;
+  const lectureSkipRows = subject?.lectureSkipRows ?? 0;
 
   const handoutCols: number[]       = subject?.lectureHandoutCols  ?? [14, 15, 16, 17];
   const lectureLinkCols: number[]   = subject?.lectureLectureCols  ?? [18, 19, 20, 21];
@@ -67,7 +68,8 @@ export default function SubjectPage() {
     fetch(makeUrl(sheetId, lectureSheet, lectureLimit))
       .then((r) => r.text())
       .then((text) => {
-        const { rows, rowOffset } = parseGViz(text);
+        const { rows: allRows, rowOffset } = parseGViz(text);
+        const rows = allRows.slice(lectureSkipRows);
         const data = rows.map((row, rowIdx) => {
           const cell = (i) => row.c?.[i]?.v ?? null;
           const number = cell(0), title = cell(1), type = cell(2);
@@ -89,7 +91,7 @@ export default function SubjectPage() {
           }));
 
           if (!number || !title || !type) return null;
-          return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + rowOffset };
+          return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + lectureSkipRows + rowOffset };
         }).filter(Boolean);
         setLectures(data);
       })
