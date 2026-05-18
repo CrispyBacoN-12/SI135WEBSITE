@@ -90,7 +90,7 @@ export const subjectsConfig = {
   SIID247: {
     code: "SIID247", title: "Circulatory System",
     semester: "Year 2 Semester 1", image: "/SIID247.png", sheetId: SHEET_ID,
-    lectureSheet: "247 (CVS)", lectureLimit: 22,
+    lectureSheet: "247 (CVS)", lectureLimit: 22, lectureRowAdjust: 3,
     summativeSheet: "Summative2", summativeCols: [13, 14, 15, 16],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [3, 4, 5, 6, 7, 8],
