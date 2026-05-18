@@ -238,7 +238,7 @@ export const subjectsConfig = {
   SIID254: {
     code: "SIID254", title: "Nervous System",
     semester: "Year 2 Semester 1", image: "/SIID254.png", sheetId: SHEET_ID,
-    lectureSheet: "254 (Neuro)", lectureLimit: 22, lectureRowAdjust: 3,
+    lectureSheet: "254 (Neuro)", lectureLimit: 99, lectureRowAdjust: 3,
     summativeSheet: "Summative", summativeCols: [13, 14, 15, 16],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [13, 14], cloNames: ["Question", "Answer"],
