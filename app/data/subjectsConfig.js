@@ -196,7 +196,7 @@ export const subjectsConfig = {
   SIID252: {
     code: "SIID252", title: "Epidemiology and Biostatistics",
     semester: "Year 2 Semester 1", image: "/SIID 252.png", sheetId: SHEET_ID,
-    lectureSheet: "252 (Epidem)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "252 (Epidem)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [9, 10, 11, 12],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
