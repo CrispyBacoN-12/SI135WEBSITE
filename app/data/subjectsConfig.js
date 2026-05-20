@@ -288,7 +288,7 @@ export const subjectsConfig = {
   SIID256: {
     code: "SIID256", title: "Principles of Microbiology and Parasitology",
     semester: "Year 2 Semester 2", image: "/SIID 256.png", sheetId: SHEET_ID,
-    lectureSheet: "256 (Microbio)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "256 (Microbio)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [9, 10, 11, 12],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
@@ -309,7 +309,7 @@ export const subjectsConfig = {
   SIID257: {
     code: "SIID257", title: "Immune Responses and Inflammation",
     semester: "Year 2 Semester 2", image: "/SIID 257.png", sheetId: SHEET_ID,
-    lectureSheet: "257 (Immuno)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "257 (Immuno)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [21, 22, 23, 24],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
@@ -330,7 +330,7 @@ export const subjectsConfig = {
   SIID258: {
     code: "SIID258", title: "General Pharmacology",
     semester: "Year 2 Semester 2", image: "/SIID 258.png", sheetId: SHEET_ID,
-    lectureSheet: "258 (Pharmaco)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "258 (Pharmaco)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [25, 26, 27, 28],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
