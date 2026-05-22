@@ -18,7 +18,7 @@ export const subjectsConfig = {
   SIID243: {
     code: "SIID243", title: "Human Life",
     semester: "Year 2 Semester 1", image: "/SIID243.png", sheetId: SHEET_ID,
-    lectureSheet: "243", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "243", lectureLimit: 99,
     summativeSheet: "Summative", summativeCols: [22, 23, 24, 25],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: null, cloCols: null, cloNames: null,
@@ -30,7 +30,7 @@ export const subjectsConfig = {
   SIID244: {
     code: "SIID244", title: "Integumentary System, Skeleton and Movement",
     semester: "Year 2 Semester 1", image: "/SIID244.png", sheetId: SHEET_ID,
-    lectureSheet: "244", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "244", lectureLimit: 99,
     summativeSheet: "Summative", summativeCols: [26, 27, 28, 29],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: null, cloCols: null, cloNames: null,
@@ -90,7 +90,7 @@ export const subjectsConfig = {
   SIID247: {
     code: "SIID247", title: "Circulatory System",
     semester: "Year 2 Semester 1", image: "/SIID247.png", sheetId: SHEET_ID,
-    lectureSheet: "247 (CVS)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "247 (CVS)", lectureLimit: 99,
     summativeSheet: "Summative2", summativeCols: [13, 14, 15, 16],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [3, 4, 5, 6, 7, 8],
@@ -133,7 +133,7 @@ export const subjectsConfig = {
   SIID249: {
     code: "SIID249", title: "Urinary System I",
     semester: "Year 2 Semester 1", image: "/SIID 249.png", sheetId: SHEET_ID,
-    lectureSheet: "249 (KUB)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "249 (KUB)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [1, 2, 3, 4],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [15, 16], cloNames: ["Question", "Answer"],
@@ -154,7 +154,7 @@ export const subjectsConfig = {
   SIID250: {
     code: "SIID250", title: "Gastrointestinal and Hepatobiliary System",
     semester: "Year 2 Semester 1", image: "/SIID 250.png", sheetId: SHEET_ID,
-    lectureSheet: "250 (GI)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "250 (GI)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [5, 6, 7, 8],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [17, 18], cloNames: ["Question", "Answer"],
@@ -175,7 +175,7 @@ export const subjectsConfig = {
   SIID251: {
     code: "SIID251", title: "Respiratory System",
     semester: "Year 2 Semester 1", image: "/SIID251.png", sheetId: SHEET_ID,
-    lectureSheet: "251 (RS)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "251 (RS)", lectureLimit: 99,
     summativeSheet: "Summative2", summativeCols: [21, 22, 23, 24],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [11, 12], cloNames: ["Question", "Answer"],
@@ -217,7 +217,7 @@ export const subjectsConfig = {
   SIID253: {
     code: "SIID253", title: "Reproductive System",
     semester: "Year 2 Semester 1", image: "/SIID 253.png", sheetId: SHEET_ID,
-    lectureSheet: "253 (Repro)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "253 (Repro)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [13, 14, 15, 16],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [21, 22], cloNames: ["Question", "Answer"],
@@ -351,7 +351,7 @@ export const subjectsConfig = {
   SIID259: {
     code: "SIID259", title: "Applied Preclinical Knowledge",
     semester: "Year 2 Semester 2", image: "/SIID 259.png", sheetId: SHEET_ID,
-    lectureSheet: "259 (APK)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "259 (APK)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [29, 30, 31, 32],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
@@ -372,7 +372,7 @@ export const subjectsConfig = {
   SIID260: {
     code: "SIID260", title: "Introduction to Research",
     semester: "Year 2 Semester 2", image: "/SIID 260.png", sheetId: SHEET_ID,
-    lectureSheet: "260 (Research)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "260 (Research)", lectureLimit: 99,
     summativeSheet: "Summative3", summativeCols: [33, 34, 35, 36],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],

@@ -31,7 +31,7 @@ const convertDriveLink = (url) => {
 };
 
 const makeUrl = (sheetId, sheet, limit) =>
-  `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&tq=select%20*%20limit%20${limit}`;
+  `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&headers=0&sheet=${encodeURIComponent(sheet)}&tq=select%20*%20limit%20${limit}`;
 
 export default function SubjectPage() {
   const { code } = useParams();
@@ -48,7 +48,6 @@ export default function SubjectPage() {
   const summativeSheet = subject?.summativeSheet;
   const cloSheet = subject?.cloSheet ?? null;
   const lectureLimit      = subject?.lectureLimit      ?? 22;
-  const lectureRowAdjust  = subject?.lectureRowAdjust  ?? 0;
 
   const handoutCols: number[]       = subject?.lectureHandoutCols  ?? [14, 15, 16, 17];
   const lectureLinkCols: number[]   = subject?.lectureLectureCols  ?? [18, 19, 20, 21];
@@ -90,7 +89,7 @@ export default function SubjectPage() {
           }));
 
           if (!Number.isFinite(Number(number)) || !title || !type) return null;
-          return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + rowOffset + lectureRowAdjust };
+          return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + rowOffset };
         }).filter(Boolean);
         setLectures(data);
       })
