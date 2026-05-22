@@ -146,15 +146,15 @@ export default function SubjectPage() {
       .catch(console.error);
   }, [sheetId, cloSheet, lectureLimit]);
 
-  // Fetch Special Materials — fixed row (specialRow), fixed cols (specialCols)
+  // Fetch Special Materials — headers=0 forces rowOffset=1 so targetIdx = specialRow-1 always
   useEffect(() => {
     if (!sheetId || !specialSheet) return;
-    fetch(makeUrl(sheetId, specialSheet, specialRow + 2))
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&headers=0&sheet=${encodeURIComponent(specialSheet)}&tq=select%20*%20limit%20${specialRow + 1}`;
+    fetch(url)
       .then((r) => r.text())
       .then((text) => {
-        const { rows, rowOffset } = parseGViz(text);
-        const targetIdx = specialRow - rowOffset;
-        const row = rows[targetIdx];
+        const { rows } = parseGViz(text);
+        const row = rows[specialRow - 1]; // 0-indexed: row 3 → index 2
         const cell = (i) => row?.c?.[i]?.v ?? null;
         const handouts = specialCols.map((col, idx) => ({
           name: specialNames[idx] ?? `Special ${idx + 1}`,
