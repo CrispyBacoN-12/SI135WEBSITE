@@ -112,7 +112,7 @@ export const subjectsConfig = {
   SIID248: {
     code: "SIID248", title: "Blood, Lymphoid and Immune System",
     semester: "Year 2 Semester 1", image: "/SIID248.png", sheetId: SHEET_ID,
-    lectureSheet: "248 (Hemato)", lectureLimit: 99, lectureRowAdjust: 3,
+    lectureSheet: "248 (Hemato)", lectureLimit: 99,
     summativeSheet: "Summative2", summativeCols: [17, 18, 19, 20],
     summativeNames: ["Summative", "SummativeKey", "Summative(LM)", "SummativeKey2"],
     cloSheet: "CLO", cloCols: [9, 10], cloNames: ["Question", "Answer"],
