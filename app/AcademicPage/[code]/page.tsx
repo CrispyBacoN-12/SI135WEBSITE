@@ -88,7 +88,7 @@ export default function SubjectPage() {
             icon, col,
           }));
 
-          if (!Number.isFinite(Number(number)) || !title || !type) return null;
+          if (number === null || !Number.isFinite(Number(number)) || !title || !type) return null;
           return { number, title, type, handout, lectures, summary, sheetRow: rowIdx + rowOffset };
         }).filter(Boolean);
         setLectures(data);
