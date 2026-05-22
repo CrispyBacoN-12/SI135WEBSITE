@@ -291,7 +291,7 @@ export const subjectsConfig = {
     lectureSheet: "256 (Microbio)", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative3", summativeCols: [9, 10, 11, 12],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
-    cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
+    cloSheet: "CLO", cloCols: [23, 24], cloNames: ["Question", "Answer"],
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1080",
     youtubeLink: "https://www.youtube.com/playlist?list=PLnWAv0tkYmKHjsnEGXIrju5gx3-TpTQCp",
     seniors: [
@@ -312,7 +312,7 @@ export const subjectsConfig = {
     lectureSheet: "257 (Immuno)", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative3", summativeCols: [21, 22, 23, 24],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
-    cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
+    cloSheet: "CLO", cloCols: [25, 26], cloNames: ["Question", "Answer"],
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1082",
     youtubeLink: "https://www.youtube.com/playlist?list=PLnWAv0tkYmKHjsnEGXIrju5gx3-TpTQCp",
     seniors: [
@@ -333,7 +333,7 @@ export const subjectsConfig = {
     lectureSheet: "258 (Pharmaco)", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative3", summativeCols: [25, 26, 27, 28],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
-    cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
+    cloSheet: "CLO", cloCols: [27, 28], cloNames: ["Question", "Answer"],
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1077",
     youtubeLink: "https://www.youtube.com/playlist?list=PLnWAv0tkYmKHjsnEGXIrju5gx3-TpTQCp",
     seniors: [
@@ -354,7 +354,7 @@ export const subjectsConfig = {
     lectureSheet: "259 (APK)", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative3", summativeCols: [29, 30, 31, 32],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
-    cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
+    cloSheet: "CLO", cloCols: [29, 30], cloNames: ["Question", "Answer"],
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1083",
     youtubeLink: "https://www.youtube.com/playlist?list=PLnWAv0tkYmKHjsnEGXIrju5gx3-TpTQCp",
     seniors: [
