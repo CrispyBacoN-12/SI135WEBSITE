@@ -31,7 +31,7 @@ const convertDriveLink = (url) => {
 };
 
 const makeUrl = (sheetId, sheet, limit) =>
-  `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&headers=0&sheet=${encodeURIComponent(sheet)}&tq=select%20*%20limit%20${limit}`;
+  `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&tq=select%20*%20limit%20${limit}`;
 
 export default function SubjectPage() {
   const { code } = useParams();
