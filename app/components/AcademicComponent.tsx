@@ -83,13 +83,6 @@ export default function LectureCard({
                 </span>
               ) : null}
               {isAdmin && sheetId && sheetName && sheetRow !== undefined && (
-                <>
-                {console.log(
-                  "UploadButton:",
-                  h.name,
-                  "row =", sheetRow,
-                  "col =", h.col
-                )}
                 <UploadButton
                   target={{
                     sheetId,
