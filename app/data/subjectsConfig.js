@@ -312,7 +312,7 @@ export const subjectsConfig = {
     lectureSheet: "257 (Immuno)", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative3", summativeCols: [21, 22, 23, 24],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
-    cloSheet: "CLO_257", cloCols: [25, 26], cloNames: ["Question", "CLO1-4 + Formative Answer"],
+    cloSheet: "ALL_CLO", cloCols: [25, 26], cloNames: ["Question", "CLO1-4 + Formative Answer"],
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1082",
     youtubeLink: "https://www.youtube.com/playlist?list=PLnWAv0tkYmKHjsnEGXIrju5gx3-TpTQCp",
     seniors: [
@@ -333,7 +333,7 @@ export const subjectsConfig = {
     lectureSheet: "258 (Pharmaco)", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative3", summativeCols: [25, 26, 27, 28],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
-    cloSheet: "CLO", cloCols: [27, 28], cloNames: ["Question", "Answer"],
+    cloSheet: "ALL_CLO", cloCols: [27, 28], cloNames: ["Question", "Answer"],
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1077",
     youtubeLink: "https://www.youtube.com/playlist?list=PLnWAv0tkYmKHjsnEGXIrju5gx3-TpTQCp",
     seniors: [
