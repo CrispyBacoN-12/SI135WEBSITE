@@ -40,7 +40,12 @@ export default function LectureCard({
 
   const allSlots = [...handout, ...lectures, ...summary];
   const visibleSlots = isAdmin ? allSlots : allSlots.filter((h) => h.link);
-
+  console.log(
+  "LectureCard",
+  title,
+  "sheetRow =",
+  sheetRow
+  );
   return (
     <div className="flex flex-row gap-1 w-full">
       {/* เลขลำดับ */}
