@@ -199,7 +199,7 @@ export const subjectsConfig = {
     lectureSheet: "252 (Epidem)", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative3", summativeCols: [9, 10, 11, 12],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
-    cloSheet: "CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
+    cloSheet: "ALL_CLO", cloCols: [19, 20], cloNames: ["Question", "Answer"],
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1072",
     youtubeLink: "https://www.youtube.com/playlist?list=PLnWAv0tkYmKGjolHgkric3CR4SZHLydb6",
     seniors: [
