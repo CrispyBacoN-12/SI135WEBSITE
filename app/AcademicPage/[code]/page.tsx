@@ -13,7 +13,6 @@ import { notFound } from "next/navigation";
 const parseGViz = (text) => {
   const table = JSON.parse(text.substring(47).slice(0, -2)).table;
   const rowOffset = (table.parsedNumHeaders ?? 0) + 1;
-  console.log(table);
   return { rows: table.rows, rowOffset };
 };
 
