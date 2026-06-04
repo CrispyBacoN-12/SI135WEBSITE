@@ -28,7 +28,7 @@ export const subjectsConfig = {
     ...DEFAULT_LECTURE_COLS,
   },
   SIID244: {
-    code: "SIID244", title: "Integumentary System, Skeleton and Movement",
+    code: "SIID244", title: "Humanistic Healthcare",
     semester: "Year 2 Semester 1", image: "/SIID244.png", sheetId: SHEET_ID,
     lectureSheet: "244", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative", summativeCols: [26, 27, 28, 29],
@@ -131,7 +131,7 @@ export const subjectsConfig = {
     ...DEFAULT_LECTURE_COLS,
   },
   SIID249: {
-    code: "SIID249", title: "Urinary System I",
+    code: "SIID249", title: "Urinary System",
     semester: "Year 2 Semester 1", image: "/SIID 249.png", sheetId: SHEET_ID,
     lectureSheet: "249 (KUB)", lectureLimit: 99, lectureRowAdjust: 1,
     summativeSheet: "Summative3", summativeCols: [1, 2, 3, 4],
