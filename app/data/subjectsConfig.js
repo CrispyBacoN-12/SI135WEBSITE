@@ -289,9 +289,9 @@ export const subjectsConfig = {
     code: "SIID256", title: "Principles of Microbiology and Parasitology",
     semester: "Year 2 Semester 2", image: "/SIID 256.png", sheetId: SHEET_ID,
     lectureSheet: "256 (Microbio)", lectureLimit: 99, lectureRowAdjust: 1,
-    summativeSheet: "Summative3", summativeCols: [9, 10, 11, 12],
+    summativeSheet: "Summative3", summativeCols: [17, 18, 19, 20],
     summativeNames: ["Summative", "SummativeKey", "Summative 2", "SummativeKey2"],
-    cloSheet: "CLO", cloCols: [23, 24], cloNames: ["Question", "Answer"],
+    cloSheet: "CLO", cloCols: [23, 24], cloNames: ["Question", "CLO1-6 + Formative Answer"],
     canvasLink: "https://sirirajcanvas.instructure.com/courses/1080",
     youtubeLink: "https://www.youtube.com/playlist?list=PLnWAv0tkYmKHjsnEGXIrju5gx3-TpTQCp",
     seniors: [
